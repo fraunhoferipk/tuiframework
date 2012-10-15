@@ -1,0 +1,43 @@
+Prerequisites:
+
+xerces c++ 3.1.1 (http://xerces.apache.org/xerces-c/)
+phidgets 21 (optional - http://www.phidgets.com/drivers.php) (for the phidgets tui device)
+pthreads (should be installed by default on your system)
+gnu automake (should be installed by default on your system)
+doxygen (optional)
+
+How to install the TUI-Framework on your system:
+
+The build environment for all projects is gnu automake.
+Use the following command sequence:
+
+./bootstrap.sh
+./configure or ./lconfigure.sh, which uses the environment variable $LOCALINST_DIR as prefix (e.g. add "export LOCALINST_DIR=${HOME}/localinst" to your .bashrc and use ./lconfigure.sh to install it local in your home)
+make
+make install (for local home installation)
+sudo make install (for system wide installation)
+
+Example executables:
+
+Running TUI Client/Server under linux:
+ testtuiserver1 7998 7999 <prefix>/share/examples/mytestconfig.xml
+ (example server for multicast)
+or
+ testtuiserver2 7998 7999 <prefix>/share/examples/mytestconfig.xml <plugin dir>
+ (example server using plugins)
+
+tuiclient1 6998 6999 127.0.0.1:7999
+or
+tuiclient2 5998 5999 127.0.0.1:7999 127.0.0.1:8999
+(example for using two tui servers)
+
+
+Running TUI Client/Server under windows:
+   -> in Visual Studio set Project -> Properties -> Debugging -> Command Arguments
+   -> for example:
+      -> TUIServer: CommandArguments="7998 7999 testconfig.xml"
+      -> TUIClient: CommandArguments="8998 8999 127.0.0.1:7999"
+
+
+The TUI server settings gui tool is located under /tuiframework/trunk/java/tuiserver-settings. Entry point is src/app/TUIServerSettingsApp.java.
+

@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TUIObjectTypeSequence>
+    <TUIObjectType name="BezierWithOneButton">
+        <Description>
+            This tool can be used to create bezier formed surfaces in 3D.
+        </Description>
+        <PortTypeSequence>
+            <PortType name="TransfLeft" typename="TrackerChannel" source="1" sink="0">
+                <Description>
+                    Left position and orientation.
+                </Description>
+            </PortType>
+            <PortType name="TransfRight" typename="TrackerChannel" source="1" sink="0">
+                <Description>
+                    Right position and orientation.
+                </Description>
+            </PortType>
+            <PortType name="Button" typename="DigitalChannel" source="1" sink="0"/>
+        </PortTypeSequence>
+    </TUIObjectType>
+    <TUIObjectType name="Body">
+        <Description>
+	  Dummy description
+        </Description>
+        <PortTypeSequence>
+            <PortType name="OurTransformation" typename="Matrix4Channel" source="1" sink="0">
+                <Description>
+                    Transformation Matrix.
+                </Description>
+            </PortType>
+        </PortTypeSequence>
+    </TUIObjectType>
+    <TUIObjectType name="Heckklappe">
+        <PortTypeSequence>
+			<PortType name="Winkel" typename="HapticChannel" source="1" sink="0"/>
+        </PortTypeSequence>
+    </TUIObjectType>
+    <TUIObjectType name="BluetoothPen">
+        <PortTypeSequence>
+			<PortType name="Transf" typename="Matrix4x4Channel" source="1" sink="0"/>
+            <PortType name="MenueButton" typename="DigitalChannel" source="1" sink="0"/>
+            <PortType name="AnalogueButton" typename="AnalogChannel" source="1" sink="0"/>
+            <PortType name="LED" typename="DigitalChannel"  source="0" sink="1"/>
+        </PortTypeSequence>
+    </TUIObjectType>
+
+    <TUIObjectType name="HeadtrackToolART">
+        <Description>
+            This tool tracks the head position/orientation of the user. 
+        </Description>
+        <PortTypeSequence>
+            <PortType name="Transf" typename="Matrix4Channel" source="1" sink="0">
+                <Description>
+                    Six degrees of freedom.
+                </Description>
+            </PortType>
+        </PortTypeSequence>
+    </TUIObjectType>
+
+   <TUIObjectType name="StrokeToolART">
+        <Description>
+            This is the pen-tool unsed for drawing in SketchApp 
+        </Description>
+        <PortTypeSequence>
+            <PortType name="Transf" typename="Matrix4Channel" source="1" sink="0">
+                <Description>
+                    Six degrees of freedom.
+                </Description>
+            </PortType>
+             <PortType name="Width" typename="AnalogChannel"  source="1" sink="0">
+                <Description>
+                    Domain boolean.
+                </Description>
+            </PortType>
+            <PortType name="Menu" typename="DigitalChannel"  source="1" sink="0">
+                <Description>
+                    Domain boolean.
+                </Description>
+            </PortType>            
+            
+        </PortTypeSequence>
+    </TUIObjectType>
+
+    <TUIObjectType name="TongsToolART">
+        <Description>
+            This is the tongs-tool unsed for manipulating objects
+        </Description>
+        <PortTypeSequence>
+            <PortType name="Transf" typename="Matrix4Channel" source="1" sink="0">
+                <Description>
+                    Six degrees of freedom.
+                </Description>
+            </PortType>
+            <PortType name="Grab" typename="DigitalChannel"  source="1" sink="0">
+                <Description>
+                    Domain boolean.
+                </Description>
+            </PortType>
+            <PortType name="Menu" typename="DigitalChannel"  source="1" sink="0">
+                <Description>
+                    Domain boolean.
+                </Description>
+            </PortType>
+        </PortTypeSequence>
+    </TUIObjectType>
+        <TUIObjectType name="BezierToolART">
+        <Description>
+            This is the bezier-tool unsed for drawing bezier patches
+        </Description>
+        <PortTypeSequence>
+            <PortType name="TransfRight" typename="Matrix4Channel" source="1" sink="0">
+                <Description>
+                    Six degrees of freedom.
+                </Description>
+            </PortType>
+            <PortType name="TransfLeft" typename="Matrix4Channel" source="1" sink="0">
+                <Description>
+                    Six degrees of freedom.
+                </Description>
+            </PortType>
+            <PortType name="Draw" typename="DigitalChannel"  source="1" sink="0">
+                <Description>
+                    Domain boolean.
+                </Description>
+            </PortType>
+        </PortTypeSequence>
+    </TUIObjectType>
+    
+</TUIObjectTypeSequence>
+

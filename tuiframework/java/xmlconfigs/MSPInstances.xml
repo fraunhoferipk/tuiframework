@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<MSPInstanceSequence>
+    <MSPInstance name="Transformation" typename="Matrix4x4Transf">
+		<ParameterGroup name="transf">
+			<ParameterGroup name="row1">
+				<Parameter name="col1" value="1"/>
+				<Parameter name="col2" value="0"/>
+				<Parameter name="col3" value="0"/>
+				<Parameter name="col4" value="0"/>
+			</ParameterGroup>
+			<ParameterGroup name="row2">
+				<Parameter name="col1" value="0"/>
+				<Parameter name="col2" value="1"/>
+				<Parameter name="col3" value="0"/>
+				<Parameter name="col4" value="0"/>
+			</ParameterGroup>
+			<ParameterGroup name="row3">
+				<Parameter name="col1" value="0"/>
+				<Parameter name="col2" value="0"/>
+				<Parameter name="col3" value="1"/>
+				<Parameter name="col4" value="0"/>
+			</ParameterGroup>
+			<ParameterGroup name="row4">
+				<Parameter name="col1" value="10"/>
+				<Parameter name="col2" value="0"/>
+				<Parameter name="col3" value="0"/>
+				<Parameter name="col4" value="1"/>
+			</ParameterGroup>
+		</ParameterGroup>
+    </MSPInstance>        
+</MSPInstanceSequence>

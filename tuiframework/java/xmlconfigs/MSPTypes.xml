@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<MSPTypeSequence>
+    <MSPType name="Matrix4x4Transf">
+        <Description>
+            Matrix transformation. 
+        </Description>
+        <PortTypeSequence>
+            <PortType name="IN" typename="Matrix4x4" source="0" sink="1">
+                <Description>
+                    Input
+                </Description>
+            </PortType>
+            <PortType name="OUT" typename="Matrix4x4"  source="1" sink="0">
+                <Description>
+                    Output
+                </Description>
+            </PortType>
+        </PortTypeSequence>
+        
+		<ParameterTypeDefSequence>
+			<ParameterTypeDef name="Row4">
+		    	<ParameterType name="col1" type="double"/>
+		    	<ParameterType name="col2" type="double"/>
+		    	<ParameterType name="col3" type="double"/>
+		    	<ParameterType name="col4" type="double"/>
+		    </ParameterTypeDef>
+		    <ParameterTypeDef name="Matrix">
+		    	<ParameterType name="row1" type="Row4"/>
+		    	<ParameterType name="row2" type="Row4"/>
+		    	<ParameterType name="row3" type="Row4"/>
+		    	<ParameterType name="row4" type="Row4"/>
+		    </ParameterTypeDef>
+		</ParameterTypeDefSequence>
+			
+		<ParameterTypeSequence>
+			<ParameterType name="transf" type="Matrix"/>
+		</ParameterTypeSequence>
+		
+        <ParameterGroup name="transf">
+            <ParameterGroup name="row1">
+                <Parameter name="col1" value="1"/>
+                <Parameter name="col2" value="0"/>
+                <Parameter name="col3" value="0"/>
+                <Parameter name="col4" value="0"/>
+            </ParameterGroup>
+            <ParameterGroup name="row2">
+                <Parameter name="col1" value="0"/>
+                <Parameter name="col2" value="1"/>
+                <Parameter name="col3" value="0"/>
+                <Parameter name="col4" value="0"/>
+            </ParameterGroup>
+            <ParameterGroup name="row3">
+                <Parameter name="col1" value="0"/>
+                <Parameter name="col2" value="0"/>
+                <Parameter name="col3" value="1"/>
+                <Parameter name="col4" value="0"/>
+            </ParameterGroup>
+            <ParameterGroup name="row4">
+                <Parameter name="col1" value="10"/>
+                <Parameter name="col2" value="0"/>
+                <Parameter name="col3" value="0"/>
+                <Parameter name="col4" value="1"/>
+            </ParameterGroup>
+        </ParameterGroup>
+    </MSPType>
+</MSPTypeSequence>

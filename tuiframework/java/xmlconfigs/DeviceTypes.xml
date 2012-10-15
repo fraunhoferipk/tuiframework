@@ -1,0 +1,285 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DeviceTypeSequence>
+    <DeviceType name="DummyDeviceTracker">
+        <PortTypeSequence>
+            <PortType name="1" typename="TrackerChannel" source="1" sink="0">
+                <Description>
+                    6DOF
+                </Description>
+            </PortType>
+            <PortType name="2" typename="TrackerChannel" source="1" sink="0">
+                <Description>
+                    6DOF
+                </Description>
+            </PortType>
+            <PortType name="3" typename="TrackerChannel" source="1" sink="0">
+                <Description>
+                    6DOF
+                </Description>
+            </PortType>
+            <PortType name="4" typename="TrackerChannel" source="1" sink="0">
+                <Description>
+                    6DOF
+                </Description>
+            </PortType>
+        </PortTypeSequence>
+    </DeviceType>
+    <DeviceType name="DummyDeviceMatrix4">
+        <PortTypeSequence>
+            <PortType name="1" typename="Matrix4Channel" source="1" sink="0">
+                <Description>
+                </Description>
+            </PortType>
+            <PortType name="2" typename="Matrix4Channel" source="1" sink="0">
+                <Description>
+                </Description>
+            </PortType>
+            <PortType name="3" typename="Matrix4Channel" source="1" sink="0">
+                <Description>
+                </Description>
+            </PortType>
+            <PortType name="4" typename="Matrix4Channel" source="1" sink="0">
+                <Description>
+                </Description>
+            </PortType>
+            <PortType name="5" typename="Matrix4Channel" source="1" sink="0">
+                <Description>
+                </Description>
+            </PortType>
+            <PortType name="6" typename="Matrix4Channel" source="1" sink="0">
+                <Description>
+                </Description>
+            </PortType>
+            <PortType name="7" typename="Matrix4Channel" source="1" sink="0">
+                <Description>
+                </Description>
+            </PortType>
+            <PortType name="8" typename="Matrix4Channel" source="1" sink="0">
+                <Description>
+                </Description>
+            </PortType>            
+        </PortTypeSequence>
+    </DeviceType>
+    <DeviceType name="DummyDeviceMatrix4x4">
+        <PortTypeSequence>
+            <PortType name="1" typename="Matrix4x4Channel" source="1" sink="0">
+                <Description>
+                </Description>
+            </PortType>
+            <PortType name="2" typename="Matrix4x4Channel" source="1" sink="0">
+                <Description>
+                </Description>
+            </PortType>
+            <PortType name="3" typename="Matrix4x4Channel" source="1" sink="0">
+                <Description>
+                </Description>
+            </PortType>
+            <PortType name="4" typename="Matrix4x4Channel" source="1" sink="0">
+                <Description>
+                </Description>
+            </PortType>
+            <PortType name="5" typename="Matrix4x4Channel" source="1" sink="0">
+                <Description>
+                </Description>
+            </PortType>
+            <PortType name="6" typename="Matrix4x4Channel" source="1" sink="0">
+                <Description>
+                </Description>
+            </PortType>
+            <PortType name="7" typename="Matrix4x4Channel" source="1" sink="0">
+                <Description>
+                </Description>
+            </PortType>
+            <PortType name="8" typename="Matrix4x4Channel" source="1" sink="0">
+                <Description>
+                </Description>
+            </PortType>            
+        </PortTypeSequence>
+    </DeviceType>
+    <DeviceType name="DummyDeviceDA">
+        <Description>
+            Digital and Analog IO
+        </Description>
+        <PortTypeSequence>
+            <PortType name="DO1" typename="DigitalChannel" source="1" sink="0"/>
+            <PortType name="DO2" typename="DigitalChannel" source="1" sink="0"/>
+            <PortType name="DO3" typename="DigitalChannel" source="1" sink="0"/>
+            <PortType name="DO4" typename="DigitalChannel" source="1" sink="0"/>
+            <PortType name="DI1" typename="DigitalChannel" source="0" sink="1"/>
+            <PortType name="DI2" typename="DigitalChannel" source="0" sink="1"/>
+            <PortType name="DI3" typename="DigitalChannel" source="0" sink="1"/>
+            <PortType name="DI4" typename="DigitalChannel" source="0" sink="1"/>
+            <PortType name="DIO1" typename="DigitalChannel" source="1" sink="1"/>
+            <PortType name="DIO2" typename="DigitalChannel" source="1" sink="1"/>
+            <PortType name="DIO3" typename="DigitalChannel" source="1" sink="1"/>
+            <PortType name="DIO4" typename="DigitalChannel" source="1" sink="1"/>
+            <PortType name="AO1" typename="AnalogChannel" source="1" sink="0"/>
+            <PortType name="AO2" typename="AnalogChannel" source="1" sink="0"/>
+            <PortType name="AO3" typename="AnalogChannel" source="1" sink="0"/>
+            <PortType name="AO4" typename="AnalogChannel" source="1" sink="0"/>
+            <PortType name="AI1" typename="AnalogChannel" source="0" sink="1"/>
+            <PortType name="AI2" typename="AnalogChannel" source="0" sink="1"/>
+            <PortType name="AI3" typename="AnalogChannel" source="0" sink="1"/>
+            <PortType name="AI4" typename="AnalogChannel" source="0" sink="1"/>
+            <PortType name="AIO1" typename="AnalogChannel" source="1" sink="1"/>
+            <PortType name="AIO2" typename="AnalogChannel" source="1" sink="1"/>
+            <PortType name="AIO3" typename="AnalogChannel" source="1" sink="1"/>
+            <PortType name="AIO4" typename="AnalogChannel" source="1" sink="1"/>
+        </PortTypeSequence>
+    </DeviceType>
+    <DeviceType name="PhidgetInterfaceKit-8-8-8">
+        <Description>
+            Phidget Interface Kit 8-8-8
+        </Description>
+        <PortTypeSequence>
+            <PortType name="AOUT1" typename="AnalogChannel" source="1" sink="0"/>
+            <PortType name="AOUT2" typename="AnalogChannel" source="1" sink="0"/>
+            <PortType name="AOUT3" typename="AnalogChannel" source="1" sink="0"/>
+            <PortType name="AOUT4" typename="AnalogChannel" source="1" sink="0"/>
+            <PortType name="AOUT5" typename="AnalogChannel" source="1" sink="0"/>
+            <PortType name="AOUT6" typename="AnalogChannel" source="1" sink="0"/>
+            <PortType name="AOUT7" typename="AnalogChannel" source="1" sink="0"/>
+            <PortType name="AOUT8" typename="AnalogChannel" source="1" sink="0"/>
+            <PortType name="DOUT1" typename="DigitalChannel" source="1" sink="0"/>
+            <PortType name="DOUT2" typename="DigitalChannel" source="1" sink="0"/>
+            <PortType name="DOUT3" typename="DigitalChannel" source="1" sink="0"/>
+            <PortType name="DOUT4" typename="DigitalChannel" source="1" sink="0"/>
+            <PortType name="DOUT5" typename="DigitalChannel" source="1" sink="0"/>
+            <PortType name="DOUT6" typename="DigitalChannel" source="1" sink="0"/>
+            <PortType name="DOUT7" typename="DigitalChannel" source="1" sink="0"/>
+            <PortType name="DOUT8" typename="DigitalChannel" source="1" sink="0"/>
+            <PortType name="DIN1" typename="DigitalChannel" source="0" sink="1"/>
+            <PortType name="DIN2" typename="DigitalChannel" source="0" sink="1"/>
+            <PortType name="DIN3" typename="DigitalChannel" source="0" sink="1"/>
+            <PortType name="DIN4" typename="DigitalChannel" source="0" sink="1"/>
+            <PortType name="DIN5" typename="DigitalChannel" source="0" sink="1"/>
+            <PortType name="DIN6" typename="DigitalChannel" source="0" sink="1"/>
+            <PortType name="DIN7" typename="DigitalChannel" source="0" sink="1"/>
+            <PortType name="DIN8" typename="DigitalChannel" source="0" sink="1"/>  
+        </PortTypeSequence>
+    </DeviceType>
+        <DeviceType name="MotionstarDevice">
+        <PortTypeSequence>
+            <PortType name="m1" typename="TrackerChannel" source="1" sink="0">
+                <Description>
+                    6DOF
+                </Description>
+            </PortType>
+            <PortType name="m2" typename="TrackerChannel" source="1" sink="0">
+                <Description>
+                    6DOF
+                </Description>
+            </PortType>
+            <PortType name="m3" typename="TrackerChannel" source="1" sink="0">
+                <Description>
+                    6DOF
+                </Description>
+            </PortType>
+            <PortType name="m4" typename="TrackerChannel" source="1" sink="0">
+                <Description>
+                    6DOF
+                </Description>
+            </PortType>
+            <PortType name="m5" typename="TrackerChannel" source="1" sink="0">
+                <Description>
+                    6DOF
+                </Description>
+            </PortType>
+            <PortType name="m6" typename="TrackerChannel" source="1" sink="0">
+                <Description>
+                    6DOF
+                </Description>
+            </PortType>
+            <PortType name="m7" typename="TrackerChannel" source="1" sink="0">
+                <Description>
+                    6DOF
+                </Description>
+            </PortType>
+            <PortType name="m8" typename="TrackerChannel" source="1" sink="0">
+                <Description>
+                    6DOF
+                </Description>
+            </PortType>
+        </PortTypeSequence>
+    </DeviceType>
+    <DeviceType name="DTrackDevice">
+        <PortTypeSequence>
+            <PortType name="M4OUT1" typename="Matrix4Channel" source="1" sink="0">
+                <Description>
+                    6DOF
+                </Description>
+            </PortType>
+            <PortType name="M4OUT2" typename="Matrix4Channel" source="1" sink="0">
+                <Description>
+                    6DOF
+                </Description>
+            </PortType>
+            <PortType name="M4OUT3" typename="Matrix4Channel" source="1" sink="0">
+                <Description>
+                    6DOF
+                </Description>
+            </PortType>
+            <PortType name="M4OUT4" typename="Matrix4Channel" source="1" sink="0">
+                <Description>
+                    6DOF
+                </Description>
+            </PortType>
+            <PortType name="M4OUT5" typename="Matrix4Channel" source="1" sink="0">
+                <Description>
+                    6DOF
+                </Description>
+            </PortType>
+            <PortType name="M4OUT6" typename="Matrix4Channel" source="1" sink="0">
+                <Description>
+                    6DOF
+                </Description>
+            </PortType>
+            <PortType name="M4OUT7" typename="Matrix4Channel" source="1" sink="0">
+                <Description>
+                    6DOF
+                </Description>
+            </PortType>
+            <PortType name="M4OUT8" typename="Matrix4Channel" source="1" sink="0">
+                <Description>
+                    6DOF
+                </Description>
+            </PortType>            
+        </PortTypeSequence>
+      <ParameterTypeSequence>
+        <ParameterType name="Server" type="IPAddress"/>
+      </ParameterTypeSequence>
+      <ParameterGroup name="Server">
+        <Parameter name="IPAddress" value="192.168.0.0"/>
+      </ParameterGroup>
+    </DeviceType>
+ 	<DeviceType name="BluetoothDevice">
+        <PortTypeSequence>
+            <PortType name="AOUT1" typename="AnalogChannel" source="1" sink="0"/>
+            <PortType name="AOUT2" typename="AnalogChannel" source="1" sink="0"/>
+            <PortType name="AOUT3" typename="AnalogChannel" source="1" sink="0"/>
+            <PortType name="AOUT4" typename="AnalogChannel" source="1" sink="0"/>
+            <PortType name="AOUT5" typename="AnalogChannel" source="1" sink="0"/>
+            <PortType name="AOUT6" typename="AnalogChannel" source="1" sink="0"/>
+            <PortType name="AOUT7" typename="AnalogChannel" source="1" sink="0"/>
+            <PortType name="AOUT8" typename="AnalogChannel" source="1" sink="0"/>
+            <PortType name="DOUT1" typename="DigitalChannel" source="1" sink="0"/>
+            <PortType name="DOUT2" typename="DigitalChannel" source="1" sink="0"/>
+            <PortType name="DOUT3" typename="DigitalChannel" source="1" sink="0"/>
+            <PortType name="DOUT4" typename="DigitalChannel" source="1" sink="0"/>
+            <PortType name="DOUT5" typename="DigitalChannel" source="1" sink="0"/>
+            <PortType name="DOUT6" typename="DigitalChannel" source="1" sink="0"/>
+            <PortType name="DOUT7" typename="DigitalChannel" source="1" sink="0"/>
+            <PortType name="DOUT8" typename="DigitalChannel" source="1" sink="0"/>
+        </PortTypeSequence>
+    </DeviceType>
+    <DeviceType name="HapticDevice">
+        <PortTypeSequence>
+            <PortType name="HOUT1" typename="HapticChannel" source="1" sink="0">
+                <Description>
+                    1DOF
+                </Description>
+            </PortType>
+        </PortTypeSequence>
+    </DeviceType>
+</DeviceTypeSequence>
+

@@ -1,0 +1,8 @@
+LIBRARY	"TUILibTUITypesDLL"
+
+EXPORTS
+	dllInitPlugin				@1
+    dllGetTFVersion				@2
+    dllGetDLLVersion			@3
+    dllTypeRegistration			@4
+    

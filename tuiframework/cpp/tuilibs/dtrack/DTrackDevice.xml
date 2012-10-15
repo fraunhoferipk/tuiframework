@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--document xmlns:xi='http://www.w3.org/2001/XInclude'-->
+<document xmlns:xi="http://www.w3.org/2001/XInclude">
+   <ServerConfig>
+      <ServerStartupConfig/>
+      <DeviceTypeSequence>
+          <DeviceType name="DTrackDevice">
+            <PortTypeSequence>
+               <PortType name="M4OUT8" sink="0" source="1" typename="Matrix4Channel">
+                  <Description/>
+               </PortType>
+               <PortType name="M4OUT7" sink="0" source="1" typename="Matrix4Channel">
+                  <Description/>
+               </PortType>
+               <PortType name="M4OUT6" sink="0" source="1" typename="Matrix4Channel">
+                  <Description/>
+               </PortType>
+               <PortType name="M4OUT5" sink="0" source="1" typename="Matrix4Channel">
+                  <Description/>
+               </PortType>
+               <PortType name="M4OUT4" sink="0" source="1" typename="Matrix4Channel">
+                  <Description/>
+               </PortType>
+               <PortType name="M4OUT3" sink="0" source="1" typename="Matrix4Channel">
+                  <Description/>
+               </PortType>
+               <PortType name="M4OUT2" sink="0" source="1" typename="Matrix4Channel">
+                  <Description/>
+               </PortType>
+               <PortType name="M4OUT1" sink="0" source="1" typename="Matrix4Channel">
+                  <Description/>
+               </PortType>
+            </PortTypeSequence>
+            <ParameterTypeDefSequence/>
+            <ParameterTypeSequence/>
+         </DeviceType>
+      </DeviceTypeSequence>
+   </ServerConfig>
+</document>

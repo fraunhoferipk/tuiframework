@@ -1,0 +1,95 @@
+<?xml version='1.0'?>
+<document xmlns:xi="http://www.w3.org/2001/XInclude"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:noNamespaceSchemaLocation='ServerConfig.xsd'>
+<!-- document xmlns:xi="http://www.w3.org/2001/XInclude" -->
+    <ServerConfig>
+        <xi:include href="Startup.xml"/>
+        <xi:include href="DeviceTypes.xml"/>
+		<xi:include href="MSPTypes.xml"/>
+        <xi:include href="TUIObjectTypesPowerWall.xml"/>
+        <DeviceInstanceSequence>
+            <DeviceInstance name="TrackerDevice2" typename="DTrackDevice">
+                <ParameterGroup name="Server">
+	            <Parameter name="IPAddress" value="100.100.100.107"/>
+                </ParameterGroup>
+            </DeviceInstance>    
+            <!--DeviceInstance name="SignalDevice" typename="PhidgetInterfaceKit-8-8-8"/-->
+
+            <DeviceInstance name="SignalDevicePen" typename="BluetoothDevice">
+             	<ParameterGroup name="Config">
+	            	<Parameter name="Channel" value="/dev/rfcomm0"/>
+                </ParameterGroup>
+            </DeviceInstance>
+
+            <DeviceInstance name="SignalDeviceTongs" typename="BluetoothDevice">
+             	<ParameterGroup name="Config">
+	            	<Parameter name="Channel" value="/dev/rfcomm1"/>
+                </ParameterGroup>
+            </DeviceInstance>
+
+            <DeviceInstance name="SignalDeviceBezier" typename="BluetoothDevice">
+             	<ParameterGroup name="Config">
+	            	<Parameter name="Channel" value="/dev/rfcomm2"/>
+                </ParameterGroup>
+            </DeviceInstance>
+
+        </DeviceInstanceSequence>
+        <MSPInstanceSequence>
+        </MSPInstanceSequence>
+        <TUIObjectInstanceSequence>
+   	        <TUIObjectInstance name="MyHeadtrackToolART" typename="HeadtrackToolART"/>
+            <TUIObjectInstance name="MyStrokeToolART" typename="StrokeToolART"/>
+            <TUIObjectInstance name="MyTongsToolART" typename="TongsToolART"/>
+            <TUIObjectInstance name="MyBezierToolART" typename="BezierToolART"/>
+        </TUIObjectInstanceSequence>
+        
+        <ConnectorSequence>
+         <!-- für Johannes Pen
+         	<Connector>
+		        <SrcAddress entityType="DEV" entityName="TrackerDevice2" portName="M4OUT2"/>
+		        <DstAddress entityType="TUI" entityName="MyStrokeToolART" portName="Transf"/>
+	        </Connector>	        
+          -->
+	        <Connector>
+		        <SrcAddress entityType="DEV" entityName="TrackerDevice2" portName="M4OUT1"/>
+		        <DstAddress entityType="TUI" entityName="MyHeadtrackToolART" portName="Transf"/>
+	        </Connector>
+	        <Connector>
+		        <SrcAddress entityType="DEV" entityName="TrackerDevice2" portName="M4OUT2"/>
+		        <DstAddress entityType="TUI" entityName="MyStrokeToolART" portName="Transf"/>
+	        </Connector>
+            <Connector>
+		        <SrcAddress entityType="DEV" entityName="SignalDevicePen" portName="AOUT1"/>
+		        <DstAddress entityType="TUI" entityName="MyStrokeToolART" portName="Width"/>
+	        </Connector>
+	        <Connector>
+		        <SrcAddress entityType="DEV" entityName="SignalDevicePen" portName="DOUT1"/>
+		        <DstAddress entityType="TUI" entityName="MyStrokeToolART" portName="Menu"/>
+	        </Connector>
+	        <Connector>
+		        <SrcAddress entityType="DEV" entityName="TrackerDevice2" portName="M4OUT3"/>
+		        <DstAddress entityType="TUI" entityName="MyTongsToolART" portName="Transf"/>
+	        </Connector>
+	        <Connector>
+		        <SrcAddress entityType="DEV" entityName="SignalDeviceTongs" portName="DOUT1"/>
+		        <DstAddress entityType="TUI" entityName="MyTongsToolART" portName="Grab"/>
+	        </Connector>
+	        <Connector>
+		        <SrcAddress entityType="DEV" entityName="SignalDeviceTongs" portName="DOUT2"/>
+		        <DstAddress entityType="TUI" entityName="MyTongsToolART" portName="Menu"/>
+	        </Connector>
+	        <Connector>
+		        <SrcAddress entityType="DEV" entityName="TrackerDevice2" portName="M4OUT4"/>
+		        <DstAddress entityType="TUI" entityName="MyBezierToolART" portName="TransfRight"/>
+	        </Connector>
+	        <Connector>
+		        <SrcAddress entityType="DEV" entityName="TrackerDevice2" portName="M4OUT5"/>
+		        <DstAddress entityType="TUI" entityName="MyBezierToolART" portName="TransfLeft"/>
+	        </Connector>
+	        <Connector>
+		        <SrcAddress entityType="DEV" entityName="SignalDeviceBezier" portName="DOUT1"/>
+		        <DstAddress entityType="TUI" entityName="MyBezierToolART" portName="Draw"/>
+	        </Connector>	 
+        </ConnectorSequence>
+    </ServerConfig>
+</document>

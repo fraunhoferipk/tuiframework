@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--document xmlns:xi='http://www.w3.org/2001/XInclude'-->
+<document xmlns:xi="http://www.w3.org/2001/XInclude">
+   <ServerConfig>
+      <ServerStartupConfig/>
+      <DeviceTypeSequence>
+          <DeviceType name="DummyDeviceDA">
+            <PortTypeSequence>
+               <PortType name="DIO4" sink="0" source="1" typename="DigitalChannel">
+                  <Description/>
+               </PortType>
+               <PortType name="DIO3" sink="0" source="1" typename="DigitalChannel">
+                  <Description/>
+               </PortType>
+               <PortType name="DIO2" sink="0" source="1" typename="DigitalChannel">
+                  <Description/>
+               </PortType>
+               <PortType name="DIO1" sink="0" source="1" typename="DigitalChannel">
+                  <Description/>
+               </PortType>
+               <PortType name="DI4" sink="1" source="0" typename="DigitalChannel">
+                  <Description/>
+               </PortType>
+               <PortType name="DI3" sink="1" source="0" typename="DigitalChannel">
+                  <Description/>
+               </PortType>
+               <PortType name="DI2" sink="1" source="0" typename="DigitalChannel">
+                  <Description/>
+               </PortType>
+               <PortType name="DO4" sink="0" source="1" typename="DigitalChannel">
+                  <Description/>
+               </PortType>
+               <PortType name="DI1" sink="1" source="0" typename="DigitalChannel">
+                  <Description/>
+               </PortType>
+               <PortType name="DO3" sink="0" source="1" typename="DigitalChannel">
+                  <Description/>
+               </PortType>
+               <PortType name="DO2" sink="0" source="1" typename="DigitalChannel">
+                  <Description/>
+               </PortType>
+               <PortType name="DO1" sink="0" source="1" typename="DigitalChannel">
+                  <Description/>
+               </PortType>
+               <PortType name="AI4" sink="1" source="0" typename="AnalogChannel">
+                  <Description/>
+               </PortType>
+               <PortType name="AI3" sink="1" source="0" typename="AnalogChannel">
+                  <Description/>
+               </PortType>
+               <PortType name="AI2" sink="1" source="0" typename="AnalogChannel">
+                  <Description/>
+               </PortType>
+               <PortType name="AO4" sink="0" source="1" typename="AnalogChannel">
+                  <Description/>
+               </PortType>
+               <PortType name="AO3" sink="0" source="1" typename="AnalogChannel">
+                  <Description/>
+               </PortType>
+               <PortType name="AI1" sink="1" source="0" typename="AnalogChannel">
+                  <Description/>
+               </PortType>
+               <PortType name="AO2" sink="0" source="1" typename="AnalogChannel">
+                  <Description/>
+               </PortType>
+               <PortType name="AO1" sink="0" source="1" typename="AnalogChannel">
+                  <Description/>
+               </PortType>
+               <PortType name="AIO4" sink="0" source="1" typename="AnalogChannel">
+                  <Description/>
+               </PortType>
+               <PortType name="AIO3" sink="0" source="1" typename="AnalogChannel">
+                  <Description/>
+               </PortType>
+               <PortType name="AIO2" sink="0" source="1" typename="AnalogChannel">
+                  <Description/>
+               </PortType>
+               <PortType name="AIO1" sink="0" source="1" typename="AnalogChannel">
+                  <Description/>
+               </PortType>
+            </PortTypeSequence>
+            <ParameterTypeDefSequence/>
+            <ParameterTypeSequence/>
+         </DeviceType>
+      </DeviceTypeSequence>
+   </ServerConfig>
+</document>

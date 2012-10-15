@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ConnectorSequence>
+	<Connector>
+		<SrcAddress entityType="DEV" entityName="TrackerDevice" portName="M4OUT8"/>
+		<DstAddress entityType="MSP" entityName="Transformation" portName="IN"/>
+	</Connector>
+	<!--Connector>
+		<SrcAddress entityType="MSP" entityName="Transformation" portName="OUT"/>
+		<DstAddress entityType="TUI" entityName="MyBluetoothPen" portName="Transf"/>
+	</Connector>
+	<Connector>
+		<SrcAddress entityType="DEV" entityName="SignalDevice" portName="DOUT1"/>
+		<DstAddress entityType="TUI" entityName="MyBluetoothPen" portName="MenueButton"/>
+	</Connector>
+	<Connector>
+		<SrcAddress entityType="DEV" entityName="SignalDevice" portName="AOUT1"/>
+		<DstAddress entityType="TUI" entityName="MyBluetoothPen" portName="AnalogueButton"/>
+	</Connector-->
+	<!--Connector>
+		<SrcAddress entityType="TUI" entityName="MyBluetoothPen" portName="LED"/>
+		<DstAddress entityType="DEV" entityName="SignalDevice" portName="DIN1"/>
+	</Connector-->		
+</ConnectorSequence>

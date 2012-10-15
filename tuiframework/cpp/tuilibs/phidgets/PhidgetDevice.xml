@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--document xmlns:xi='http://www.w3.org/2001/XInclude'-->
+<document xmlns:xi="http://www.w3.org/2001/XInclude">
+   <ServerConfig>
+      <ServerStartupConfig/>
+      <DeviceTypeSequence>
+          <DeviceType name="PhidgetInterfaceKit-8-8-8">
+            <PortTypeSequence>
+               <PortType name="DIN1" sink="1" source="0" typename="DigitalChannel">
+                  <Description/>
+               </PortType>
+               <PortType name="DOUT8" sink="0" source="1" typename="DigitalChannel">
+                  <Description/>
+               </PortType>
+               <PortType name="DOUT7" sink="0" source="1" typename="DigitalChannel">
+                  <Description/>
+               </PortType>
+               <PortType name="DOUT6" sink="0" source="1" typename="DigitalChannel">
+                  <Description/>
+               </PortType>
+               <PortType name="DOUT5" sink="0" source="1" typename="DigitalChannel">
+                  <Description/>
+               </PortType>
+               <PortType name="DOUT4" sink="0" source="1" typename="DigitalChannel">
+                  <Description/>
+               </PortType>
+               <PortType name="DOUT3" sink="0" source="1" typename="DigitalChannel">
+                  <Description/>
+               </PortType>
+               <PortType name="DOUT2" sink="0" source="1" typename="DigitalChannel">
+                  <Description/>
+               </PortType>
+               <PortType name="DOUT1" sink="0" source="1" typename="DigitalChannel">
+                  <Description/>
+               </PortType>
+               <PortType name="AOUT8" sink="0" source="1" typename="AnalogChannel">
+                  <Description/>
+               </PortType>
+               <PortType name="AOUT7" sink="0" source="1" typename="AnalogChannel">
+                  <Description/>
+               </PortType>
+               <PortType name="AOUT6" sink="0" source="1" typename="AnalogChannel">
+                  <Description/>
+               </PortType>
+               <PortType name="AOUT5" sink="0" source="1" typename="AnalogChannel">
+                  <Description/>
+               </PortType>
+               <PortType name="AOUT4" sink="0" source="1" typename="AnalogChannel">
+                  <Description/>
+               </PortType>
+               <PortType name="AOUT3" sink="0" source="1" typename="AnalogChannel">
+                  <Description/>
+               </PortType>
+               <PortType name="AOUT2" sink="0" source="1" typename="AnalogChannel">
+                  <Description/>
+               </PortType>
+               <PortType name="AOUT1" sink="0" source="1" typename="AnalogChannel">
+                  <Description/>
+               </PortType>
+               <PortType name="DIN8" sink="1" source="0" typename="DigitalChannel">
+                  <Description/>
+               </PortType>
+               <PortType name="DIN7" sink="1" source="0" typename="DigitalChannel">
+                  <Description/>
+               </PortType>
+               <PortType name="DIN6" sink="1" source="0" typename="DigitalChannel">
+                  <Description/>
+               </PortType>
+               <PortType name="DIN5" sink="1" source="0" typename="DigitalChannel">
+                  <Description/>
+               </PortType>
+               <PortType name="DIN4" sink="1" source="0" typename="DigitalChannel">
+                  <Description/>
+               </PortType>
+               <PortType name="DIN3" sink="1" source="0" typename="DigitalChannel">
+                  <Description/>
+               </PortType>
+               <PortType name="DIN2" sink="1" source="0" typename="DigitalChannel">
+                  <Description/>
+               </PortType>
+            </PortTypeSequence>
+            <ParameterTypeDefSequence/>
+            <ParameterTypeSequence/>
+         </DeviceType>
+      </DeviceTypeSequence>
+   </ServerConfig>
+</document>

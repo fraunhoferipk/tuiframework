@@ -1,0 +1,289 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs='http://www.w3.org/2001/XMLSchema'>
+
+	<!-- ############## EntityType ############# -->
+	
+	<xs:complexType name="EntityTypeWithParameterTypeDef">
+		<xs:complexContent>
+			<xs:extension base="EntityType">
+				<xs:sequence>
+					<xs:element name="ParameterTypeDefSequence" type="ParameterTypeDefSequence" minOccurs='0' maxOccurs='1'/>
+					<xs:element name="ParameterTypeSequence" type="ParameterTypeSequence" minOccurs='0' maxOccurs='1'/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+    </xs:complexType>
+    
+	<xs:complexType name="EntityType">
+        <xs:sequence>
+            <xs:element name="Description" type="xs:string" minOccurs='0'/>
+            <xs:element ref="PortTypeSequence" minOccurs='1'/>
+        </xs:sequence>
+        <xs:attribute name="name" type="xs:string" use="required"/>
+    </xs:complexType>
+    
+    
+    <!-- ########## ParameterTypeDef ########### -->
+    
+    <xs:complexType name="ParameterTypeDefSequence">
+    	<xs:sequence>
+    		<xs:element name="ParameterTypeDef" type="ParameterTypeDef" minOccurs='1' maxOccurs='unbounded'/>
+    	</xs:sequence>
+    </xs:complexType>
+    
+    <xs:complexType name="ParameterTypeDef">
+    	<xs:sequence>
+    		<xs:element name="ParameterType" type="ParameterType" minOccurs='1' maxOccurs='unbounded'/>
+    	</xs:sequence>
+    	<xs:attribute name="name" type="xs:string" use="required"/>
+    </xs:complexType>
+    
+    
+	<xs:complexType name="ParameterTypeSequence">
+    	<xs:sequence>
+    		<xs:element name="ParameterType" type="ParameterType" minOccurs='1' maxOccurs='unbounded'/>
+    	</xs:sequence>
+    </xs:complexType>
+    
+    <xs:complexType name="ParameterType">
+    	<xs:attribute name="name" type="xs:string" use="required"/>
+    	<xs:attribute name="type" type="xs:string" use="required"/>
+    </xs:complexType>
+    
+    
+    <!-- ########## PortTypeSequence ########### -->
+    
+    <xs:element name="PortTypeSequence">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="PortType" type="PortType" minOccurs='1' maxOccurs='unbounded'/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:complexType name ="PortType">
+        <xs:sequence>
+            <xs:element name="Description" type="xs:string" minOccurs='0'/>
+        </xs:sequence>
+        <xs:attribute name="name" type="xs:string" use="required"/>
+        <xs:attribute name="typename" type="xs:string" use="required"/>
+        <xs:attribute name="source" type="xs:boolean" use="required"/>
+        <xs:attribute name="sink" type="xs:boolean" use="required"/>
+    </xs:complexType>
+    
+
+	<!-- ####################################### -->
+	<!-- ############## Instances ############## -->
+	<!-- ####################################### -->
+
+
+	<!-- ########### EntityInstance ############ -->
+
+	<xs:complexType name="EntityInstanceWithParameterGroup">
+		<xs:complexContent>
+			<xs:extension base="EntityInstance">
+				<xs:sequence>
+					<xs:element name="ParameterGroup" type="ParameterGroup" minOccurs='0'/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+    </xs:complexType>
+
+	<xs:complexType name="EntityInstance">
+        <xs:sequence>
+            <xs:element name="Description" type="xs:string" minOccurs='0'/>
+        </xs:sequence>
+        <xs:attribute name="name" type="xs:string" use="required"/>
+        <xs:attribute name="typename" type="xs:string" use="required"/>
+    </xs:complexType>
+
+    <!-- ########### ParameterGroup ############ -->
+    
+    <xs:complexType name="ParameterGroup">
+        <xs:sequence>
+            <xs:element name="Description" type="xs:string" minOccurs='0' maxOccurs='1'/>
+            <xs:element name="ParameterGroup" type="ParameterGroup" minOccurs='0' maxOccurs='unbounded'/>
+            <xs:element name="Parameter" minOccurs='0' maxOccurs='unbounded'>
+            	<xs:complexType>
+            		<xs:attribute name="name" type="xs:string" use="required"/>
+        			<xs:attribute name="value" type="xs:string" use="required"/>
+            	</xs:complexType>
+            </xs:element>
+        </xs:sequence>
+        <xs:attribute name="name" type="xs:string" use="required"/>
+    </xs:complexType>
+    
+	<!-- ####################################### -->
+	<!-- ############## Connector ############## -->
+	<!-- ####################################### -->
+	
+	<xs:complexType name="Connector">
+        <xs:sequence>
+            <xs:element name="SrcAddress" type="Address" maxOccurs='1'/>
+            <xs:element name="DstAddress" type="Address" maxOccurs='1'/>
+        </xs:sequence>
+    </xs:complexType>
+
+	<xs:complexType name="Address">
+		<xs:attribute name="entityType" use="required">
+			<xs:simpleType>
+		      <xs:restriction base="xs:string">
+			    	<xs:enumeration value="DEV"/>
+					<xs:enumeration value="MSP"/>
+					<xs:enumeration value="TUI"/>	      
+		      </xs:restriction>
+			</xs:simpleType>      
+		</xs:attribute>	
+        <xs:attribute name="entityName" type="xs:string" use="required"/>
+        <xs:attribute name="portName" type="xs:string" use="required"/>
+    </xs:complexType>
+
+	<!-- ####################################### -->
+	<!-- ############## Elements ############### -->
+	<!-- ####################################### -->
+
+    <xs:element name="DeviceTypeSequence">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="DeviceType" type="EntityTypeWithParameterTypeDef" minOccurs='1' maxOccurs='unbounded'/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name="MSPTypeSequence">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="MSPType" type="EntityTypeWithParameterTypeDef" minOccurs='1' maxOccurs='unbounded'/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="TUIObjectTypeSequence">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="TUIObjectType" type="EntityType" minOccurs='1' maxOccurs='unbounded'/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name="DeviceInstanceSequence">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="DeviceInstance" type="EntityInstanceWithParameterGroup" minOccurs='1' maxOccurs='unbounded'/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>    
+
+    <xs:element name="MSPInstanceSequence">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="MSPInstance" type="EntityInstanceWithParameterGroup" minOccurs='0' maxOccurs='unbounded'/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element> 
+
+    <xs:element name="TUIObjectInstanceSequence">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="TUIObjectInstance" type="EntityInstance" minOccurs='1' maxOccurs='unbounded'/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    
+	<xs:element name="ConnectorSequence">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="Connector" type="Connector" minOccurs='0' maxOccurs='unbounded'/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element> 
+    
+    <xs:element name="ServerStartupConfig">
+        <xs:complexType>
+            <xs:sequence>
+            	<xs:element name="ParameterGroup" type="ParameterGroup" minOccurs='0'/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <!-- ################ ServerConfig Element ################ -->
+
+<!--
+    <xs:element name="ServerConfig">
+        <xs:complexType>
+            <xs:choice>
+                <xs:element ref="ServerStartupConfig" minOccurs='1' maxOccurs='1'/>
+                
+                <xs:element ref="DeviceTypeSequence" minOccurs='1' maxOccurs='unbounded'/>
+                <xs:element ref="MSPTypeSequence" minOccurs='1' maxOccurs='unbounded'/>
+		<xs:element ref="TUIObjectTypeSequence" minOccurs='1' maxOccurs='unbounded'/>
+
+		<xs:element ref="DeviceInstanceSequence" minOccurs='1' maxOccurs='unbounded'/>                
+		<xs:element ref="MSPInstanceSequence" minOccurs='1' maxOccurs='unbounded'/>
+                <xs:element ref="TUIObjectInstanceSequence" minOccurs='1' maxOccurs='unbounded'/>
+                
+                <xs:element ref="ConnectorSequence" minOccurs='1'/>
+            </xs:choice>
+        </xs:complexType>
+    </xs:element>
+-->
+
+    <xs:group name="ServerConfigGroup">
+        <xs:choice>
+            <xs:element ref="DeviceTypeSequence" minOccurs='0' maxOccurs='unbounded'/>
+            <xs:element ref="MSPTypeSequence" minOccurs='0' maxOccurs='unbounded'/>
+            <xs:element ref="TUIObjectTypeSequence" minOccurs='0' maxOccurs='unbounded'/>
+
+            <xs:element ref="DeviceInstanceSequence" minOccurs='0' maxOccurs='unbounded'/>                
+            <xs:element ref="MSPInstanceSequence" minOccurs='0' maxOccurs='unbounded'/>
+            <xs:element ref="TUIObjectInstanceSequence" minOccurs='0' maxOccurs='unbounded'/>
+
+            <xs:element ref="ConnectorSequence" minOccurs='0' maxOccurs='unbounded'/>
+        </xs:choice>
+    </xs:group>
+
+
+    <xs:element name="ServerConfig">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="ServerStartupConfig" minOccurs='1'/>
+                <xs:group ref="ServerConfigGroup" minOccurs="0" maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+
+<!--    <xsd:group ref="myGroup" minoccurs="1" maxoccurs="1" /> -->
+
+
+<!--
+    <xs:element name="ServerConfig">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="ServerStartupConfig" minOccurs='1'/>
+                
+                <xs:element ref="DeviceTypeSequence" minOccurs='1' maxOccurs='unbounded'/>
+                <xs:element ref="MSPTypeSequence" minOccurs='1' maxOccurs='unbounded'/>
+		<xs:element ref="TUIObjectTypeSequence" minOccurs='1' maxOccurs='unbounded'/>
+
+		<xs:element ref="DeviceInstanceSequence" minOccurs='1' maxOccurs='unbounded'/>                
+		<xs:element ref="MSPInstanceSequence" minOccurs='1' maxOccurs='unbounded'/>
+                <xs:element ref="TUIObjectInstanceSequence" minOccurs='1' maxOccurs='unbounded'/>
+                
+                <xs:element ref="ConnectorSequence" minOccurs='1'/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+-->
+	<!-- ################ Root Element ################ -->
+
+    <xs:element name="document">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="ServerConfig" maxOccurs='1'/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+</xs:schema>
+

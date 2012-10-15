@@ -1,0 +1,15 @@
+<?xml version='1.0'?>
+<document xmlns:xi="http://www.w3.org/2001/XInclude"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:noNamespaceSchemaLocation='ServerConfig.xsd'>
+<!-- document xmlns:xi="http://www.w3.org/2001/XInclude" -->
+    <ServerConfig>
+        <xi:include href="Startup.xml"/>
+        <xi:include href="DeviceTypes.xml"/>
+        <xi:include href="MSPTypes.xml"/>
+        <xi:include href="TUIObjectTypes.xml"/>
+        <xi:include href="DeviceInstances.xml"/>
+        <xi:include href="MSPInstances.xml"/>
+        <xi:include href="TUIObjectInstances.xml"/>
+        <xi:include href="Connectors.xml"/>
+    </ServerConfig>
+</document>

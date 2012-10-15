@@ -1,0 +1,25 @@
+<?xml version='1.0'?>
+<document xmlns:xi="http://www.w3.org/2001/XInclude"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:noNamespaceSchemaLocation='ServerConfig.xsd'>
+<!-- document xmlns:xi="http://www.w3.org/2001/XInclude" -->
+    <ServerConfig>
+        <xi:include href="Startup.xml"/>
+        <xi:include href="DeviceTypes.xml"/>
+		<xi:include href="MSPTypes.xml"/>
+        <xi:include href="TUIObjectTypes.xml"/>
+        <DeviceInstanceSequence>
+            <DeviceInstance name="TrackerDevice" typename="DTrackDevice"/>
+        </DeviceInstanceSequence>
+        <MSPInstanceSequence>
+        </MSPInstanceSequence>
+        <TUIObjectInstanceSequence>
+	        <TUIObjectInstance name="OurBody" typename="Body"/>
+        </TUIObjectInstanceSequence>
+        <ConnectorSequence>
+	        <Connector>
+		        <SrcAddress entityType="DEV" entityName="TrackerDevice" portName="M4OUT1"/>
+		        <DstAddress entityType="TUI" entityName="OurBody" portName="OurTransformation"/>
+	        </Connector>
+        </ConnectorSequence>
+    </ServerConfig>
+</document>

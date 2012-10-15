@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--document xmlns:xi='http://www.w3.org/2001/XInclude'-->
+<document xmlns:xi="http://www.w3.org/2001/XInclude">
+   <ServerConfig>
+      <ServerStartupConfig/>
+      <DeviceTypeSequence>
+          <DeviceType name="DummyDeviceTracker">
+            <PortTypeSequence>
+               <PortType name="4" sink="0" source="1" typename="TrackerChannel">
+                  <Description/>
+               </PortType>
+               <PortType name="3" sink="0" source="1" typename="TrackerChannel">
+                  <Description/>
+               </PortType>
+               <PortType name="2" sink="0" source="1" typename="TrackerChannel">
+                  <Description/>
+               </PortType>
+               <PortType name="1" sink="0" source="1" typename="TrackerChannel">
+                  <Description/>
+               </PortType>
+            </PortTypeSequence>
+            <ParameterTypeDefSequence/>
+            <ParameterTypeSequence/>
+         </DeviceType>
+      </DeviceTypeSequence>
+   </ServerConfig>
+</document>

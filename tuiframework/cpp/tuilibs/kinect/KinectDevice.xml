@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--document xmlns:xi='http://www.w3.org/2001/XInclude'-->
+<document xmlns:xi="http://www.w3.org/2001/XInclude">
+   <ServerConfig>
+      <ServerStartupConfig/>
+      <DeviceTypeSequence>
+          <DeviceType name="KinectDevice">
+            <PortTypeSequence>
+               <PortType name="JOINT_24" sink="0" source="1" typename="KinectChannel">
+                  <Description/>
+               </PortType>
+               <PortType name="JOINT_22" sink="0" source="1" typename="KinectChannel">
+                  <Description/>
+               </PortType>
+               <PortType name="JOINT_21" sink="0" source="1" typename="KinectChannel">
+                  <Description/>
+               </PortType>
+               <PortType name="JOINT_20" sink="0" source="1" typename="KinectChannel">
+                  <Description/>
+               </PortType>
+               <PortType name="JOINT_18" sink="0" source="1" typename="KinectChannel">
+                  <Description/>
+               </PortType>
+               <PortType name="JOINT_9" sink="0" source="1" typename="KinectChannel">
+                  <Description/>
+               </PortType>
+               <PortType name="JOINT_17" sink="0" source="1" typename="KinectChannel">
+                  <Description/>
+               </PortType>
+               <PortType name="JOINT_7" sink="0" source="1" typename="KinectChannel">
+                  <Description/>
+               </PortType>
+               <PortType name="JOINT_15" sink="0" source="1" typename="KinectChannel">
+                  <Description/>
+               </PortType>
+               <PortType name="JOINT_6" sink="0" source="1" typename="KinectChannel">
+                  <Description/>
+               </PortType>
+               <PortType name="JOINT_13" sink="0" source="1" typename="KinectChannel">
+                  <Description/>
+               </PortType>
+               <PortType name="JOINT_12" sink="0" source="1" typename="KinectChannel">
+                  <Description/>
+               </PortType>
+               <PortType name="JOINT_3" sink="0" source="1" typename="KinectChannel">
+                  <Description/>
+               </PortType>
+               <PortType name="JOINT_2" sink="0" source="1" typename="KinectChannel">
+                  <Description/>
+               </PortType>
+               <PortType name="JOINT_1" sink="0" source="1" typename="KinectChannel">
+                  <Description/>
+               </PortType>
+            </PortTypeSequence>
+            <ParameterTypeDefSequence/>
+            <ParameterTypeSequence/>
+         </DeviceType>
+      </DeviceTypeSequence>
+   </ServerConfig>
+</document>
