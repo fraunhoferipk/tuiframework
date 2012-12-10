@@ -25,7 +25,6 @@
 #ifndef _tuiframework_Events_h_
 #define _tuiframework_Events_h_
 
-#define USE_TFDEBUG
 #include "../logging/Logger.h"
 
 #include "../core/EventChannel.h"

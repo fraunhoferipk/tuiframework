@@ -19,5 +19,5 @@ rm ltmain.sh
 rm Makefile
 rm Makefile.in
 
-find | grep -v .svn | grep -e '\~$' | sort | xargs rm
+find . | grep -v .svn | grep -e '\~$' | sort | xargs rm
 

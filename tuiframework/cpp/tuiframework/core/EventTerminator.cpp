@@ -30,10 +30,6 @@
 
 #include <sstream>
 
-#if _debug_EventTerminator_cpp_ && !USE_TFDEBUG
-#define USE_TFDEBUG
-#endif
-
 using namespace std;
 
 namespace tuiframework {
@@ -49,7 +45,7 @@ EventTerminator::~EventTerminator() {
 void EventTerminator::push(IEvent * event) {
     IEventMsg<EPAddress> * e = static_cast<IEventMsg<EPAddress> *>(event);
 
-    TFDEBUG("(" << e->getAddress().getEntityID() << "|" << e->getAddress().getPortNr() << ")" << " terminated");
+    //TFDEBUG("(" << e->getAddress().getEntityID() << "|" << e->getAddress().getPortNr() << ")" << " terminated");
 
     delete event;
 }

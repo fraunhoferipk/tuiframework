@@ -95,18 +95,24 @@ void PluginShelf::scanDirectory(const std::string & path) {
 
 void PluginShelf::scanDirectory(const std::string & path) {
     TFDEBUG(path)
+    TFINFO("-1")
     DIR * d = opendir(path.c_str());
+    TFINFO("0")
     if ( ! d) {
-        return;
+      TFINFO("1")  
+      return;
     }
     
+    TFINFO("2")
     struct dirent * e;
     while (e = readdir(d)) {
         char * s = strstr(e->d_name, ".so");
-        if (s != 0 && strcmp(s, ".so") == 0) {
+        char * s1 = strstr(e->d_name, ".dylib");
+        //TFINFO("Scanning ...:" << e->d_name)
+        if ((s != 0 && strcmp(s, ".so") == 0) || (s1 != 0 && strcmp(s1, ".dylib") == 0)) {
             TFINFO("found shared library \'" << e->d_name << "\'")
             //PluginLib * pluginLib = PluginLib::loadPluginLib(path + "/" + e->d_name);
-            PluginLib * pluginLib = PluginLib::loadPluginLib(e->d_name);
+            PluginLib * pluginLib = PluginLib::loadPluginLib(path + "/" + e->d_name);
             if (pluginLib) {
                 this->pluginLibVector.push_back(pluginLib);
                 {

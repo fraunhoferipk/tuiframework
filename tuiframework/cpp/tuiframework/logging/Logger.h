@@ -107,12 +107,6 @@ std::string TF_SSCONVTOSTR(std::stringstream & ss);
     #define TFDEBUG_IFELSE(expression, a, b)
 #endif
 
-
-// umwandeln von strings zu preprocessor - es soll die möglichkeit bestehen
-// die files inklu zeilen nummern debuggen zu können.
-// die frage ist ob das jemand nutzen wird.
-// was ist mit den preprocessor defines, sollen die abgecheckt werden?
-
 /*
 #define DEBUG(a) std::stringstream ss; ss << a; \
         LoggerSingleton::getInstance()->Log(ss.str(), __FILE__, __LINE__);
