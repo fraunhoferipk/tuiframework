@@ -39,6 +39,10 @@
 
 #ifdef _WIN32
 #include <windows.h>
+#else
+#include <sys/types.h>
+#include <sys/time.h>
+#include <unistd.h>
 #endif
 
 using namespace tuiframework;
@@ -164,19 +168,19 @@ void * DummyDevMatrix4x4::inputLoopThread_run(void * arg) {
 
 
 void DummyDevMatrix4x4::executeInputLoop() {
-
-#ifndef _WIN32
-    struct timeval tv;
-    tv.tv_sec = 0;
-    tv.tv_usec = 300000;
-    select(0, 0, 0, 0, &tv);
-#endif
     this->inputLoopRunning = true;
     while (this->inputLoopRunning) {
 #ifndef _WIN32
-        tv.tv_sec = 0;
-        tv.tv_usec = 300000;
-        select(0, 0, 0, 0, &tv);
+    fd_set rfds;
+    struct timeval tv;
+    int retval;
+
+    FD_ZERO(&rfds);
+    FD_SET(0, &rfds);
+
+    tv.tv_sec = 0;
+    tv.tv_usec = 100000;
+    retval = select(1, &rfds, 0, 0, &tv);
 #endif
 #ifdef _WIN32
         Sleep(100);
