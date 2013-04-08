@@ -35,7 +35,7 @@ bin_PROGRAMS += testtuimouseclient
 testtuimouseclient_CXXFLAGS = -fPIC -rdynamic -I../tuilibs -I$(INCDIR) -ggdb -g -O3
 
 testtuimouseclient_LDADD = -lCommonTUITypes -lTUIFrameworkClient -lTUIFrameworkCore -lpthread
-testuimouseclient_LDFLAGS = -L../tuiframework -L../tuilibs
+testtuimouseclient_LDFLAGS = -L../tuiframework -L../tuilibs
 
 testtuimouseclient_SOURCES = \
     tuimouseclient/tuimouseclient.cpp \
