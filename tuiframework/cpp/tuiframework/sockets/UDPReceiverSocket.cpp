@@ -143,21 +143,15 @@ void UDPReceiverSocket::run() {
 
             int receivedByteCount = recvfrom(sfd, (void *)buffer, 4096, 0, (struct sockaddr *)&other_sin, &other_sin_size);
 
-/*
-            if (this->hostAddressSink) {
-                HostAddress hostAddress(ntohl(other_sin.sin_addr.s_addr), ntohs(other_sin.sin_port));
-                this->hostAddressSink->push(hostAddress);
-            }
-*/
-
             HostAddress ipAddress(ntohl(other_sin.sin_addr.s_addr), ntohs(other_sin.sin_port));
-
             //std::cout << "receiver ipAddress: " << ipAddress.toString() << std::endl;
-
-                //@@TODO: split in a seperate class
             stringstream ss;
-            ss << HostEvent::EventTypeID() << " ";
-            HostEvent::serializeHeader(ipAddress, true, ss);
+            if (this->hostEventPrefix) {
+                //@@TODO: split in a seperate class
+                
+                ss << HostEvent::EventTypeID() << " ";
+                HostEvent::serializeHeader(ipAddress, true, ss);
+            }
             ss << " " << buffer;
 
             string str = ss.str();
