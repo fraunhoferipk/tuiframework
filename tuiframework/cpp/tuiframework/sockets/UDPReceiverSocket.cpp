@@ -58,7 +58,8 @@ namespace tuiframework {
 UDPReceiverSocket::UDPReceiverSocket(ISerializedDataSink & serializedDataSink) :
         serializedDataSink(serializedDataSink),
         myPort(DEFAULT_PORT),
-        threadMessageSink(0) {
+        threadMessageSink(0),
+        hostEventPrefix(true) {
 }
 
 
@@ -84,6 +85,11 @@ void UDPReceiverSocket::setHostAddressSink(IHostAddressSink * hostAddressSink) {
 }
 
 
+void UDPReceiverSocket::setHostEventPrefix(bool hostEventPrefix) {
+    this->hostEventPrefix = hostEventPrefix;
+}
+
+
 void UDPReceiverSocket::run() {
     // The default cancelability state of pthread's is deferred.
 
@@ -102,8 +108,8 @@ void UDPReceiverSocket::run() {
 
     const int one = 1;
     if (setsockopt(sfd, SOL_SOCKET, SO_REUSEADDR, &one, sizeof(one)) < 0) {
-    	TFFATAL("setsockopt(sfd, SOL_SOCKET, SO_REUSEADDR, &one, sizeof(one)) failed");
-    	pthread_exit(0);
+        TFFATAL("setsockopt(sfd, SOL_SOCKET, SO_REUSEADDR, &one, sizeof(one)) failed");
+        pthread_exit(0);
     }
 
     struct sockaddr_in my_sin;

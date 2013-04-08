@@ -14,6 +14,7 @@ libCommonTUITypes_la_SOURCES = \
     tuitypes/common/HapticAngle.cpp \
     tuitypes/common/KinectJoint.cpp \
     tuitypes/common/Matrix4Data.cpp \
+    tuitypes/common/MouseData.cpp \
     tuitypes/common/TrackerData.cpp \
     tuitypes/common/Vector3d.cpp
 
@@ -25,6 +26,7 @@ nobase_libCommonTUITypes_la_HEADERS = \
     tuitypes/common/KinectJoint.h \
     tuitypes/common/Matrix4Data.h \
     tuitypes/common/Matrix4x4.h \
+    tuitypes/common/MouseData.h \
     tuitypes/common/TrackerData.h \
     tuitypes/common/Vector3d.h
 
@@ -218,3 +220,43 @@ libRFCommTUIDevicexml_DATA = \
 
 libRFCommTUIDevicexmldir = $(datadir)/@PACKAGE@
 
+################################
+
+lib_LTLIBRARIES += libMouseTUIDevice.la
+libMouseTUIDevice_la_CXXFLAGS = -fPIC -rdynamic -c -I$(INCDIR) -ggdb -g -O3
+libMouseTUIDevice_la_LIBADD = -lCommonTUITypes -lTUIFrameworkServer -lTUIFrameworkCore
+libMouseTUIDevice_la_LDFLAGS = -L../tuiframework -version-info 1:1:0
+
+libMouseTUIDevice_ladir = ${includedir}/tuilibs
+
+libMouseTUIDevice_la_SOURCES = \
+    mouse/MouseDev.cpp \
+    mouse/MouseDevPlugin.cpp
+
+nobase_libMouseTUIDevice_la_HEADERS = \
+    mouse/MouseDev.h \
+    mouse/MouseDevPlugin.h
+
+libMouseTUIDevicexml_DATA = \
+    mouse/MouseDev.xml
+
+libMouseTUIDevicexmldir = $(datadir)/@PACKAGE@
+
+################################
+
+lib_LTLIBRARIES += libMouseDemuxTUIMSP.la
+libMouseDemuxTUIMSP_la_CXXFLAGS = -fPIC -rdynamic -c -I$(INCDIR) -ggdb -g -O3
+libMouseDemuxTUIMSP_la_LIBADD = -lCommonTUITypes -lTUIFrameworkServer -lTUIFrameworkCore
+libMouseDemuxTUIMSP_la_LDFLAGS = -L../tuiframework -version-info 1:1:0
+
+libMouseDemuxTUIMSP_ladir = ${includedir}/tuilibs
+
+libMouseDemuxTUIMSP_la_SOURCES = \
+    mousedemux/MouseDemuxMSP.cpp \
+    mousedemux/MouseDemuxPlugin.cpp 
+
+nobase_libMouseDemuxTUIMSP_la_HEADERS = \
+    mousedemux/MouseDemuxMSP.h \
+    mousedemux/MouseDemuxPlugin.h
+
+    

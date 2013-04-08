@@ -72,6 +72,43 @@ protected:
     void (R:: * method)(const E *);
 };
 
+
+
+template <class E, class R>
+class EventDelegateNC : public IEventSink {
+public:
+    EventDelegateNC() {
+    }
+
+        /// Construction by delivering the destination method.
+    EventDelegateNC(R * receiver, void (R:: * method)(E *)) :
+        receiver(receiver),
+        method(method) {
+    }
+
+    virtual ~EventDelegateNC() {
+    }
+
+        /// Sets the destination method.
+    void setReceiver(R * receiver, void (R:: * method)(E *)) {
+        this->receiver = receiver;
+        this->method = method;
+    }
+
+        /// Forwards the delivered event to the destination method.
+    virtual void push(IEvent * event) {
+        E * e = static_cast<E *>(event);
+        (this->receiver->*this->method)(e);
+    }
+
+protected:
+        /// Class instance pointer.
+    R * receiver;
+        /// Method pointer.
+    void (R:: * method)(E *);
+};
+
+
 }
 
 #endif

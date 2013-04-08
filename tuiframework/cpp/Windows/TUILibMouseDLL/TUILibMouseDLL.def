@@ -1,0 +1,11 @@
+LIBRARY	"TUILibMouseDLL"
+
+EXPORTS
+	dllInitPlugin				@1
+    dllGetTFVersion				@2
+    dllGetDLLVersion			@3
+    dllDeviceRegistration		@4
+    dllGetDeviceTypeNameVector	@5
+    dllGetDeviceTypeVersion		@6
+    dllNewDeviceInstance		@7
+    dllDeleteDeviceInstance		@8

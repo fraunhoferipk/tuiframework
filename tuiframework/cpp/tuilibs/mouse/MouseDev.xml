@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!--document xmlns:xi='http://www.w3.org/2001/XInclude'-->
+<document xmlns:xi="http://www.w3.org/2001/XInclude">
+  <ServerConfig>
+    <ServerStartupConfig/>
+    <DeviceTypeSequence>
+      <DeviceType name="MouseDevice">
+        <PortTypeSequence>
+          <PortType name="m1" sink="0" source="1" typename="MouseChannel">
+            <Description/>
+          </PortType>
+          <PortType name="m2" sink="0" source="1" typename="MouseChannel">
+            <Description/>
+          </PortType>
+          <PortType name="m3" sink="0" source="1" typename="MouseChannel">
+            <Description/>
+          </PortType>
+          <PortType name="m4" sink="0" source="1" typename="MouseChannel">
+            <Description/>
+          </PortType>
+        </PortTypeSequence>
+        <ParameterGroup name="Client">
+          <Parameter name="PortNr" value="19100"/>
+        </ParameterGroup>
+      </DeviceType>
+    </DeviceTypeSequence>
+  </ServerConfig>
+</document>

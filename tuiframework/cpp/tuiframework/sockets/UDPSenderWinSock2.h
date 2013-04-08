@@ -61,6 +61,8 @@ public:
         /// UDP sender loop.
     void run();
 
+	void cleanup();
+
 protected:
         /// Clean up handler for sending a notification message about
         /// the cancellation of the UDP sender engine.

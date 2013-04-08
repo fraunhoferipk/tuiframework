@@ -34,6 +34,7 @@
 
 #include "TrackerData.h"
 #include "Vector3d.h"
+#include "MouseData.h"
 
 #include <tuiframework/core/EPEventMsg.h>
 #include <tuiframework/core/IEventFactory.h>
@@ -44,20 +45,20 @@
    
 typedef tuiframework::EPEventMsg<bool, 11>                  DigitalChangedEvent;
 typedef tuiframework::EPEventMsg<float, 12>                 AnalogChangedEvent;
-typedef tuiframework::EPEventMsg<TrackerData, 13>           TrackerChangedEvent;
-typedef tuiframework::EPEventMsg<Matrix4Data, 14>           Matrix4ChangedEvent;
-typedef tuiframework::EPEventMsg<HapticAngle, 15>           HapticChangedEvent;
-typedef tuiframework::EPEventMsg<Matrix4x4<double>, 16>     Matrix4x4ChangedEvent;
-typedef tuiframework::EPEventMsg<KinectJoint, 17>           KinectEvent;
-typedef tuiframework::EPEventMsg<Gesture, 18>               GestureEvent;
-typedef tuiframework::EPEventMsg<Vector3d, 19>              Vector3dEvent;
+typedef tuiframework::EPEventMsg<int, 13>                   IntegerChangedEvent;
+typedef tuiframework::EPEventMsg<TrackerData, 14>           TrackerChangedEvent;
+typedef tuiframework::EPEventMsg<Matrix4Data, 15>           Matrix4ChangedEvent;
+typedef tuiframework::EPEventMsg<HapticAngle, 16>           HapticChangedEvent;
+typedef tuiframework::EPEventMsg<Matrix4x4<double>, 17>     Matrix4x4ChangedEvent;
+typedef tuiframework::EPEventMsg<KinectJoint, 18>           KinectEvent;
+typedef tuiframework::EPEventMsg<Gesture, 19>               GestureEvent;
+typedef tuiframework::EPEventMsg<Vector3d, 20>              Vector3dEvent;
+typedef tuiframework::EPEventMsg<MouseData, 21>             MouseEvent;
 
 
 namespace CommonTypeReg {
 
 void registerTypes(tuiframework::IEventFactory * eventFactory, tuiframework::IEventChannelFactory * eventChannelFactory);    
-//void clientRegisterTypes();
-//void serverRegisterTypes();
 
 }
 

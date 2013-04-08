@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--document xmlns:xi='http://www.w3.org/2001/XInclude'-->
+<document xmlns:xi="http://www.w3.org/2001/XInclude">
+  <ServerConfig>
+    <ServerStartupConfig/>
+    <MSPTypeSequence>
+      <MSPType name="MouseDemuxMSP">
+        <PortTypeSequence>
+          <PortType name="m" sink="1" source="0" typename="MouseChannel">
+            <Description/>
+          </PortType>          
+          <PortType name="dx" sink="0" source="1" typename="IntegerChannel">
+            <Description/>
+          </PortType>
+          <PortType name="dy" sink="0" source="1" typename="IntegerChannel">
+            <Description/>
+          </PortType>
+          <PortType name="dwheel" sink="0" source="1" typename="IntegerChannel">
+            <Description/>
+          </PortType>
+          <PortType name="b1left" sink="0" source="1" typename="DigitalChannel">
+            <Description/>
+          </PortType>
+          <PortType name="b2right" sink="0" source="1" typename="DigitalChannel">
+            <Description/>
+          </PortType>
+          <PortType name="b3middle" sink="0" source="1" typename="DigitalChannel">
+            <Description/>
+          </PortType>
+          <PortType name="b4" sink="0" source="1" typename="DigitalChannel">
+            <Description/>
+          </PortType>
+          <PortType name="b5" sink="0" source="1" typename="DigitalChannel">
+            <Description/>
+          </PortType>
+        </PortTypeSequence>
+      </MSPType>
+    </MSPTypeSequence>
+  </ServerConfig>
+</document>
+

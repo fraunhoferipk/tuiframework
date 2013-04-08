@@ -174,6 +174,10 @@
 			>
 		</Filter>
 		<File
+			RelativePath="..\..\tuilibs\phidgets\PhidgetDevice.xml"
+			>
+		</File>
+		<File
 			RelativePath=".\ReadMe.txt"
 			>
 		</File>

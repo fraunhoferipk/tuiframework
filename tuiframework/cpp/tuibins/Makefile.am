@@ -30,6 +30,21 @@ testtuiclient2_SOURCES = \
 
 #################################
 
+bin_PROGRAMS += testtuimouseclient
+
+testtuimouseclient_CXXFLAGS = -fPIC -rdynamic -I../tuilibs -I$(INCDIR) -ggdb -g -O3
+
+testtuimouseclient_LDADD = -lCommonTUITypes -lTUIFrameworkClient -lTUIFrameworkCore -lpthread
+testuimouseclient_LDFLAGS = -L../tuiframework -L../tuilibs
+
+testtuimouseclient_SOURCES = \
+    tuimouseclient/tuimouseclient.cpp \
+    tuimouseclient/Init.cpp \
+    tuimouseclient/TUIMouse.cpp
+
+
+#################################
+
 bin_PROGRAMS += testtuiserver1
 
 testtuiserver1_CXXFLAGS = -fPIC -rdynamic -I../tuilibs -I$(INCDIR) -ggdb -g -O3
@@ -63,7 +78,9 @@ testtuiserver2_SOURCES = \
     tuiserver2/tuiserver.cpp
 
 testtuiserver2xml_DATA = \
+    tuiserver2/mousetestconfig.xml \
     tuiserver2/testconfig.xml
+
 
 testtuiserver2xmldir = $(datadir)/@PACKAGE@
 

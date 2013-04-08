@@ -61,7 +61,9 @@ TUIServerApp::TUIServerApp(int senderPortNr, int receiverPortNr, bool usingMulti
         mcEventSerializer(mcEventQueue, mcHostMsgDispatcher),
         deviceContainer(deviceFactory),
         mspContainer(mspFactory) {
-            
+
+	TFINFO("Booting TUI Server")
+
     TREG_THREADNAME("Main")
     
     this->mcHostMsgDispatcher.addDstAddress(this->multicastGroup);

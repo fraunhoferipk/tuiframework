@@ -46,7 +46,6 @@ public:
     DeviceDescriptor();
     virtual ~DeviceDescriptor();
 
-
     void setInstanceName(const std::string & instanceName);
     const std::string & getInstanceName() const;
 

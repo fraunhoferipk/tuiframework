@@ -1,0 +1,11 @@
+LIBRARY	"TUILibMouseDemuxDLL"
+
+EXPORTS
+	dllInitPlugin				@1
+    dllGetTFVersion				@2
+    dllGetDLLVersion			@3
+    dllMSPRegistration			@4
+    dllGetMSPTypeNameVector		@5
+    dllGetMSPTypeVersion		@6
+    dllNewMSPInstance			@7
+    dllDeleteMSPInstance		@8

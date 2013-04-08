@@ -1,0 +1,118 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// Deutsch (Deutschland) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_DEU)
+#ifdef _WIN32
+LANGUAGE LANG_GERMAN, SUBLANG_GERMAN
+#pragma code_page(1252)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_DIALOG1 DIALOGEX 0, 0, 501, 187
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | DS_CENTER | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION 
+"M o u s e   S e r v e r   -   Copyright (C) The Fraunhofer Institute IPK"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    DEFPUSHBUTTON   "Start Server",ID_BUTTON_START_SERVER,16,161,50,14
+    PUSHBUTTON      "Close",IDCANCEL,436,161,50,14
+    GROUPBOX        "Configuration",IDC_STATIC,7,7,487,146
+    PUSHBUTTON      "Mouse 1",IDC_BUTTON_MOUSE1,15,18,51,14
+    PUSHBUTTON      "Mouse 2",IDC_BUTTON_MOUSE2,15,37,51,14
+    PUSHBUTTON      "Mouse 3",IDC_BUTTON_MOUSE3,15,55,51,14
+    PUSHBUTTON      "Mouse 4",IDC_BUTTON_MOUSE4,15,73,51,14
+    CONTROL         "",IDC_IPADDRESS1,"SysIPAddress32",WS_TABSTOP,73,96,100,12
+    EDITTEXT        IDC_EDIT_PORT1,204,96,33,12,ES_NUMBER
+    LTEXT           "Port:",IDC_STATIC,182,98,17,8
+    LTEXT           "Client IP:",IDC_STATIC,35,98,31,8
+    LTEXT           "->",IDC_STATIC,73,21,9,8
+    LTEXT           "->",IDC_STATIC,73,40,9,8
+    LTEXT           "->",IDC_STATIC,73,58,9,8
+    LTEXT           "->",IDC_STATIC,73,76,9,8
+    LTEXT           "unallocated",IDC_STATIC_MOUSE1,94,21,390,8
+    LTEXT           "unallocated",IDC_STATIC_MOUSE2,94,40,390,8
+    LTEXT           "unallocated",IDC_STATIC_MOUSE3,94,58,390,8
+    LTEXT           "unallocated",IDC_STATIC_MOUSE4,94,76,390,8
+    PUSHBUTTON      "Unlock",IDC_BUTTON_LOCK,15,133,51,14
+    LTEXT           "",IDC_STATIC1,73,163,357,8
+    LTEXT           "",IDC_STATIC_CURRENT_MOUSE,94,116,390,8
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO 
+BEGIN
+    IDD_DIALOG1, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 494
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 180
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+#endif    // Deutsch (Deutschland) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

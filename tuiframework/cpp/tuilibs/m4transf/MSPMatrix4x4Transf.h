@@ -67,8 +67,7 @@ protected:
     MSPConfig config;
     MSPType type;
 
-
-    Matrix4x4TransfUnit transfUnit;
+	Matrix4x4TransfUnit transfUnit;
 };
 
 

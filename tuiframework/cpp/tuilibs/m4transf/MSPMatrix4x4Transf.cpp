@@ -29,7 +29,7 @@
 #include "MSPMatrix4x4Transf.h"
 #include "Matrix4x4TransfUnit.h"
 
-using namespace std;
+using namespace std; 
 
 namespace tuiframework {
 

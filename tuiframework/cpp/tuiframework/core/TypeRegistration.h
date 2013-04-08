@@ -85,7 +85,7 @@ template<class T, int typeID> void registerType(IEventFactory * eventFactory,
     if (eventChannelFactory) {
         eventChannelFactory->registerCreateFunction(name, createEventChannelFunction<EventChannel<T, typeID> >);
     }
-    //TFDEBUG("registerType ID = " << typeID << " channel name = " << name)
+    TFDEBUG("registerType ID = " << typeID << ", channel name = " << name)
 }
 
 

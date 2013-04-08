@@ -31,8 +31,9 @@
                   <Description/>
                </PortType>
             </PortTypeSequence>
-            <ParameterTypeDefSequence/>
-            <ParameterTypeSequence/>
+            <ParameterGroup name="Server">
+              <Parameter name="IPAddress" value="192.168.0.0"/>
+            </ParameterGroup>
          </DeviceType>
       </DeviceTypeSequence>
    </ServerConfig>

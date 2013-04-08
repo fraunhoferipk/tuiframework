@@ -58,6 +58,8 @@ TUIClientApp::TUIClientApp()  :
     created(false),
     multicastListenerActivated(false),
     myReceivePortNr(0) {
+
+	TFINFO("Booting TUI Client")
 }
 
 

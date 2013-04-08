@@ -35,7 +35,9 @@ using namespace std;
 
 namespace tuiframework {
 
-HostAddress::HostAddress() {
+HostAddress::HostAddress() :
+	ipAddress(0),
+	portNr(0) {
 }
 
 

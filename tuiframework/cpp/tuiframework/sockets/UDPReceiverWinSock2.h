@@ -61,6 +61,8 @@ public:
         /// UDP receiver loop.
     void run();
 
+    void setHostEventPrefix(bool hostEventPrefix);
+
 protected:
         /// Clean up handler for sending a notification message about
         /// the cancellation of the UDP receiver engine.
@@ -81,6 +83,8 @@ protected:
     IThreadMessageSink * threadMessageSink;
         /// Sink for host addresses.
     IHostAddressSink * hostAddressSink;
+
+	bool hostEventPrefix;
 };
 
 }

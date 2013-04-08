@@ -34,8 +34,6 @@ public:
     Matrix4Data();
     virtual ~Matrix4Data();
     
-    const char * getGUID() const;
-    
     double & operator[](int index);
     const double & operator[](int index) const;
 

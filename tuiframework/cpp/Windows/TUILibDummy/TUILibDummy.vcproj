@@ -196,6 +196,22 @@
 			>
 		</Filter>
 		<File
+			RelativePath="..\..\tuilibs\dummy\DummyDeviceDA.xml"
+			>
+		</File>
+		<File
+			RelativePath="..\..\tuilibs\dummy\DummyDeviceMatrix4.xml"
+			>
+		</File>
+		<File
+			RelativePath="..\..\tuilibs\dummy\DummyDeviceMatrix4x4.xml"
+			>
+		</File>
+		<File
+			RelativePath="..\..\tuilibs\dummy\DummyDeviceTracker.xml"
+			>
+		</File>
+		<File
 			RelativePath=".\ReadMe.txt"
 			>
 		</File>

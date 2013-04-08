@@ -130,10 +130,10 @@ bool PluginLib::openDLL() {
 
     this->dllTypeRegistration = reinterpret_cast<void (*)(IEventFactory * eventFactory, IEventChannelFactory * eventChannelFactory)>(GetProcAddress(this->dllHandle, "dllTypeRegistration"));
     if ( ! this->dllTypeRegistration) {
-        TFDEBUG(" dllTypeRegistration not found")
+        //TFDEBUG(" dllTypeRegistration not found")
         typeRes = false;
 	} else {
-		TFDEBUG(" dllTypeRegistration found!!!!!!!!!!!!!!!")
+		TFDEBUG(" => dllTypeRegistration found")
 	}
     
     this->dllDeviceRegistration = reinterpret_cast<void (*)(IDeviceFactory * deviceFactory)>(GetProcAddress(this->dllHandle, "dllDeviceRegistration"));
@@ -244,7 +244,7 @@ void PluginLib::typeRegistration(IEventFactory * eventFactory, IEventChannelFact
         return;
     }
     this->dllTypeRegistration(eventFactory, eventChannelFactory);
-	TFDEBUG("typeRegisteration called");
+	//TFDEBUG("typeRegisteration called");
 }
 
 
@@ -278,7 +278,7 @@ bool PluginLib::readEntityNames() {
         vector<string>::const_iterator e = nameVector.end();
         while (i != e) {
             this->deviceNameVector.push_back(*i);
-			TFDEBUG("Found Device: " << *i)
+			TFDEBUG("==> Device found: " << *i)
             ++i;
         }
     }
@@ -289,7 +289,7 @@ bool PluginLib::readEntityNames() {
         vector<string>::const_iterator e = nameVector.end();
         while (i != e) {
             this->mspNameVector.push_back(*i);
-			TFDEBUG("Found MSP: " << *i)
+			TFDEBUG("==> MSP found: " << *i)
             ++i;
         }
     }

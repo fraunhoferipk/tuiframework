@@ -88,7 +88,7 @@
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
-				CommandLine="copy $(SolutionDir)\netsrc\Pre-built.2\lib\pthreadVCE2.dll $(OutDir)&#x0D;&#x0A;copy $(SolutionDir)\netsrc\xerces-c-3.1.1-x86-windows-vc-9.0\bin\xerces-c_3_1.dll $(OutDir)&#x0D;&#x0A;copy $(SolutionDir)\..\tuibins\tuiserver2\testconfig.xml  $(OutDir)&#x0D;&#x0A;"
+				CommandLine="copy $(SolutionDir)\netsrc\Pre-built.2\lib\pthreadVCE2.dll $(OutDir)&#x0D;&#x0A;copy $(SolutionDir)\netsrc\xerces-c-3.1.1-x86-windows-vc-9.0\bin\xerces-c_3_1.dll $(OutDir)&#x0D;&#x0A;copy $(SolutionDir)\..\tuibins\tuiserver2\testconfig.xml  $(OutDir)&#x0D;&#x0A;copy $(SolutionDir)\..\tuibins\tuiserver2\mousetestconfig.xml  $(OutDir)&#x0D;&#x0A;"
 			/>
 		</Configuration>
 		<Configuration
@@ -166,7 +166,7 @@
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
-				CommandLine="copy $(SolutionDir)\netsrc\Pre-built.2\lib\pthreadVCE2.dll $(OutDir)&#x0D;&#x0A;copy $(SolutionDir)\netsrc\xerces-c-3.1.1-x86-windows-vc-9.0\bin\xerces-c_3_1.dll $(OutDir)&#x0D;&#x0A;copy $(SolutionDir)\..\tuibins\tuiserver2\testconfig.xml  $(OutDir)&#x0D;&#x0A;"
+				CommandLine="copy $(SolutionDir)\netsrc\Pre-built.2\lib\pthreadVCE2.dll $(OutDir)&#x0D;&#x0A;copy $(SolutionDir)\netsrc\xerces-c-3.1.1-x86-windows-vc-9.0\bin\xerces-c_3_1.dll $(OutDir)&#x0D;&#x0A;copy $(SolutionDir)\..\tuibins\tuiserver2\testconfig.xml  $(OutDir)&#x0D;&#x0A;copy $(SolutionDir)\..\tuibins\tuiserver2\mousetestconfig.xml  $(OutDir)&#x0D;&#x0A;"
 			/>
 		</Configuration>
 	</Configurations>
@@ -195,6 +195,10 @@
 			UniqueIdentifier="{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}"
 			>
 		</Filter>
+		<File
+			RelativePath="..\..\tuibins\tuiserver2\mousetestconfig.xml"
+			>
+		</File>
 		<File
 			RelativePath=".\ReadMe.txt"
 			>

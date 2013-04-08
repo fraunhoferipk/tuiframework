@@ -21,18 +21,11 @@
     along with the TUIFramework.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-
 #include "UDPReceiverWinSock2.h"
-
 #include "../core/ISerializedDataSink.h"
-
-
 #include "../core/IThreadMessageSink.h"
-
 #include "../core/HostAddress.h"
 #include "../core/TypeRegistration.h"
-
-#define USE_TFDEBUG
 #include "../logging/Logger.h"
 
 #include <iostream>
@@ -49,7 +42,8 @@ namespace tuiframework {
 UDPReceiverWinSock2::UDPReceiverWinSock2(ISerializedDataSink & serializedDataSink) :
 		serializedDataSink(serializedDataSink),
 		myPort(DEFAULT_PORT),
-		threadMessageSink(0) {
+		threadMessageSink(0),
+		hostEventPrefix(true) {
 }
 
 
@@ -72,6 +66,10 @@ void UDPReceiverWinSock2::setThreadMessageSink(IThreadMessageSink * threadMessag
 
 void UDPReceiverWinSock2::setHostAddressSink(IHostAddressSink * hostAddressSink) {
     this->hostAddressSink = hostAddressSink;
+}
+
+void UDPReceiverWinSock2::setHostEventPrefix(bool hostEventPrefix) {
+	this->hostEventPrefix = hostEventPrefix;
 }
 
 void UDPReceiverWinSock2::run() {
@@ -115,17 +113,55 @@ void UDPReceiverWinSock2::run() {
         int other_sin_size = (int)sizeof(other_sin);
 
         int receivedByteCount = recvfrom(this->connectSocket, (char *)buffer, 4096, 0, (struct sockaddr *)&other_sin, &other_sin_size);
-
-        HostAddress ipAddress(ntohl(other_sin.sin_addr.s_addr), ntohs(other_sin.sin_port));
-
+		/*			
+		/// {
+		HostAddress ipAddress(ntohl(other_sin.sin_addr.s_addr), ntohs(other_sin.sin_port));
+		stringstream ss;
+		if (this->hostEventPrefix) {
             //@@TODO: split in a seperate class
-        stringstream ss;
-        ss << HostEvent::EventTypeID() << " ";
-        HostEvent::serializeHeader(ipAddress, true, ss);
-        ss << " " << buffer;
+			
+			ss << HostEvent::EventTypeID() << " ";
+			HostEvent::serializeHeader(ipAddress, true, ss);
+			ss << " ";
+		}
+		string str = ss.str();
 
+
+		int curIndex = 0;
+		u_long frameCount;
+		memcpy(&frameCount, &buffer[curIndex], 4);
+		curIndex += 4;
+		frameCount = ntohl(frameCount);
+		//cout << "framecount:" << frameCount << endl;
+		for (u_long i = 0; i < frameCount; ++i) {
+			u_long frameSize;
+			memcpy(&frameSize, &buffer[curIndex], 4);
+			curIndex += 4;
+			frameSize = ntohl(frameSize);
+
+			char * incomingSerializedData = new char[str.size() + frameSize + 1];
+			if (str.size()) {
+				memcpy(incomingSerializedData, str.c_str(), str.size());
+			}
+			memcpy(&incomingSerializedData[str.size()], &buffer[curIndex], frameSize);
+			curIndex += frameSize;
+			incomingSerializedData[str.size() + frameSize] = 0;
+			this->serializedDataSink.push(pair<char *, int>(incomingSerializedData, str.size() + frameSize + 1));
+		}
+		/// }
+		*/
+
+		HostAddress ipAddress(ntohl(other_sin.sin_addr.s_addr), ntohs(other_sin.sin_port));
+		stringstream ss;
+		if (this->hostEventPrefix) {
+            //@@TODO: split in a seperate class
+			
+			ss << HostEvent::EventTypeID() << " ";
+			HostEvent::serializeHeader(ipAddress, true, ss);
+		}
+		ss << " " << buffer;
         string str = ss.str();
-        TFDEBUG(str);
+        //TFINFO(str);
 
         char * incomingSerializedData = new char[str.size() + 1];
         memcpy(incomingSerializedData, str.c_str(), str.size() + 1);

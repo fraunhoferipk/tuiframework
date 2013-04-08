@@ -108,10 +108,9 @@ void TUIObjectStub::handleEvent(IEventMsg<EPAddress> * eventMsg) {
     }
 }
 
-// TODO anbieten von get and tryGet methoden, wobei die get methode eine Exception schmeisst,
-// wenn kein Kanal gefunden wurde.
+
 IEventChannel * TUIObjectStub::getSourceChannel(int portNr) {
-    TFINFO("PortNr: " << portNr);
+    //TFINFO("PortNr: " << portNr);
     map<int, IEventChannel *>::iterator iter = this->sourceChannelMap.find(portNr);
     if (iter != this->sourceChannelMap.end()) {
         return (*iter).second;
