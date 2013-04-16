@@ -259,4 +259,33 @@ nobase_libMouseDemuxTUIMSP_la_HEADERS = \
     mousedemux/MouseDemuxMSP.h \
     mousedemux/MouseDemuxPlugin.h
 
-    
+libMouseDemuxTUIMSPxml_DATA = \
+    mousedemux/MouseDemuxMSP.xml
+
+libMouseDemuxTUIMSPxmldir = $(datadir)/@PACKAGE@
+
+################################
+
+lib_LTLIBRARIES += libTypeConverterMSP.la
+libTypeConverterMSP_la_CXXFLAGS = -fPIC -rdynamic -c -I$(INCDIR) -ggdb -g -O3
+libTypeConverterMSP_la_LIBADD = -lCommonTUITypes -lTUIFrameworkServer -lTUIFrameworkCore
+libTypeConverterMSP_la_LDFLAGS = -L../tuiframework -version-info 1:1:0
+
+libTypeConverterMSP_ladir = ${includedir}/tuilibs
+
+libTypeConverterMSP_la_SOURCES = \
+    typeconverter/AnalogToDigitalMSP.cpp \
+    typeconverter/DigitalToAnalogMSP.cpp \
+    typeconverter/TypeConverterPlugin.cpp 
+
+nobase_libTypeConverterMSP_la_HEADERS = \
+    typeconverter/AnalogToDigitalMSP.h \
+    typeconverter/DigitalToAnalogMSP.h \
+    typeconverter/TypeConverterPlugin.h 
+
+libTypeConverterMSPxml_DATA = \
+    typeconverter/TypeConverterMSP.xml
+
+libTypeConverterMSPxmldir = $(datadir)/@PACKAGE@
+
+
