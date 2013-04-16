@@ -77,10 +77,10 @@ MouseDev::MouseDev(const DeviceConfig & deviceConfig) :
     this->deviceDescriptor.setDeviceType(deviceType);
 
     std::map<std::string, int> nameChannelNrMap;
-	nameChannelNrMap["m1"] = 1;
-	nameChannelNrMap["m2"] = 2;
-	nameChannelNrMap["m3"] = 3;
-	nameChannelNrMap["m4"] = 4;
+    nameChannelNrMap["m1"] = 1;
+    nameChannelNrMap["m2"] = 2;
+    nameChannelNrMap["m3"] = 3;
+    nameChannelNrMap["m4"] = 4;
 
     this->deviceDescriptor.setNameChannelNrMap(nameChannelNrMap);
 

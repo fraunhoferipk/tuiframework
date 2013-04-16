@@ -45,6 +45,12 @@ namespace tuiframework {
 
 namespace tuidevices {
 
+/**
+ *  MouseDev
+ *
+ *  \author Oliver Belaifa
+ *  \date 2013
+ */    
 class MouseDev : public tuiframework::IDevice {
 public:
     static IDevice * createFunction(void * arg);
@@ -59,7 +65,7 @@ public:
     virtual bool deviceExecute();
     virtual void deviceStop();
     virtual void deviceSetEventSink(tuiframework::IEventSink * eventSink);
-	virtual const tuiframework::DeviceDescriptor & getDeviceDescriptor() const;
+    virtual const tuiframework::DeviceDescriptor & getDeviceDescriptor() const;
 
 protected:
     static void * inputLoopThread_run(void * arg);
@@ -72,12 +78,12 @@ protected:
     tuiframework::ITUIServer * tuiServer;
     tuiframework::IEventSink * eventSink;
 
-	volatile bool inputLoopRunning;
+    volatile bool inputLoopRunning;
     pthread_t inputLoopThread;
 
-	int portNr;
+    int portNr;
 
-	tuiframework::SerializedDataQueue queue;
+    tuiframework::SerializedDataQueue queue;
 #ifdef _WIN32
     tuiframework::UDPReceiverWinSock2 receiver;
 #else

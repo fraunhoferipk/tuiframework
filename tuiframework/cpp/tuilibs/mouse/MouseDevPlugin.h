@@ -21,13 +21,18 @@
     along with the TUIFramework.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-
-
 #ifndef _MouseDevPlugin_h_
 #define _MouseDevPlugin_h_
 
 #include <string>
 #include <vector>
+
+/**
+ *  MouseDevPlugin
+ *
+ *  \author Oliver Belaifa
+ *  \date 2013
+ */ 
 
 namespace tuiframework {
     class IDevice;

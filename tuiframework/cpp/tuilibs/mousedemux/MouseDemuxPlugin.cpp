@@ -23,6 +23,7 @@
 */
 
 #include "MouseDemuxPlugin.h"
+#include "MouseDemuxMSP.h"
 
 #include <tuiframework/server/MSPFactorySingleton.h>
 
@@ -30,8 +31,6 @@
 #include <tuiframework/core/IMSP.h>
 #include <tuiframework/server/MSPConfig.h>
 #include <tuiframework/server/IMSPFactory.h>
-
-#include <mousedemux/MouseDemuxMSP.h>
 
 #include <vector>
 

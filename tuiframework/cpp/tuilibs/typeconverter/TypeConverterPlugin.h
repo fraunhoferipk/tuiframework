@@ -22,12 +22,18 @@
 */
 
 
-
-#ifndef _MouseDemuxPlugin_h_
-#define _MouseDemuxPlugin_h_
+#ifndef _TypeConverterPlugin_h_
+#define _TypeConverterPlugin_h_
 
 #include <string>
 #include <vector>
+
+/**
+ *  TypeConverterPlugin
+ *
+ *  \author Oliver Belaifa
+ *  \date 2013
+ */ 
 
 namespace tuiframework {
     class IMSP;
