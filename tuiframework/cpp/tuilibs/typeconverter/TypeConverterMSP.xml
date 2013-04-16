@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--document xmlns:xi='http://www.w3.org/2001/XInclude'-->
+<document xmlns:xi="http://www.w3.org/2001/XInclude">
+  <ServerConfig>
+    <ServerStartupConfig/>
+    <MSPTypeSequence>
+      <MSPType name="DigitalToAnalogMSP">
+        <PortTypeSequence>
+          <PortType name="in" sink="1" source="0" typename="DigitalChannel">
+            <Description/>
+          </PortType>          
+          <PortType name="out" sink="0" source="1" typename="AnalogChannel">
+            <Description/>
+          </PortType>
+        </PortTypeSequence>
+        <ParameterGroup name="Convert">
+          <Parameter name="Value_0" value="0.0"/>
+          <Parameter name="Value_1" value="1.0"/>
+        </ParameterGroup>
+      </MSPType>
+      <MSPType name="AnalogToDigitalMSP">
+        <PortTypeSequence>
+          <PortType name="in" sink="1" source="0" typename="AnalogChannel">
+            <Description/>
+          </PortType>          
+          <PortType name="out" sink="0" source="1" typename="DigitalChannel">
+            <Description/>
+          </PortType>
+        </PortTypeSequence>
+        <ParameterGroup name="Convert">
+          <Parameter name="Threshold" value="0.5"/>
+        </ParameterGroup>
+      </MSPType>
+    </MSPTypeSequence>
+  </ServerConfig>
+</document>
+
