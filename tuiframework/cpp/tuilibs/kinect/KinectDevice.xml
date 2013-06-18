@@ -4,12 +4,15 @@
    <ServerConfig>
       <ServerStartupConfig/>
       <DeviceTypeSequence>
-          <DeviceType name="KinectDevice">
+  <DeviceType name="KinectDevice">
             <PortTypeSequence>
                <PortType name="JOINT_24" sink="0" source="1" typename="KinectChannel">
                   <Description/>
                </PortType>
                <PortType name="JOINT_22" sink="0" source="1" typename="KinectChannel">
+                  <Description/>
+               </PortType>
+               <PortType name="DEVICE_GESTURE" sink="0" source="1" typename="GestureChannel">
                   <Description/>
                </PortType>
                <PortType name="JOINT_21" sink="0" source="1" typename="KinectChannel">

@@ -3,7 +3,7 @@
 <document xmlns:xi="http://www.w3.org/2001/XInclude">
    <ServerConfig>
       <ServerStartupConfig/>
-      <DeviceTypeSequence>
+      <MSPTypeSequence>
           <MSPType name="Matrix4x4Transf">
             <PortTypeSequence>
                <PortType name="OUT" sink="0" source="1" typename="Matrix4x4">
@@ -57,6 +57,6 @@
                </ParameterGroup>
             </ParameterGroup>
          </MSPType>
-      </DeviceTypeSequence>
+      </MSPTypeSequence>
    </ServerConfig>
 </document>

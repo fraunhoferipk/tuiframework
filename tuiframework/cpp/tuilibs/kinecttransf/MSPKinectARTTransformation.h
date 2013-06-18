@@ -21,8 +21,6 @@
     along with the TUIFramework.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-
-
 #ifndef _tuiframework_MSPKinectARTTransformation_h_
 #define _tuiframework_MSPKinectARTTransformation_h_
 
@@ -38,7 +36,6 @@
 #include <map>
 
 namespace tuiframework {
-
 
 class MSPKinectARTTransformation : public IMSP {
 public:
@@ -66,12 +63,7 @@ protected:
     MSPType type;
 
     KinectARTTransfUnit transfUnit;
-
-
 };
-
-
-
 
 }
 

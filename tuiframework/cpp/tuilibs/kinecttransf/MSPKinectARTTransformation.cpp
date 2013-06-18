@@ -78,6 +78,8 @@ MSPKinectARTTransformation::MSPKinectARTTransformation(const MSPConfig & config)
     this->registeredEventSinkMap["DrawStroke_OUT"] = 0;
     this->registeredEventSinkMap["Menu_OUT"] = 0;
 
+    this->registeredEventSinkMap["Transf_Head"] = 0;
+
 }
 
 
@@ -116,6 +118,5 @@ void MSPKinectARTTransformation::registerEventSink(const std::string & name, IEv
 const MSPType & MSPKinectARTTransformation::getMSPType() const {
     return this->type;
 }
-
 
 }

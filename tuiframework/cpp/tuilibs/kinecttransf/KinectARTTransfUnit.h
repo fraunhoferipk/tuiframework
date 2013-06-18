@@ -34,7 +34,6 @@
 
 namespace tuiframework {
 
-
 class KinectARTTransfUnit : public IEventSink {
 public:
     KinectARTTransfUnit();
@@ -53,7 +52,7 @@ protected:
 
 private:
 
-    void kinectPoseChanged(const Matrix4ChangedEvent * event);
+	void kinectPoseChanged(const Matrix4ChangedEvent * event);
 
     void HEAD_Changed(const KinectEvent * event);
     void TORSO_Changed(const KinectEvent * event);
@@ -79,6 +78,12 @@ private:
 
     void GESTURE(const GestureEvent * event);
 
+    void gestureWave();
+    void gestureLeftHandOverShoulder();
+    void gestureNoLeftHandOverShoulder();
+    void gestureGrab();
+    void gestureNoMoreGrab();
+
     std::map<std::string, IEventSink *> * registeredEventSinkMap;
     Matrix4Data rot_trans;
 
@@ -86,6 +91,7 @@ private:
     Vector3d m_rh;
     Vector3d m_le;
     Vector3d m_re;
+    Vector3d m_h;
 
     float translX;
     float translY;
@@ -95,6 +101,8 @@ private:
 
     int m_dev;
     bool clicked;
+    bool handRaised;
+    bool first;
 };
 
 }
