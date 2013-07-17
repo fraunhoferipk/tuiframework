@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!--document xmlns:xi='http://www.w3.org/2001/XInclude'-->
+<document xmlns:xi="http://www.w3.org/2001/XInclude">
+  <ServerConfig>
+    <ServerStartupConfig/>
+    <DeviceTypeSequence>
+      <DeviceType name="VRPNTrackerDevice">
+        <PortTypeSequence>
+          <PortType name="T1" sink="0" source="1" typename="TrackerChannel">
+            <Description/>
+          </PortType>
+          <PortType name="T2" sink="0" source="1" typename="TrackerChannel">
+            <Description/>
+          </PortType>
+          <PortType name="T3" sink="0" source="1" typename="TrackerChannel">
+            <Description/>
+          </PortType>
+          <PortType name="T4" sink="0" source="1" typename="TrackerChannel">
+            <Description/>
+          </PortType>
+        </PortTypeSequence>
+        <ParameterGroup name="vrpn">
+          <Parameter name="trackerName" value="Tracker0@localhost"/>
+        </ParameterGroup>
+      </DeviceType>
+    </DeviceTypeSequence>
+  </ServerConfig>
+</document>
