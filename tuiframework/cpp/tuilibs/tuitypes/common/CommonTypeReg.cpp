@@ -36,7 +36,7 @@ namespace CommonTypeReg {
 void registerTypes(IEventFactory * eventFactory, IEventChannelFactory * eventChannelFactory) {
     tuiframework::registerType<bool, 11>(eventFactory, eventChannelFactory, "DigitalChannel");
     tuiframework::registerType<float, 12>(eventFactory, eventChannelFactory, "AnalogChannel");
-	tuiframework::registerType<int, 13>(eventFactory, eventChannelFactory, "IntegerChannel");
+    tuiframework::registerType<int, 13>(eventFactory, eventChannelFactory, "IntegerChannel");
     tuiframework::registerType<TrackerData, 14>(eventFactory, eventChannelFactory, "TrackerChannel");
     tuiframework::registerType<Matrix4Data, 15>(eventFactory, eventChannelFactory, "Matrix4Channel");
     tuiframework::registerType<HapticAngle, 16>(eventFactory, eventChannelFactory, "HapticChannel");
@@ -44,7 +44,7 @@ void registerTypes(IEventFactory * eventFactory, IEventChannelFactory * eventCha
     tuiframework::registerType<Gesture, 18>(eventFactory, eventChannelFactory, "GestureChannel");
     tuiframework::registerType<KinectJoint, 19>(eventFactory, eventChannelFactory, "KinectChannel");
     tuiframework::registerType<Vector3d, 20>(eventFactory, eventChannelFactory, "Vector3dChannel");
-	tuiframework::registerType<MouseData, 21>(eventFactory, eventChannelFactory, "MouseChannel");
+    tuiframework::registerType<MouseData, 21>(eventFactory, eventChannelFactory, "MouseChannel");
 }
 
 }

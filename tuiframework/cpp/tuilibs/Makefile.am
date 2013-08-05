@@ -276,11 +276,13 @@ libTypeConverterMSP_ladir = ${includedir}/tuilibs
 libTypeConverterMSP_la_SOURCES = \
     typeconverter/AnalogToDigitalMSP.cpp \
     typeconverter/DigitalToAnalogMSP.cpp \
+    typeconverter/TrackerToMatrix4MSP.cpp \
     typeconverter/TypeConverterPlugin.cpp 
 
 nobase_libTypeConverterMSP_la_HEADERS = \
     typeconverter/AnalogToDigitalMSP.h \
     typeconverter/DigitalToAnalogMSP.h \
+    typeconverter/TrackerToMatrix4MSP.h \
     typeconverter/TypeConverterPlugin.h 
 
 libTypeConverterMSPxml_DATA = \
@@ -288,4 +290,25 @@ libTypeConverterMSPxml_DATA = \
 
 libTypeConverterMSPxmldir = $(datadir)/@PACKAGE@
 
+################################
+
+lib_LTLIBRARIES += libVRPNTUIDevice.la
+libVRPNTUIDevice_la_CXXFLAGS = -fPIC -rdynamic -c -I$(INCDIR) -ggdb -g -O3
+libVRPNTUIDevice_la_LIBADD = -lCommonTUITypes -lTUIFrameworkServer -lTUIFrameworkCore -lvrpn
+libVRPNTUIDevice_la_LDFLAGS = -L../tuiframework -version-info 1:1:0
+
+libVRPNTUIDevice_ladir = ${includedir}/tuilibs
+
+libVRPNTUIDevice_la_SOURCES = \
+    vrpn/VRPNTrackerDev.cpp \
+    vrpn/VRPNDevPlugin.cpp
+
+nobase_libVRPNTUIDevice_la_HEADERS = \
+    vrpn/VRPNTrackerDev.h \
+    vrpn/VRPNDevPlugin.h
+
+libVRPNTUIDevicexml_DATA = \
+    vrpn/VRPNTrackerDev.xml
+
+libVRPNTUIDevicexmldir = $(datadir)/@PACKAGE@
 

@@ -34,26 +34,21 @@ public:
     TrackerData();
     virtual ~TrackerData();
     
-    const char * getGUID() const;
+    double getPos(int index) const;
+    void setPos(int index, double value);
     
-    double getPosX() const;
-    double getPosY() const;
-    double getPosZ() const;
-    double getQuat0() const;
-    double getQuat1() const;
-    double getQuat2() const;
-    double getQuat3() const;
+    double getQuat(int index) const;
+    void setQuat(int index, double value);
     
     void getPos(double pos[3]) const;
-    void getQuat(double quat[4]) const;
-
-    void setPos(double p1, double p2, double p3);
-    void setQuat(double q1, double q2, double q3, double q4);
     void setPos(double pos[3]);
+    
+    void getQuat(double quat[4]) const;
     void setQuat(double quat[4]);
     
-    void setValue(double pos[3], double quat[4]);
-
+    void setPos(double p1, double p2, double p3);
+    void setQuat(double q1, double q2, double q3, double q4);
+    
     virtual std::ostream & serialize(std::ostream & os) const;
     virtual std::istream & deSerialize(std::istream & is);
 

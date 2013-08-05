@@ -21,8 +21,6 @@
     along with the TUIFramework.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-
-
 #include "TrackerData.h"
 
 #include <iostream>
@@ -38,38 +36,23 @@ TrackerData::~TrackerData() {
 }
 
 
-double TrackerData::getPosX() const {
-    return this->pos[0];
+double TrackerData::getPos(int index) const {
+    return this->pos[index];
 }
 
 
-double TrackerData::getPosY() const {
-    return this->pos[1];
+void TrackerData::setPos(int index, double value) {
+    this->pos[index] = value;
 }
 
 
-double TrackerData::getPosZ() const {
-    return this->pos[2];
+double TrackerData::getQuat(int index) const {
+    return this->quat[index];
 }
 
 
-double TrackerData::getQuat0() const {
-    return this->quat[0];
-}
-
-
-double TrackerData::getQuat1() const {
-    return this->quat[1];
-}
-
-
-double TrackerData::getQuat2() const {
-    return this->quat[2];
-}
-
-
-double TrackerData::getQuat3() const {
-    return this->quat[3];
+void TrackerData::setQuat(int index, double value) {
+    this->quat[index] = value;
 }
 
 
@@ -80,11 +63,26 @@ void TrackerData::getPos(double pos[3]) const {
 }
 
 
+void TrackerData::setPos(double pos[3]) {
+    this->pos[0] = pos[0];
+    this->pos[1] = pos[1];
+    this->pos[2] = pos[2];
+}
+
+
 void TrackerData::getQuat(double quat[4]) const {
     quat[0] = this->quat[0];
     quat[1] = this->quat[1];
     quat[2] = this->quat[2];
     quat[3] = this->quat[3];
+}
+
+
+void TrackerData::setQuat(double quat[4]) {
+    this->quat[0] = quat[0];
+    this->quat[1] = quat[1];
+    this->quat[2] = quat[2];
+    this->quat[3] = quat[3];
 }
 
 
@@ -100,32 +98,6 @@ void TrackerData::setQuat(double q1, double q2, double q3, double q4) {
     this->quat[1] = q2;
     this->quat[2] = q3;
     this->quat[3] = q4;
-}
-
-
-void TrackerData::setValue(double pos[3], double quat[4]) {
-    this->pos[0] = pos[0];
-    this->pos[1] = pos[1];
-    this->pos[2] = pos[2];
-    this->quat[0] = quat[0];
-    this->quat[1] = quat[1];
-    this->quat[2] = quat[2];
-    this->quat[3] = quat[3];
-}
-
-
-void TrackerData::setPos(double pos[3]) {
-    this->pos[0] = pos[0];
-    this->pos[1] = pos[1];
-    this->pos[2] = pos[2];
-}
-
-
-void TrackerData::setQuat(double quat[4]) {
-    this->quat[0] = quat[0];
-    this->quat[1] = quat[1];
-    this->quat[2] = quat[2];
-    this->quat[3] = quat[3];
 }
 
 

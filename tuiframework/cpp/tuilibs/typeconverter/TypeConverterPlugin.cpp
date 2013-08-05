@@ -25,6 +25,7 @@
 #include "TypeConverterPlugin.h"
 #include "AnalogToDigitalMSP.h"
 #include "DigitalToAnalogMSP.h"
+#include "TrackerToMatrix4MSP.h"
 
 #include <tuiframework/server/MSPFactorySingleton.h>
 
@@ -46,6 +47,9 @@ void soInitPlugin() {
     mspTypeNameVector.push_back(AnalogToDigitalMSP::getMSPTypeName());
     MSPFactorySingleton::getInstance()->registerCreateFunction(DigitalToAnalogMSP::getMSPTypeName(), DigitalToAnalogMSP::createFunction);
     mspTypeNameVector.push_back(DigitalToAnalogMSP::getMSPTypeName());
+    
+    MSPFactorySingleton::getInstance()->registerCreateFunction(TrackerToMatrix4MSP::getMSPTypeName(), TrackerToMatrix4MSP::createFunction);
+    mspTypeNameVector.push_back(TrackerToMatrix4MSP::getMSPTypeName());
 }
 
 
@@ -62,6 +66,7 @@ std::string soGetSOVersion() {
 void soMSPRegistration(IMSPFactory * MSPFactory) {
     MSPFactory->registerCreateFunction(AnalogToDigitalMSP::getMSPTypeName(), AnalogToDigitalMSP::createFunction);
     MSPFactory->registerCreateFunction(DigitalToAnalogMSP::getMSPTypeName(), DigitalToAnalogMSP::createFunction);
+    MSPFactory->registerCreateFunction(TrackerToMatrix4MSP::getMSPTypeName(), TrackerToMatrix4MSP::createFunction);    
 }
 
 

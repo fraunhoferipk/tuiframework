@@ -42,7 +42,7 @@ void Init::push(IEvent * event) {
         SystemMsg * msg = static_cast<SystemMsg *>(event);
         if (msg->getPayload() == CONNECTION_ESTABLISHED) {
             cout << "CONNECTION ESTABLISHED" << endl;
-			this->MyTUIObject.connect();
+			this->myTUIObject.connect();
         }
     }
 }

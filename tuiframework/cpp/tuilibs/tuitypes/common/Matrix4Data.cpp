@@ -56,9 +56,9 @@ void Matrix4Data::setRow(int index, double r1, double r2,
 void Matrix4Data::setColumn(int index, double c1, double c2,
         double c3, double c4) {
     this->mat[index] = c1;
-    this->mat[index + 1] = c2;
-    this->mat[index + 2] = c3;
-    this->mat[index + 3] = c4;
+    this->mat[index + 4] = c2;
+    this->mat[index + 8] = c3;
+    this->mat[index + 12] = c4;
 }
 
 

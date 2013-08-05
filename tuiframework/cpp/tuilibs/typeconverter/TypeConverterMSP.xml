@@ -31,6 +31,16 @@
           <Parameter name="Threshold" value="0.5"/>
         </ParameterGroup>
       </MSPType>
+      <MSPType name="TrackerToMatrixMSP">
+        <PortTypeSequence>
+          <PortType name="in" sink="1" source="0" typename="TrackerChannel">
+            <Description/>
+          </PortType>          
+          <PortType name="out" sink="0" source="1" typename="Matrix4Channel">
+            <Description/>
+          </PortType>
+        </PortTypeSequence>
+      </MSPType>
     </MSPTypeSequence>
   </ServerConfig>
 </document>
