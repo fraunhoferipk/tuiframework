@@ -23,23 +23,23 @@
 */
 
 
-#ifndef _Init_h_
-#define _Init_h_
+#ifndef _KinectTUIObject_h_
+#define _KinectTUIObject_h_
 
-#include "MyTUIObject.h"
 #include <tuiframework/client/client.h>
+#include <tuitypes/common/CommonTypeReg.h>
 
-
-class Init : public tuiframework::IEventSink {
+class KinectTUIObject {
 public:
-    Init();
-    virtual ~Init();
+    KinectTUIObject();
+    virtual ~KinectTUIObject(void);
 
-    virtual void push(tuiframework::IEvent * e);
+    void connect();
+    void disconnect();
 
-protected:
-	MyTUIObject MyTUIObject;
+	void headTransfChanged(const Matrix4ChangedEvent * e);
+    void rightHandTransfChanged(const Matrix4ChangedEvent * e);
+    void leftHandTransfChanged(const Matrix4ChangedEvent * e);
 };
-
 
 #endif

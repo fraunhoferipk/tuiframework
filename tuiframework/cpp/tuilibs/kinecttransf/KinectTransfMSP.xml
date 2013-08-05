@@ -65,7 +65,7 @@
                <PortType name="SKEL_LEFT_KNEE" sink="1" source="0" typename="KinectChannel">
                   <Description/>
                </PortType>
-               <PortType name="ARTPOSITION_IN" sink="1" source="0" typename="Matrix4x4">
+               <PortType name="ARTPOSITION_IN" sink="1" source="0" typename="Matrix4Channel">
                   <Description/>
                </PortType>
             </PortTypeSequence>

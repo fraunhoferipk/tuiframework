@@ -26,7 +26,7 @@
 #ifndef _Init_h_
 #define _Init_h_
 
-#include "MyTUIObject.h"
+#include "KinectTUIObject.h"
 #include <tuiframework/client/client.h>
 
 
@@ -38,7 +38,7 @@ public:
     virtual void push(tuiframework::IEvent * e);
 
 protected:
-	MyTUIObject MyTUIObject;
+	KinectTUIObject tuiObject;
 };
 
 

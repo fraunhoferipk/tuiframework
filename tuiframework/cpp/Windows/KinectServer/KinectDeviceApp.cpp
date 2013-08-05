@@ -687,7 +687,9 @@ void sendJoint(const KinectJoint & jointData){
 	ss << jointData;
 	string s = ss.str();
 
-	//cout << s << endl;
+////////////////
+	cout << s << endl;
+////////////////
 
 	char * msg = new char[s.length()+1];
 #ifdef _WIN32

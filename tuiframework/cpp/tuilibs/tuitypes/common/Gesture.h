@@ -7,7 +7,6 @@
 
 
 class Gesture : public tuiframework::ISerializable {
-
 public:
     enum GestureType {
         Wave = 0,
@@ -27,12 +26,8 @@ public:
     };
 
 	Gesture();
-
 	Gesture(GestureType, HandSide, float, float, float);
 
-	/**
-	 * @brief Destructor.
-	 */
 	virtual ~Gesture();
 
     virtual int getGestureType() const;
@@ -45,10 +40,7 @@ public:
 	virtual std::ostream & serialize(std::ostream & os) const;
 	virtual std::istream & deSerialize(std::istream & is);
 
-
-
 protected:
-
     GestureType m_GestureType;
     HandSide m_HandSide;
     float m_posX, m_posY, m_posZ;

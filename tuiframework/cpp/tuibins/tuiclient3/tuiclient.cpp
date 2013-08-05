@@ -23,23 +23,31 @@
 */
 
 
-#ifndef _Init_h_
-#define _Init_h_
+#include "Init.h"
 
-#include "MyTUIObject.h"
 #include <tuiframework/client/client.h>
+#include <tuitypes/common/CommonTypeReg.h>
+
+#include <iostream>
+#include <stdlib.h>
+#include <cstdio>
+
+using namespace tuiframework;
+using namespace std;
 
 
-class Init : public tuiframework::IEventSink {
-public:
-    Init();
-    virtual ~Init();
+int main(int argc, char* argv[]) {
+    if (argc != 4) {
+        cout << "Usage tuiclient1 <sender port> <receiver port> <ipaddress:port>" << endl;
+        return 1;
+    }
 
-    virtual void push(tuiframework::IEvent * e);
+    Init init;
+    initTypeRegistration(getEventFactory());
+    CommonTypeReg::registerTypes(&getEventFactory(), &getEventChannelFactory());
 
-protected:
-	MyTUIObject MyTUIObject;
-};
+	getchar();
 
-
-#endif
+    connectWithTUIServer(atoi(argv[1]), atoi(argv[2]), argv[3], &init);
+    return 0;
+}

@@ -2,9 +2,9 @@
 <VisualStudioProject
 	ProjectType="Visual C++"
 	Version="9,00"
-	Name="TUIBinTUIServer2"
-	ProjectGUID="{A149BB4E-55E9-4546-AC2E-39FE52EC69EE}"
-	RootNamespace="TUIBinTUIServer2"
+	Name="TUIBinTUIClient3"
+	ProjectGUID="{E52A146E-779B-4C2A-BE41-06358724F426}"
+	RootNamespace="TUIBinTUIClient3"
 	Keyword="Win32Proj"
 	TargetFrameworkVersion="196613"
 	>
@@ -61,9 +61,9 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="pthreadVCE2.lib Ws2_32.lib xerces-c_3.lib"
+				AdditionalDependencies="pthreadVCE2.lib Ws2_32.lib"
 				LinkIncremental="2"
-				AdditionalLibraryDirectories="&quot;$(SolutionDir)\netsrc\Pre-built.2\lib&quot;;&quot;$(SolutionDir)\netsrc\xerces-c-3.1.1-x86-windows-vc-9.0\lib&quot;"
+				AdditionalLibraryDirectories="&quot;$(SolutionDir)\netsrc\Pre-built.2\lib&quot;"
 				GenerateDebugInformation="true"
 				SubSystem="1"
 				TargetMachine="1"
@@ -88,7 +88,7 @@
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
-				CommandLine="copy $(SolutionDir)\netsrc\Pre-built.2\lib\pthreadVCE2.dll $(OutDir)&#x0D;&#x0A;copy $(SolutionDir)\netsrc\xerces-c-3.1.1-x86-windows-vc-9.0\bin\xerces-c_3_1.dll $(OutDir)&#x0D;&#x0A;copy $(SolutionDir)\..\tuibins\tuiserver2\testconfig.xml  $(OutDir)&#x0D;&#x0A;copy $(SolutionDir)\..\tuibins\tuiserver2\mousetestconfig.xml  $(OutDir)&#x0D;&#x0A;copy $(SolutionDir)\..\tuibins\tuiserver2\kinecttestconfig.xml  $(OutDir)"
+				CommandLine="copy $(SolutionDir)\netsrc\Pre-built.2\lib\pthreadVCE2.dll $(OutDir)"
 			/>
 		</Configuration>
 		<Configuration
@@ -137,9 +137,9 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="pthreadVCE2.lib Ws2_32.lib xerces-c_3.lib"
+				AdditionalDependencies="pthreadVCE2.lib Ws2_32.lib"
 				LinkIncremental="1"
-				AdditionalLibraryDirectories="&quot;$(SolutionDir)\netsrc\Pre-built.2\lib&quot;;&quot;$(SolutionDir)\netsrc\xerces-c-3.1.1-x86-windows-vc-9.0\lib&quot;"
+				AdditionalLibraryDirectories="&quot;$(SolutionDir)\netsrc\Pre-built.2\lib&quot;"
 				GenerateDebugInformation="true"
 				SubSystem="1"
 				OptimizeReferences="2"
@@ -166,7 +166,7 @@
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
-				CommandLine="copy $(SolutionDir)\netsrc\Pre-built.2\lib\pthreadVCE2.dll $(OutDir)&#x0D;&#x0A;copy $(SolutionDir)\netsrc\xerces-c-3.1.1-x86-windows-vc-9.0\bin\xerces-c_3_1.dll $(OutDir)&#x0D;&#x0A;copy $(SolutionDir)\..\tuibins\tuiserver2\testconfig.xml  $(OutDir)&#x0D;&#x0A;copy $(SolutionDir)\..\tuibins\tuiserver2\mousetestconfig.xml  $(OutDir)&#x0D;&#x0A;"
+				CommandLine="copy $(SolutionDir)\netsrc\Pre-built.2\lib\pthreadVCE2.dll $(OutDir)"
 			/>
 		</Configuration>
 	</Configurations>
@@ -174,41 +174,49 @@
 	</References>
 	<Files>
 		<Filter
-			Name="Quelldateien"
+			Name="Source Files"
 			Filter="cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx"
 			UniqueIdentifier="{4FC737F1-C7A5-4376-A066-2A32D752A2FF}"
 			>
 			<File
-				RelativePath="..\..\tuibins\tuiserver2\tuiserver.cpp"
+				RelativePath="..\..\tuibins\tuiclient3\Init.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\tuibins\tuiclient3\KinectTUIObject.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\tuibins\tuiclient3\tuiclient.cpp"
 				>
 			</File>
 		</Filter>
 		<Filter
-			Name="Headerdateien"
+			Name="Header Files"
 			Filter="h;hpp;hxx;hm;inl;inc;xsd"
 			UniqueIdentifier="{93995380-89BD-4b04-88EB-625FBE52EBFB}"
 			>
+			<File
+				RelativePath="..\..\tuibins\tuiclient3\Init.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\tuibins\tuiclient3\KinectTUIObject.h"
+				>
+			</File>
 		</Filter>
 		<Filter
-			Name="Ressourcendateien"
+			Name="Resource Files"
 			Filter="rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav"
 			UniqueIdentifier="{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}"
 			>
 		</Filter>
 		<File
-			RelativePath="..\..\tuibins\tuiserver2\kinecttestconfig.xml"
-			>
-		</File>
-		<File
-			RelativePath="..\..\tuibins\tuiserver2\mousetestconfig.xml"
+			RelativePath="..\..\tuibins\tuiclient3\KinectTUIObjectType.xml"
 			>
 		</File>
 		<File
 			RelativePath=".\ReadMe.txt"
-			>
-		</File>
-		<File
-			RelativePath="..\..\tuibins\tuiserver2\testconfig.xml"
 			>
 		</File>
 	</Files>

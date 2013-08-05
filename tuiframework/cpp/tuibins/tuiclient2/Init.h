@@ -38,7 +38,7 @@ public:
     virtual void push(tuiframework::IEvent * e);
 
 protected:
-    MyTUIObject myTUIObject;
+    MyTUIObject MyTUIObject;
 };
 
 

@@ -69,7 +69,6 @@ Vector3d KinectJoint::getTransformedPosition(const Matrix4Data & mat){
     
     Vector3d vec(x,y,z);
     return vec;
-
 }
 
 

@@ -251,7 +251,7 @@ void KinectDev::executeInputLoop() {
 		ss >> jointData;
 
 		// console output for testing purposes
-		//std::cout << "jointData: " << jointData << std::endl;
+		std::cout << "jointData: " << jointData << std::endl;
 
 		// send data to client
 		if ( this->eventSink ) {
@@ -269,9 +269,7 @@ void KinectDev::executeInputLoop() {
 			// send event
 			eventSink->push( event );
 		}
-
 	}
-
 }
 
 void KinectDev::executeGestureInputLoop() {

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--document xmlns:xi='http://www.w3.org/2001/XInclude'-->
+<document xmlns:xi="http://www.w3.org/2001/XInclude">
+   <ServerConfig>
+      <TUIObjectTypeSequence>
+         <TUIObjectType name="KinectTUIObjectType">
+            <PortTypeSequence>
+               <PortType name="HeadTransf" sink="0" source="1" typename="Matrix4Channel">
+                  <Description/>
+               </PortType>
+               <PortType name="RightHandTransf" sink="0" source="1" typename="Matrix4Channel">
+                  <Description/>
+               </PortType>
+               <PortType name="LeftHandTransf" sink="0" source="1" typename="Matrix4Channel">
+                  <Description/>
+               </PortType>
+            </PortTypeSequence>
+         </TUIObjectType>
+      </TUIObjectTypeSequence>
+   </ServerConfig>
+</document>
