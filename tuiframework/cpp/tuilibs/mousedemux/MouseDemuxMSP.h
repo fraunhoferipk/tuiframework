@@ -45,7 +45,7 @@ namespace tuiframework {
 class MouseDemuxMSP : public IMSP {
 public:
     static IMSP * createFunction(void * arg);
-    static std::string getMSPTypeName();
+    static const std::string & getMSPTypeName();
 
     MouseDemuxMSP(const MSPConfig & config);
     virtual ~MouseDemuxMSP();

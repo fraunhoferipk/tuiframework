@@ -34,6 +34,7 @@
 #include <tuiframework/server/IMSPFactory.h>
 
 #include <m4transf/MSPMatrix4x4Transf.h>
+#include <m4transf/Matrix4TransfMSP.h>
 
 #include <vector>
 
@@ -45,7 +46,10 @@ static std::vector<std::string> mspTypeNameVector;
 
 void soInitPlugin() {
     MSPFactorySingleton::getInstance()->registerCreateFunction(MSPMatrix4x4Transf::getMSPTypeName(), MSPMatrix4x4Transf::createFunction);
+    MSPFactorySingleton::getInstance()->registerCreateFunction(Matrix4TransfMSP::getMSPTypeName(), Matrix4TransfMSP::createFunction);
+    
     mspTypeNameVector.push_back(MSPMatrix4x4Transf::getMSPTypeName());
+    mspTypeNameVector.push_back(Matrix4TransfMSP::getMSPTypeName());
 }
 
 
@@ -61,6 +65,7 @@ std::string soGetSOVersion() {
 
 void soMSPRegistration(IMSPFactory * MSPFactory) {
     MSPFactory->registerCreateFunction(MSPMatrix4x4Transf::getMSPTypeName(), MSPMatrix4x4Transf::createFunction);
+    MSPFactory->registerCreateFunction(Matrix4TransfMSP::getMSPTypeName(), Matrix4TransfMSP::createFunction);
 }
 
 

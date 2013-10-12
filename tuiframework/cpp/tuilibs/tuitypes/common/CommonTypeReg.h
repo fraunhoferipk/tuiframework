@@ -33,6 +33,7 @@
 #include "Matrix4Data.h"
 
 #include "TrackerData.h"
+#include "VectorList3d.h"
 #include "Vector3d.h"
 #include "MouseData.h"
 
@@ -54,6 +55,7 @@ typedef tuiframework::EPEventMsg<KinectJoint, 18>           KinectEvent;
 typedef tuiframework::EPEventMsg<Gesture, 19>               GestureEvent;
 typedef tuiframework::EPEventMsg<Vector3d, 20>              Vector3dEvent;
 typedef tuiframework::EPEventMsg<MouseData, 21>             MouseEvent;
+typedef tuiframework::EPEventMsg<VectorList3d, 22>          VectorList3dEvent;
 
 
 namespace CommonTypeReg {

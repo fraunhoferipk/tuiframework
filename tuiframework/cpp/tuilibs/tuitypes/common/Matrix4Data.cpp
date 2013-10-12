@@ -26,6 +26,7 @@
 #include "Matrix4Data.h"
 
 
+
 Matrix4Data::Matrix4Data() {
     for (int i = 0; i < 16; ++i) {
         mat[i] = i % 5 == 0 ? 1 : 0;
@@ -41,6 +42,10 @@ double& Matrix4Data::operator[](int index) {
 
 const double& Matrix4Data::operator[](int index) const {
     return this->mat[index];
+}
+
+const double * Matrix4Data::getData() const {
+    return &this->mat[0];
 }
 
 /// index from 0 to 3
@@ -59,6 +64,13 @@ void Matrix4Data::setColumn(int index, double c1, double c2,
     this->mat[index + 4] = c2;
     this->mat[index + 8] = c3;
     this->mat[index + 12] = c4;
+}
+
+
+void Matrix4Data::setData(const double * doubleArray) {
+    for (int i = 0; i < 16; ++i) {
+        this->mat[i] = doubleArray[i];
+    }
 }
 
 

@@ -45,6 +45,7 @@ void registerTypes(IEventFactory * eventFactory, IEventChannelFactory * eventCha
     tuiframework::registerType<KinectJoint, 19>(eventFactory, eventChannelFactory, "KinectChannel");
     tuiframework::registerType<Vector3d, 20>(eventFactory, eventChannelFactory, "Vector3dChannel");
     tuiframework::registerType<MouseData, 21>(eventFactory, eventChannelFactory, "MouseChannel");
+    tuiframework::registerType<VectorList3d, 22>(eventFactory, eventChannelFactory, "VectorList3dChannel");
 }
 
 }

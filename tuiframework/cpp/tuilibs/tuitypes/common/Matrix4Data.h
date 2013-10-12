@@ -36,10 +36,12 @@ public:
     
     double & operator[](int index);
     const double & operator[](int index) const;
+    const double * getData() const;    
 
     void setRow(int index, double r1, double r2, double r3, double r4);
     void setColumn(int index, double c1, double c2, double c3, double c4);
-
+    void setData(const double * doubleArray);
+    
     virtual std::ostream & serialize(std::ostream & os) const;
     virtual std::istream & deSerialize(std::istream & is);
 

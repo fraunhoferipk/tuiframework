@@ -16,7 +16,8 @@ libCommonTUITypes_la_SOURCES = \
     tuitypes/common/Matrix4Data.cpp \
     tuitypes/common/MouseData.cpp \
     tuitypes/common/TrackerData.cpp \
-    tuitypes/common/Vector3d.cpp
+    tuitypes/common/Vector3d.cpp \
+    tuitypes/common/VectorList3d.cpp
 
 nobase_libCommonTUITypes_la_HEADERS = \
     tuitypes/common/CommonTUITypesPlugin.h \
@@ -28,7 +29,8 @@ nobase_libCommonTUITypes_la_HEADERS = \
     tuitypes/common/Matrix4x4.h \
     tuitypes/common/MouseData.h \
     tuitypes/common/TrackerData.h \
-    tuitypes/common/Vector3d.h
+    tuitypes/common/Vector3d.h \
+    tuitypes/common/VectorList3d.h
 
 ################################
 
@@ -147,15 +149,18 @@ libM4TransfTUIMSP_ladir = ${includedir}/tuilibs
 libM4TransfTUIMSP_la_SOURCES = \
     m4transf/Matrix4x4TransfUnit.cpp \
     m4transf/MSPMatrix4x4Transf.cpp \
+    m4transf/Matrix4TransfMSP.cpp \
     m4transf/M4TransfPlugin.cpp
 
 nobase_libM4TransfTUIMSP_la_HEADERS = \
     m4transf/Matrix4x4TransfUnit.h \
     m4transf/MSPMatrix4x4Transf.h \
+    m4transf/Matrix4TransfMSP.h \
     m4transf/M4TransfPlugin.h
 
 libM4TransfTUIMSPxml_DATA = \
-    m4transf/Matrix4x4Transf.xml
+    m4transf/Matrix4x4Transf.xml \
+    m4transf/Matrix4Transf.xml
 
 libM4TransfTUIMSPxmldir = $(datadir)/@PACKAGE@
 

@@ -25,6 +25,7 @@
 
 #include "Matrix4x4TransfUnit.h"
 #include <tuiframework/logging/Logger.h>
+#include <tuiframework/server/ParameterGroup.h>
 
 #include <sstream>
 

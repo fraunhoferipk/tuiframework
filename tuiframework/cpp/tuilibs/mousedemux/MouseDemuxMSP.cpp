@@ -55,7 +55,7 @@ IMSP * MouseDemuxMSP::createFunction(void * arg) {
 
 static std::string typeName = "MouseDemuxMSP";
 
-std::string MouseDemuxMSP::getMSPTypeName() {
+const std::string & MouseDemuxMSP::getMSPTypeName() {
     return typeName;
 }
 
