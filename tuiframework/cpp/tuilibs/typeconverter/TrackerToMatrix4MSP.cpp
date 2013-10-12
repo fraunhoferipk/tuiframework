@@ -92,27 +92,45 @@ void TrackerToMatrix4MSP::handleEvent(TrackerChangedEvent * e) {
         
         double p[4];
         td.getPos(p);
-       
-        double n = 1.0/sqrt(q[0]*q[0] + q[1]*q[1] + q[2]*q[2] + q[3]*q[3]);
         
-        q[0] *= n;
-        q[1] *= n;
-        q[2] *= n;
-        q[3] *= n;
-        
-        double qx = q[0];
-        double qy = q[1];
-        double qz = q[2];
-        double qw = q[3];
-        
-        Matrix4Data m;
-        m.setColumn(0, 1.0f - 2.0f*qy*qy - 2.0f*qz*qz, 2.0f*qx*qy - 2.0f*qz*qw, 2.0f*qx*qz + 2.0f*qy*qw, 0.0f);
-        m.setColumn(1, 2.0f*qx*qy + 2.0f*qz*qw, 1.0f - 2.0f*qx*qx - 2.0f*qz*qz, 2.0f*qy*qz - 2.0f*qx*qw, 0.0f);
-        m.setColumn(2, 2.0f*qx*qz - 2.0f*qy*qw, 2.0f*qy*qz + 2.0f*qx*qw, 1.0f - 2.0f*qx*qx - 2.0f*qy*qy, 0.0f);
-        m.setColumn(3, p[0], p[1], p[2], p[3]);
-        
-        Matrix4ChangedEvent * e2 = new Matrix4ChangedEvent(-1, -1, m);
-        this->out->push(e2);
+        if (!isnan(q[0]) && !isnan(q[1]) && !isnan(q[2]) && !isnan(q[3])) {
+            double n = 1.0/sqrt(q[0]*q[0] + q[1]*q[1] + q[2]*q[2] + q[3]*q[3]);
+            
+            q[0] *= n;
+            q[1] *= n;
+            q[2] *= n;
+            q[3] *= n;
+            
+            double qx = q[0];
+            double qy = q[1];
+            double qz = q[2];
+            double qw = q[3];
+            
+            /*
+            Matrix4Data m;
+            m.setColumn(0, 1.0f - 2.0f*qy*qy - 2.0f*qz*qz, 2.0f*qx*qy - 2.0f*qz*qw, 2.0f*qx*qz + 2.0f*qy*qw, 0.0f);
+            m.setColumn(1, 2.0f*qx*qy + 2.0f*qz*qw, 1.0f - 2.0f*qx*qx - 2.0f*qz*qz, 2.0f*qy*qz - 2.0f*qx*qw, 0.0f);
+            m.setColumn(2, 2.0f*qx*qz - 2.0f*qy*qw, 2.0f*qy*qz + 2.0f*qx*qw, 1.0f - 2.0f*qx*qx - 2.0f*qy*qy, 0.0f);
+            m.setColumn(3, p[0], p[1], p[2], 1.0f);
+            */
+            
+            Matrix4Data m;
+            /*
+            m.setRow(0, 1.0f - 2.0f*qy*qy - 2.0f*qz*qz, 2.0f*qx*qy - 2.0f*qz*qw, 2.0f*qx*qz + 2.0f*qy*qw, 0.0f);
+            m.setRow(1, 2.0f*qx*qy + 2.0f*qz*qw, 1.0f - 2.0f*qx*qx - 2.0f*qz*qz, 2.0f*qy*qz - 2.0f*qx*qw, 0.0f);
+            m.setRow(2, 2.0f*qx*qz - 2.0f*qy*qw, 2.0f*qy*qz + 2.0f*qx*qw, 1.0f - 2.0f*qx*qx - 2.0f*qy*qy, 0.0f);
+            */
+            m.setColumn(0, 1.0f - 2.0f*qy*qy - 2.0f*qz*qz, 2.0f*qx*qy - 2.0f*qz*qw, 2.0f*qx*qz + 2.0f*qy*qw, 0.0f);
+            m.setColumn(1, 2.0f*qx*qy + 2.0f*qz*qw, 1.0f - 2.0f*qx*qx - 2.0f*qz*qz, 2.0f*qy*qz - 2.0f*qx*qw, 0.0f);
+            m.setColumn(2, 2.0f*qx*qz - 2.0f*qy*qw, 2.0f*qy*qz + 2.0f*qx*qw, 1.0f - 2.0f*qx*qx - 2.0f*qy*qy, 0.0f);
+            m.setColumn(3, p[0], p[1], p[2], 1.0f);
+            
+            m.setRow(3, 1000.0f*p[0], 1000.0f*p[1], 1000.0f*p[2], 1.0f);
+                    
+            Matrix4ChangedEvent * e2 = new Matrix4ChangedEvent(-1, -1, m);
+            //TFINFO(e2)
+            this->out->push(e2);
+        }        
     }
     delete e;
 }
