@@ -313,7 +313,7 @@ void DTrackDev::executeInputLoop() {
                 body = dt->get_body(i);
                 
                 if (body.quality < 0) {
-                    cout << "bod " << body.id << " not tracked" << endl;
+                    //cout << "bod " << body.id << " not tracked" << endl;
                 } else {
                     Matrix4ChangedEvent * event = new Matrix4ChangedEvent();
                     event->setAddress(EPAddress(this->entityID, i));
@@ -323,7 +323,7 @@ void DTrackDev::executeInputLoop() {
                     mat.setRow(3,body.loc[0], body.loc[1], body.loc[2], 1);
                     event->setPayload(mat);
                     eventSink->push(event);
-                    std::cout << "mat send "<< std::endl;
+                    //std::cout << "mat send "<< std::endl;
 
                     cout << "bodyid: " << body.id << " " << mat << endl;
                 }
