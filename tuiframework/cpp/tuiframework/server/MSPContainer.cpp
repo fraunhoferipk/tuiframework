@@ -95,7 +95,7 @@ void MSPContainer::registerEventSink(const std::string & instanceName, const std
     map<string, IMSP *>::iterator iter = this->instanceMap.find(instanceName);
     if (iter == this->instanceMap.end()) {
         //TODO MSPContainer::getEventSink -> Throw exception
-        TFERROR("");
+        TFERROR(instanceName << " not found");
     }
 
     (*iter).second->registerEventSink(connectorName, eventSink);
