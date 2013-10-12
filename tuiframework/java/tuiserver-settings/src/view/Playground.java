@@ -138,6 +138,7 @@ public class Playground extends JPanel implements DropTargetListener {
 	
 	private ParameterGroupPanel parameterGroupPanel;
 	private JPopupMenu entityPopupMenu;
+	private JPopupMenu connectionPopupMenu;
 	
 	public Playground(ParameterGroupPanel parameterGroupPanel) {
 		this.parameterGroupPanel = parameterGroupPanel;
@@ -389,6 +390,9 @@ public class Playground extends JPanel implements DropTargetListener {
 						System.out.println(srcAddress.getPortName() + " --> " + dstAddress.getPortName());
 						this.selectedType = SelectedType.CONNECTON;
 						this.selectedConnector = connector;
+						if (button == MouseEvent.BUTTON3) {
+							this.getConnectionPopupMenu().show((Component)this, (int)pos.getX(), (int)pos.getY());
+						}
 					}
 				}
 			}
@@ -483,7 +487,7 @@ public class Playground extends JPanel implements DropTargetListener {
 			this.parameterGroupPanel.setProperties(new ParameterProperty[0]);
 			this.repaint();
 		}
-		this.setReArrange(true);
+		//this.setReArrange(true);
 	}
 	
 	private JPopupMenu getEntityPopupMenu() {
@@ -507,6 +511,21 @@ public class Playground extends JPanel implements DropTargetListener {
 		}
 		return this.entityPopupMenu;
 	}
+	
+	private JPopupMenu getConnectionPopupMenu() {
+		if(this.connectionPopupMenu == null) {
+			this.connectionPopupMenu = new JPopupMenu();
+			JMenuItem delete_item = new JMenuItem("Delete Connection");
+			delete_item.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent evt) {
+					deleteSelection();
+				}
+			});
+			this.connectionPopupMenu.add(delete_item);
+		}
+		return this.connectionPopupMenu;
+	}
+	
 	
 	public CubicCurve2D.Double getCurve(Point srcPoint, Point dstPoint) {
 		int vx = dstPoint.x - srcPoint.x;
