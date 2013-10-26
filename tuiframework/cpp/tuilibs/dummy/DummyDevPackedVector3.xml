@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--document xmlns:xi='http://www.w3.org/2001/XInclude'-->
+<document xmlns:xi="http://www.w3.org/2001/XInclude">
+   <ServerConfig>
+      <ServerStartupConfig/>
+      <DeviceTypeSequence>
+         <DeviceType name="DummyDevPackedVector3">
+            <PortTypeSequence>
+               <PortType name="pv1" sink="0" source="1" typename="PackedVector3">
+                  <Description/>
+               </PortType>
+            </PortTypeSequence>
+         </DeviceType>
+      </DeviceTypeSequence>
+   </ServerConfig>
+</document>
