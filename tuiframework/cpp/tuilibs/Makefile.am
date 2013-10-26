@@ -26,9 +26,12 @@ nobase_libCommonTUITypes_la_HEADERS = \
     tuitypes/common/HapticAngle.h \
     tuitypes/common/KinectJoint.h \
     tuitypes/common/Matrix4Data.h \
-    tuitypes/common/Matrix4x4.h \
+    tuitypes/common/Matrix4.h \
     tuitypes/common/MouseData.h \
+    tuitypes/common/PackedType.h \
+    tuitypes/common/SkeletonJointID.h \
     tuitypes/common/TrackerData.h \
+    tuitypes/common/Vector3.h \
     tuitypes/common/Vector3d.h \
     tuitypes/common/VectorList3d.h
 
@@ -42,23 +45,23 @@ libDummyTUIDevice_la_LDFLAGS = -L../tuiframework -version-info 1:1:0
 libDummyTUIDevice_ladir = ${includedir}/tuilibs
 
 libDummyTUIDevice_la_SOURCES = \
-   dummy/DummyDevDA.cpp \
-   dummy/DummyDevMatrix4.cpp \
-   dummy/DummyDevMatrix4x4.cpp \
-   dummy/DummyDevPlugin.cpp \
-   dummy/DummyDevTracker.cpp
+    dummy/DummyDevDA.cpp \
+    dummy/DummyDevMatrix4.cpp \
+    dummy/DummyDevPackedVector3.cpp \
+    dummy/DummyDevPlugin.cpp \
+    dummy/DummyDevTracker.cpp
 
 nobase_libDummyTUIDevice_la_HEADERS = \
     dummy/DummyDevDA.h \
     dummy/DummyDevMatrix4.h \
-    dummy/DummyDevMatrix4x4.h \
+    dummy/DummyDevPackedVector3.h \
     dummy/DummyDevPlugin.h \
     dummy/DummyDevTracker.h
 
 libDummyTUIDevicexml_DATA = \
     dummy/DummyDeviceDA.xml \
-    dummy/DummyDeviceMatrix4x4.xml \
-    dummy/DummyDeviceMatrix4.xml \
+    dummy/DummyDevMatrix4.xml \
+    dummy/DummyDevPackedVector3.xml \
     dummy/DummyDeviceTracker.xml
 
 libDummyTUIDevicexmldir = $(datadir)/@PACKAGE@
@@ -139,30 +142,50 @@ endif
 
 ################################
 
-lib_LTLIBRARIES += libM4TransfTUIMSP.la
-libM4TransfTUIMSP_la_CXXFLAGS = -fPIC -rdynamic -c -I$(INCDIR) -ggdb -g -O3
-libM4TransfTUIMSP_la_LIBADD = -lCommonTUITypes -lTUIFrameworkServer -lTUIFrameworkCore
-libM4TransfTUIMSP_la_LDFLAGS = -L../tuiframework -version-info 1:1:0
+lib_LTLIBRARIES += libMatrix4DepackMSP.la
+libMatrix4DepackMSP_la_CXXFLAGS = -fPIC -rdynamic -c -I$(INCDIR) -ggdb -g -O3
+libMatrix4DepackMSP_la_LIBADD = -lCommonTUITypes -lTUIFrameworkServer -lTUIFrameworkCore
+libMatrix4DepackMSP_la_LDFLAGS = -L../tuiframework -version-info 1:1:0
 
-libM4TransfTUIMSP_ladir = ${includedir}/tuilibs
+libMatrix4DepackMSP_ladir = ${includedir}/tuilibs
 
-libM4TransfTUIMSP_la_SOURCES = \
-    m4transf/Matrix4x4TransfUnit.cpp \
-    m4transf/MSPMatrix4x4Transf.cpp \
-    m4transf/Matrix4TransfMSP.cpp \
-    m4transf/M4TransfPlugin.cpp
+libMatrix4DepackMSP_la_SOURCES = \
+    matrix4depack/Matrix4SkelDepackMSP.cpp \
+    matrix4depack/Matrix4DepackPlugin.cpp
 
-nobase_libM4TransfTUIMSP_la_HEADERS = \
-    m4transf/Matrix4x4TransfUnit.h \
-    m4transf/MSPMatrix4x4Transf.h \
-    m4transf/Matrix4TransfMSP.h \
-    m4transf/M4TransfPlugin.h
+nobase_libMatrix4DepackMSP_la_HEADERS = \
+    matrix4depack/Matrix4SkelDepackMSP.h \
+    matrix4depack/Matrix4DepackPlugin.h
 
-libM4TransfTUIMSPxml_DATA = \
-    m4transf/Matrix4x4Transf.xml \
-    m4transf/Matrix4Transf.xml
+libMatrix4DepackMSPxml_DATA = \
+    matrix4depack/Matrix4SkelDepack.xml
 
-libM4TransfTUIMSPxmldir = $(datadir)/@PACKAGE@
+libMatrix4DepackMSPxmldir = $(datadir)/@PACKAGE@
+
+################################
+
+lib_LTLIBRARIES += libMatrix4OpMSP.la
+libMatrix4OpMSP_la_CXXFLAGS = -fPIC -rdynamic -c -I$(INCDIR) -ggdb -g -O3
+libMatrix4OpMSP_la_LIBADD = -lCommonTUITypes -lTUIFrameworkServer -lTUIFrameworkCore
+libMatrix4OpMSP_la_LDFLAGS = -L../tuiframework -version-info 1:1:0
+
+libMatrix4OpMSP_ladir = ${includedir}/tuilibs
+
+libMatrix4OpMSP_la_SOURCES = \
+    matrix4op/Matrix4MulMSP.cpp \
+    matrix4op/Matrix4TranslMSP.cpp \
+    matrix4op/Matrix4OpPlugin.cpp
+
+nobase_libMatrix4OpMSP_la_HEADERS = \
+    matrix4op/Matrix4MulMSP.h \
+    matrix4op/Matrix4TranslMSP.h \
+    matrix4op/Matrix4OpPlugin.h
+
+libMatrix4OpMSPxml_DATA = \
+    matrix4op/Matrix4Mul.xml \
+    matrix4op/Matrix4Transl.xml
+
+libMatrix4OpMSPxmldir = $(datadir)/@PACKAGE@
 
 ################################
 
@@ -246,6 +269,28 @@ libMouseTUIDevicexml_DATA = \
     mouse/MouseDev.xml
 
 libMouseTUIDevicexmldir = $(datadir)/@PACKAGE@
+
+################################
+
+lib_LTLIBRARIES += libMotionCaptureStubTUIDevice.la
+libMotionCaptureStubTUIDevice_la_CXXFLAGS = -fPIC -rdynamic -c -I$(INCDIR) -ggdb -g -O3
+libMotionCaptureStubTUIDevice_la_LIBADD = -lCommonTUITypes -lTUIFrameworkServer -lTUIFrameworkCore
+libMotionCaptureStubTUIDevice_la_LDFLAGS = -L../tuiframework -version-info 1:1:0
+
+libMotionCaptureStubTUIDevice_ladir = ${includedir}/tuilibs
+
+libMotionCaptureStubTUIDevice_la_SOURCES = \
+    motioncapture/MotionCaptureStubDev.cpp \
+    motioncapture/MotionCaptureStubDevPlugin.cpp
+
+nobase_libMotionCaptureStubTUIDevice_la_HEADERS = \
+    motioncapture/MotionCaptureStubDev.h \
+    motioncapture/MotionCaptureStubDevPlugin.h
+
+libMotionCaptureStubTUIDevicexml_DATA = \
+    motioncapture/MotionCaptureStub.xml
+
+libMotionCaptureStubTUIDevicexmldir = $(datadir)/@PACKAGE@
 
 ################################
 
