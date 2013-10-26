@@ -40,12 +40,17 @@ void registerTypes(IEventFactory * eventFactory, IEventChannelFactory * eventCha
     tuiframework::registerType<TrackerData, 14>(eventFactory, eventChannelFactory, "TrackerChannel");
     tuiframework::registerType<Matrix4Data, 15>(eventFactory, eventChannelFactory, "Matrix4Channel");
     tuiframework::registerType<HapticAngle, 16>(eventFactory, eventChannelFactory, "HapticChannel");
-    tuiframework::registerType<Matrix4x4<double>, 17>(eventFactory, eventChannelFactory, "Matrix4x4Channel");
+    
     tuiframework::registerType<Gesture, 18>(eventFactory, eventChannelFactory, "GestureChannel");
     tuiframework::registerType<KinectJoint, 19>(eventFactory, eventChannelFactory, "KinectChannel");
     tuiframework::registerType<Vector3d, 20>(eventFactory, eventChannelFactory, "Vector3dChannel");
     tuiframework::registerType<MouseData, 21>(eventFactory, eventChannelFactory, "MouseChannel");
     tuiframework::registerType<VectorList3d, 22>(eventFactory, eventChannelFactory, "VectorList3dChannel");
+    
+    tuiframework::registerType<Vector3<double>, 22>(eventFactory, eventChannelFactory, "Vector3");
+    tuiframework::registerType<PackedType<Vector3<double> >, 23>(eventFactory, eventChannelFactory, "PackedVector3");
+    tuiframework::registerType<Matrix4<double>, 24>(eventFactory, eventChannelFactory, "Matrix4");
+    tuiframework::registerType<PackedType<Matrix4<double> >, 25>(eventFactory, eventChannelFactory, "PackedMatrix4");
 }
 
 }

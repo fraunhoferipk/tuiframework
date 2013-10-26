@@ -21,12 +21,9 @@
     along with the TUIFramework.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-
-
 #ifndef _CommonTypeReg_h_
 #define _CommonTypeReg_h_
 
-#include "Matrix4x4.h"
 #include "Gesture.h"
 #include "HapticAngle.h"
 #include "KinectJoint.h"
@@ -36,6 +33,10 @@
 #include "VectorList3d.h"
 #include "Vector3d.h"
 #include "MouseData.h"
+
+#include "Vector3.h"
+#include "Matrix4.h"
+#include "PackedType.h"
 
 #include <tuiframework/core/EPEventMsg.h>
 #include <tuiframework/core/IEventFactory.h>
@@ -50,13 +51,17 @@ typedef tuiframework::EPEventMsg<int, 13>                   IntegerChangedEvent;
 typedef tuiframework::EPEventMsg<TrackerData, 14>           TrackerChangedEvent;
 typedef tuiframework::EPEventMsg<Matrix4Data, 15>           Matrix4ChangedEvent;
 typedef tuiframework::EPEventMsg<HapticAngle, 16>           HapticChangedEvent;
-typedef tuiframework::EPEventMsg<Matrix4x4<double>, 17>     Matrix4x4ChangedEvent;
+
 typedef tuiframework::EPEventMsg<KinectJoint, 18>           KinectEvent;
 typedef tuiframework::EPEventMsg<Gesture, 19>               GestureEvent;
 typedef tuiframework::EPEventMsg<Vector3d, 20>              Vector3dEvent;
 typedef tuiframework::EPEventMsg<MouseData, 21>             MouseEvent;
 typedef tuiframework::EPEventMsg<VectorList3d, 22>          VectorList3dEvent;
 
+typedef tuiframework::EPEventMsg<Vector3<double>, 22>                   Vector3Event;
+typedef tuiframework::EPEventMsg<PackedType<Vector3<double> >, 23>      PackedVector3Event;
+typedef tuiframework::EPEventMsg<Matrix4<double>, 24>                   Matrix4Event;
+typedef tuiframework::EPEventMsg<PackedType<Matrix4<double> >, 25>      PackedMatrix4Event;
 
 namespace CommonTypeReg {
 
