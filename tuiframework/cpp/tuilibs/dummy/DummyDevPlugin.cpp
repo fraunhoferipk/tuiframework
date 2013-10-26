@@ -37,7 +37,7 @@
 #include "DummyDevDA.h"
 #include "DummyDevTracker.h"
 #include "DummyDevMatrix4.h"
-#include "DummyDevMatrix4x4.h"
+#include "DummyDevPackedVector3.h"
 
 using namespace tuidevices;
 using namespace tuiframework;
@@ -50,12 +50,12 @@ void soInitPlugin() {
     DeviceFactorySingleton::getInstance()->registerCreateFunction(DummyDevDA::getDeviceName(), DummyDevDA::createFunction);
     DeviceFactorySingleton::getInstance()->registerCreateFunction(DummyDevTracker::getDeviceName(), DummyDevTracker::createFunction);
     DeviceFactorySingleton::getInstance()->registerCreateFunction(DummyDevMatrix4::getDeviceName(), DummyDevMatrix4::createFunction);
-    DeviceFactorySingleton::getInstance()->registerCreateFunction(DummyDevMatrix4x4::getDeviceName(), DummyDevMatrix4x4::createFunction);
+    DeviceFactorySingleton::getInstance()->registerCreateFunction(DummyDevPackedVector3::getDeviceName(), DummyDevPackedVector3::createFunction);
     
     deviceTypeNameVector.push_back(DummyDevDA::getDeviceName());
     deviceTypeNameVector.push_back(DummyDevTracker::getDeviceName());
     deviceTypeNameVector.push_back(DummyDevMatrix4::getDeviceName());
-    deviceTypeNameVector.push_back(DummyDevMatrix4x4::getDeviceName());    
+    deviceTypeNameVector.push_back(DummyDevPackedVector3::getDeviceName());    
 }
 
 
@@ -73,7 +73,7 @@ void soDeviceRegistration(IDeviceFactory * deviceFactory) {
     deviceFactory->registerCreateFunction(DummyDevDA::getDeviceName(), DummyDevDA::createFunction);
     deviceFactory->registerCreateFunction(DummyDevTracker::getDeviceName(), DummyDevTracker::createFunction);
     deviceFactory->registerCreateFunction(DummyDevMatrix4::getDeviceName(), DummyDevMatrix4::createFunction);
-    deviceFactory->registerCreateFunction(DummyDevMatrix4x4::getDeviceName(), DummyDevMatrix4x4::createFunction);
+    deviceFactory->registerCreateFunction(DummyDevPackedVector3::getDeviceName(), DummyDevPackedVector3::createFunction);
 }
 
 
