@@ -45,12 +45,32 @@ testtuimouseclient_SOURCES = \
 
 #################################
 
+bin_PROGRAMS += testtuimcclient
+
+testtuimcclient_CXXFLAGS = -fPIC -rdynamic -I../tuilibs -I$(INCDIR) -ggdb -g -O3
+
+testtuimcclient_LDADD = -lCommonTUITypes -lTUIFrameworkClient -lTUIFrameworkCore -lpthread
+testtuimcclient_LDFLAGS = -L../tuiframework -L../tuilibs
+
+testtuimcclient_SOURCES = \
+    tuimcclient/tuimcclient.cpp \
+    tuimcclient/Init.cpp \
+    tuimcclient/Skeleton.cpp
+
+testtuimcclientxml_DATA = \
+    tuimcclient/Skeleton.xml
+
+testtuimcclientxmldir = $(datadir)/@PACKAGE@
+
+
+#################################
+
 bin_PROGRAMS += testtuiserver1
 
 testtuiserver1_CXXFLAGS = -fPIC -rdynamic -I../tuilibs -I$(INCDIR) -ggdb -g -O3
 
 testtuiserver1_LDADD =  -lDummyTUIDevice \
-    -lKinectTUIDevice -lDTrackTUIDevice -lM4TransfTUIMSP -lKinectTransfTUIMSP \
+    -lKinectTUIDevice -lDTrackTUIDevice -lKinectTransfTUIMSP \
     -lCommonTUITypes -lTUIFrameworkServer -lTUIFrameworkCore -lTUIFrameworkXML -lpthread -lxerces-c 
 testtuiserver1_LDFLAGS = -L../tuiframework -L../tuilibs
 

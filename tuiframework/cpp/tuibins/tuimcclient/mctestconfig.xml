@@ -1,0 +1,466 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--document xmlns:xi='http://www.w3.org/2001/XInclude'-->
+<document xmlns:xi="http://www.w3.org/2001/XInclude">
+   <ServerConfig>
+      <ServerStartupConfig/>
+      <DeviceTypeSequence>
+         <Image path="images/TUI1.png"/>
+         <DeviceType name="DummyDevPackedVector3">
+            <PortTypeSequence>
+               <PortType name="pv1" sink="0" source="1" typename="PackedVector3">
+                  <Description/>
+               </PortType>
+            </PortTypeSequence>
+            <ParameterTypeDefSequence/>
+            <ParameterTypeSequence/>
+         </DeviceType>
+      </DeviceTypeSequence>
+      <MSPTypeSequence>
+         <Image path="images/DefaultMSP.png"/>
+         <MSPType name="Matrix4Mul">
+            <PortTypeSequence>
+               <PortType name="A" sink="1" source="0" typename="Matrix4">
+                  <Description/>
+               </PortType>
+               <PortType name="AP" sink="1" source="0" typename="PackedMatrix4">
+                  <Description/>
+               </PortType>
+               <PortType name="BP" sink="1" source="0" typename="PackedMatrix4">
+                  <Description/>
+               </PortType>
+               <PortType name="A*BP" sink="0" source="1" typename="PackedMatrix4">
+                  <Description/>
+               </PortType>
+               <PortType name="AP*B" sink="0" source="1" typename="PackedMatrix4">
+                  <Description/>
+               </PortType>
+               <PortType name="B" sink="1" source="0" typename="Matrix4">
+                  <Description/>
+               </PortType>
+               <PortType name="A*B" sink="0" source="1" typename="Matrix4">
+                  <Description/>
+               </PortType>
+            </PortTypeSequence>
+            <ParameterTypeDefSequence/>
+            <ParameterTypeSequence/>
+            <ParameterGroup name="A">
+               <ParameterGroup name="row4">
+                  <Parameter name="col4" value="1"/>
+                  <Parameter name="col3" value="0"/>
+                  <Parameter name="col2" value="0"/>
+                  <Parameter name="col1" value="0"/>
+               </ParameterGroup>
+               <ParameterGroup name="row3">
+                  <Parameter name="col4" value="0"/>
+                  <Parameter name="col3" value="1"/>
+                  <Parameter name="col2" value="0"/>
+                  <Parameter name="col1" value="0"/>
+               </ParameterGroup>
+               <ParameterGroup name="row2">
+                  <Parameter name="col4" value="0"/>
+                  <Parameter name="col3" value="0"/>
+                  <Parameter name="col2" value="1"/>
+                  <Parameter name="col1" value="0"/>
+               </ParameterGroup>
+               <ParameterGroup name="row1">
+                  <Parameter name="col4" value="0"/>
+                  <Parameter name="col3" value="0"/>
+                  <Parameter name="col2" value="0"/>
+                  <Parameter name="col1" value="1"/>
+               </ParameterGroup>
+            </ParameterGroup>
+            <ParameterGroup name="B">
+               <ParameterGroup name="row4">
+                  <Parameter name="col4" value="1"/>
+                  <Parameter name="col3" value="0"/>
+                  <Parameter name="col2" value="0"/>
+                  <Parameter name="col1" value="0"/>
+               </ParameterGroup>
+               <ParameterGroup name="row3">
+                  <Parameter name="col4" value="0"/>
+                  <Parameter name="col3" value="1"/>
+                  <Parameter name="col2" value="0"/>
+                  <Parameter name="col1" value="0"/>
+               </ParameterGroup>
+               <ParameterGroup name="row2">
+                  <Parameter name="col4" value="0"/>
+                  <Parameter name="col3" value="0"/>
+                  <Parameter name="col2" value="1"/>
+                  <Parameter name="col1" value="0"/>
+               </ParameterGroup>
+               <ParameterGroup name="row1">
+                  <Parameter name="col4" value="0"/>
+                  <Parameter name="col3" value="0"/>
+                  <Parameter name="col2" value="0"/>
+                  <Parameter name="col1" value="1"/>
+               </ParameterGroup>
+            </ParameterGroup>
+         </MSPType>
+         <MSPType name="Matrix4Transl">
+            <PortTypeSequence>
+               <PortType name="in" sink="1" source="0" typename="Vector3">
+                  <Description/>
+               </PortType>
+               <PortType name="out" sink="0" source="1" typename="Matrix4">
+                  <Description/>
+               </PortType>
+               <PortType name="inPacked" sink="1" source="0" typename="PackedVector3">
+                  <Description/>
+               </PortType>
+               <PortType name="outPacked" sink="0" source="1" typename="PackedMatrix4">
+                  <Description/>
+               </PortType>
+            </PortTypeSequence>
+            <ParameterTypeDefSequence/>
+            <ParameterTypeSequence/>
+            <ParameterGroup name="create">
+               <Parameter name="transposed" value="0"/>
+            </ParameterGroup>
+         </MSPType>
+         <MSPType name="Matrix4SkelDepackMSP">
+            <PortTypeSequence>
+               <PortType name="right_Elbow" sink="0" source="1" typename="Matrix4">
+                  <Description/>
+               </PortType>
+               <PortType name="right_Shoulder" sink="0" source="1" typename="Matrix4">
+                  <Description/>
+               </PortType>
+               <PortType name="right_Collar" sink="0" source="1" typename="Matrix4">
+                  <Description/>
+               </PortType>
+               <PortType name="right_Ankle" sink="0" source="1" typename="Matrix4">
+                  <Description/>
+               </PortType>
+               <PortType name="Torso" sink="0" source="1" typename="Matrix4">
+                  <Description/>
+               </PortType>
+               <PortType name="left_Hip" sink="0" source="1" typename="Matrix4">
+                  <Description/>
+               </PortType>
+               <PortType name="right_Wrist" sink="0" source="1" typename="Matrix4">
+                  <Description/>
+               </PortType>
+               <PortType name="left_Hand" sink="0" source="1" typename="Matrix4">
+                  <Description/>
+               </PortType>
+               <PortType name="left_Collar" sink="0" source="1" typename="Matrix4">
+                  <Description/>
+               </PortType>
+               <PortType name="pmOut" sink="0" source="1" typename="PackedMatrix4">
+                  <Description/>
+               </PortType>
+               <PortType name="left_Elbow" sink="0" source="1" typename="Matrix4">
+                  <Description/>
+               </PortType>
+               <PortType name="right_Hand" sink="0" source="1" typename="Matrix4">
+                  <Description/>
+               </PortType>
+               <PortType name="pmIn" sink="1" source="0" typename="PackedMatrix4">
+                  <Description/>
+               </PortType>
+               <PortType name="Head" sink="0" source="1" typename="Matrix4">
+                  <Description/>
+               </PortType>
+               <PortType name="right_Fingertip" sink="0" source="1" typename="Matrix4">
+                  <Description/>
+               </PortType>
+               <PortType name="left_Ankle" sink="0" source="1" typename="Matrix4">
+                  <Description/>
+               </PortType>
+               <PortType name="left_Fingertip" sink="0" source="1" typename="Matrix4">
+                  <Description/>
+               </PortType>
+               <PortType name="left_Wrist" sink="0" source="1" typename="Matrix4">
+                  <Description/>
+               </PortType>
+               <PortType name="left_Shoulder" sink="0" source="1" typename="Matrix4">
+                  <Description/>
+               </PortType>
+               <PortType name="right_Hip" sink="0" source="1" typename="Matrix4">
+                  <Description/>
+               </PortType>
+               <PortType name="left_Foot" sink="0" source="1" typename="Matrix4">
+                  <Description/>
+               </PortType>
+               <PortType name="right_Foot" sink="0" source="1" typename="Matrix4">
+                  <Description/>
+               </PortType>
+               <PortType name="Waist" sink="0" source="1" typename="Matrix4">
+                  <Description/>
+               </PortType>
+               <PortType name="Neck" sink="0" source="1" typename="Matrix4">
+                  <Description/>
+               </PortType>
+               <PortType name="left_Knee" sink="0" source="1" typename="Matrix4">
+                  <Description/>
+               </PortType>
+               <PortType name="right_Knee" sink="0" source="1" typename="Matrix4">
+                  <Description/>
+               </PortType>
+            </PortTypeSequence>
+            <ParameterTypeDefSequence/>
+            <ParameterTypeSequence/>
+         </MSPType>
+      </MSPTypeSequence>
+      <TUIObjectTypeSequence>
+         <Image path="images/TUI1.png"/>
+         <TUIObjectType name="SkeletonTUI">
+            <PortTypeSequence>
+               <PortType name="right_Elbow" sink="0" source="1" typename="Matrix4">
+                  <Description/>
+               </PortType>
+               <PortType name="right_Shoulder" sink="0" source="1" typename="Matrix4">
+                  <Description/>
+               </PortType>
+               <PortType name="right_Collar" sink="0" source="1" typename="Matrix4">
+                  <Description/>
+               </PortType>
+               <PortType name="right_Ankle" sink="0" source="1" typename="Matrix4">
+                  <Description/>
+               </PortType>
+               <PortType name="Torso" sink="0" source="1" typename="Matrix4">
+                  <Description/>
+               </PortType>
+               <PortType name="left_Hip" sink="0" source="1" typename="Matrix4">
+                  <Description/>
+               </PortType>
+               <PortType name="right_Wrist" sink="0" source="1" typename="Matrix4">
+                  <Description/>
+               </PortType>
+               <PortType name="left_Hand" sink="0" source="1" typename="Matrix4">
+                  <Description/>
+               </PortType>
+               <PortType name="left_Collar" sink="0" source="1" typename="Matrix4">
+                  <Description/>
+               </PortType>
+               <PortType name="left_Elbow" sink="0" source="1" typename="Matrix4">
+                  <Description/>
+               </PortType>
+               <PortType name="right_Hand" sink="0" source="1" typename="Matrix4">
+                  <Description/>
+               </PortType>
+               <PortType name="Head" sink="0" source="1" typename="Matrix4">
+                  <Description/>
+               </PortType>
+               <PortType name="right_Fingertip" sink="0" source="1" typename="Matrix4">
+                  <Description/>
+               </PortType>
+               <PortType name="left_Ankle" sink="0" source="1" typename="Matrix4">
+                  <Description/>
+               </PortType>
+               <PortType name="left_Fingertip" sink="0" source="1" typename="Matrix4">
+                  <Description/>
+               </PortType>
+               <PortType name="left_Wrist" sink="0" source="1" typename="Matrix4">
+                  <Description/>
+               </PortType>
+               <PortType name="left_Shoulder" sink="0" source="1" typename="Matrix4">
+                  <Description/>
+               </PortType>
+               <PortType name="right_Hip" sink="0" source="1" typename="Matrix4">
+                  <Description/>
+               </PortType>
+               <PortType name="CALIBRATION" sink="0" source="1" typename="Matrix4">
+                  <Description/>
+               </PortType>
+               <PortType name="left_Foot" sink="0" source="1" typename="Matrix4">
+                  <Description/>
+               </PortType>
+               <PortType name="right_Foot" sink="0" source="1" typename="Matrix4">
+                  <Description/>
+               </PortType>
+               <PortType name="Waist" sink="0" source="1" typename="Matrix4">
+                  <Description/>
+               </PortType>
+               <PortType name="Neck" sink="0" source="1" typename="Matrix4">
+                  <Description/>
+               </PortType>
+               <PortType name="left_Knee" sink="0" source="1" typename="Matrix4">
+                  <Description/>
+               </PortType>
+               <PortType name="right_Knee" sink="0" source="1" typename="Matrix4">
+                  <Description/>
+               </PortType>
+            </PortTypeSequence>
+         </TUIObjectType>
+      </TUIObjectTypeSequence>
+      <DeviceInstanceSequence>
+         <DeviceInstance name="Unnamed1" typename="DummyDevPackedVector3"/>
+      </DeviceInstanceSequence>
+      <MSPInstanceSequence>
+         <MSPInstance name="Unnamed3" typename="Matrix4Transl">
+            <ParameterGroup name="create">
+               <Parameter name="transposed" value="0"/>
+            </ParameterGroup>
+         </MSPInstance>
+         <MSPInstance name="Unnamed2" typename="Matrix4Mul">
+            <ParameterGroup name="A">
+               <ParameterGroup name="row4">
+                  <Parameter name="col4" value="1"/>
+                  <Parameter name="col3" value="100"/>
+                  <Parameter name="col2" value="100"/>
+                  <Parameter name="col1" value="100"/>
+               </ParameterGroup>
+               <ParameterGroup name="row3">
+                  <Parameter name="col4" value="0"/>
+                  <Parameter name="col3" value="1"/>
+                  <Parameter name="col2" value="0"/>
+                  <Parameter name="col1" value="0"/>
+               </ParameterGroup>
+               <ParameterGroup name="row2">
+                  <Parameter name="col4" value="0"/>
+                  <Parameter name="col3" value="0"/>
+                  <Parameter name="col2" value="1"/>
+                  <Parameter name="col1" value="0"/>
+               </ParameterGroup>
+               <ParameterGroup name="row1">
+                  <Parameter name="col4" value="0"/>
+                  <Parameter name="col3" value="0"/>
+                  <Parameter name="col2" value="0"/>
+                  <Parameter name="col1" value="1"/>
+               </ParameterGroup>
+            </ParameterGroup>
+            <ParameterGroup name="B">
+               <ParameterGroup name="row4">
+                  <Parameter name="col4" value="1"/>
+                  <Parameter name="col3" value="0"/>
+                  <Parameter name="col2" value="0"/>
+                  <Parameter name="col1" value="0"/>
+               </ParameterGroup>
+               <ParameterGroup name="row3">
+                  <Parameter name="col4" value="0"/>
+                  <Parameter name="col3" value="1"/>
+                  <Parameter name="col2" value="0"/>
+                  <Parameter name="col1" value="0"/>
+               </ParameterGroup>
+               <ParameterGroup name="row2">
+                  <Parameter name="col4" value="0"/>
+                  <Parameter name="col3" value="0"/>
+                  <Parameter name="col2" value="1"/>
+                  <Parameter name="col1" value="0"/>
+               </ParameterGroup>
+               <ParameterGroup name="row1">
+                  <Parameter name="col4" value="0"/>
+                  <Parameter name="col3" value="0"/>
+                  <Parameter name="col2" value="0"/>
+                  <Parameter name="col1" value="1"/>
+               </ParameterGroup>
+            </ParameterGroup>
+         </MSPInstance>
+         <MSPInstance name="Unnamed1" typename="Matrix4SkelDepackMSP"/>
+      </MSPInstanceSequence>
+      <TUIObjectInstanceSequence>
+         <TUIObjectInstance name="SkeletonInstance" typename="SkeletonTUI"/>
+      </TUIObjectInstanceSequence>
+      <ConnectorSequence>
+         <Connector>
+            <SrcAddress entityName="Unnamed3" entityType="MSP" portName="outPacked"/>
+            <DstAddress entityName="Unnamed2" entityType="MSP" portName="BP"/>
+         </Connector>
+         <Connector>
+            <SrcAddress entityName="Unnamed1" entityType="DEV" portName="pv1"/>
+            <DstAddress entityName="Unnamed3" entityType="MSP" portName="inPacked"/>
+         </Connector>
+         <Connector>
+            <SrcAddress entityName="Unnamed1" entityType="MSP" portName="Head"/>
+            <DstAddress entityName="SkeletonInstance" entityType="TUI" portName="Head"/>
+         </Connector>
+         <Connector>
+            <SrcAddress entityName="Unnamed1" entityType="MSP" portName="Neck"/>
+            <DstAddress entityName="SkeletonInstance" entityType="TUI" portName="Neck"/>
+         </Connector>
+         <Connector>
+            <SrcAddress entityName="Unnamed1" entityType="MSP" portName="Torso"/>
+            <DstAddress entityName="SkeletonInstance" entityType="TUI" portName="Torso"/>
+         </Connector>
+         <Connector>
+            <SrcAddress entityName="Unnamed1" entityType="MSP" portName="Waist"/>
+            <DstAddress entityName="SkeletonInstance" entityType="TUI" portName="Waist"/>
+         </Connector>
+         <Connector>
+            <SrcAddress entityName="Unnamed1" entityType="MSP" portName="left_Ankle"/>
+            <DstAddress entityName="SkeletonInstance" entityType="TUI" portName="left_Ankle"/>
+         </Connector>
+         <Connector>
+            <SrcAddress entityName="Unnamed1" entityType="MSP" portName="left_Collar"/>
+            <DstAddress entityName="SkeletonInstance" entityType="TUI" portName="left_Collar"/>
+         </Connector>
+         <Connector>
+            <SrcAddress entityName="Unnamed1" entityType="MSP" portName="left_Elbow"/>
+            <DstAddress entityName="SkeletonInstance" entityType="TUI" portName="left_Elbow"/>
+         </Connector>
+         <Connector>
+            <SrcAddress entityName="Unnamed1" entityType="MSP" portName="left_Fingertip"/>
+            <DstAddress entityName="SkeletonInstance" entityType="TUI" portName="left_Fingertip"/>
+         </Connector>
+         <Connector>
+            <SrcAddress entityName="Unnamed1" entityType="MSP" portName="left_Foot"/>
+            <DstAddress entityName="SkeletonInstance" entityType="TUI" portName="left_Foot"/>
+         </Connector>
+         <Connector>
+            <SrcAddress entityName="Unnamed1" entityType="MSP" portName="left_Hand"/>
+            <DstAddress entityName="SkeletonInstance" entityType="TUI" portName="left_Hand"/>
+         </Connector>
+         <Connector>
+            <SrcAddress entityName="Unnamed1" entityType="MSP" portName="left_Hip"/>
+            <DstAddress entityName="SkeletonInstance" entityType="TUI" portName="left_Hip"/>
+         </Connector>
+         <Connector>
+            <SrcAddress entityName="Unnamed1" entityType="MSP" portName="left_Knee"/>
+            <DstAddress entityName="SkeletonInstance" entityType="TUI" portName="left_Knee"/>
+         </Connector>
+         <Connector>
+            <SrcAddress entityName="Unnamed1" entityType="MSP" portName="left_Shoulder"/>
+            <DstAddress entityName="SkeletonInstance" entityType="TUI" portName="left_Shoulder"/>
+         </Connector>
+         <Connector>
+            <SrcAddress entityName="Unnamed1" entityType="MSP" portName="left_Wrist"/>
+            <DstAddress entityName="SkeletonInstance" entityType="TUI" portName="left_Wrist"/>
+         </Connector>
+         <Connector>
+            <SrcAddress entityName="Unnamed1" entityType="MSP" portName="right_Ankle"/>
+            <DstAddress entityName="SkeletonInstance" entityType="TUI" portName="right_Ankle"/>
+         </Connector>
+         <Connector>
+            <SrcAddress entityName="Unnamed1" entityType="MSP" portName="right_Collar"/>
+            <DstAddress entityName="SkeletonInstance" entityType="TUI" portName="right_Collar"/>
+         </Connector>
+         <Connector>
+            <SrcAddress entityName="Unnamed1" entityType="MSP" portName="right_Elbow"/>
+            <DstAddress entityName="SkeletonInstance" entityType="TUI" portName="right_Elbow"/>
+         </Connector>
+         <Connector>
+            <SrcAddress entityName="Unnamed1" entityType="MSP" portName="right_Fingertip"/>
+            <DstAddress entityName="SkeletonInstance" entityType="TUI" portName="right_Fingertip"/>
+         </Connector>
+         <Connector>
+            <SrcAddress entityName="Unnamed1" entityType="MSP" portName="right_Foot"/>
+            <DstAddress entityName="SkeletonInstance" entityType="TUI" portName="right_Foot"/>
+         </Connector>
+         <Connector>
+            <SrcAddress entityName="Unnamed1" entityType="MSP" portName="right_Hand"/>
+            <DstAddress entityName="SkeletonInstance" entityType="TUI" portName="right_Hand"/>
+         </Connector>
+         <Connector>
+            <SrcAddress entityName="Unnamed1" entityType="MSP" portName="right_Hip"/>
+            <DstAddress entityName="SkeletonInstance" entityType="TUI" portName="right_Hip"/>
+         </Connector>
+         <Connector>
+            <SrcAddress entityName="Unnamed1" entityType="MSP" portName="right_Knee"/>
+            <DstAddress entityName="SkeletonInstance" entityType="TUI" portName="right_Knee"/>
+         </Connector>
+         <Connector>
+            <SrcAddress entityName="Unnamed1" entityType="MSP" portName="right_Shoulder"/>
+            <DstAddress entityName="SkeletonInstance" entityType="TUI" portName="right_Shoulder"/>
+         </Connector>
+         <Connector>
+            <SrcAddress entityName="Unnamed1" entityType="MSP" portName="right_Wrist"/>
+            <DstAddress entityName="SkeletonInstance" entityType="TUI" portName="right_Wrist"/>
+         </Connector>
+         <Connector>
+            <SrcAddress entityName="Unnamed2" entityType="MSP" portName="A*BP"/>
+            <DstAddress entityName="Unnamed1" entityType="MSP" portName="pmIn"/>
+         </Connector>
+      </ConnectorSequence>
+   </ServerConfig>
+</document>
