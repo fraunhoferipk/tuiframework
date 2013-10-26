@@ -5,30 +5,30 @@
       <ServerStartupConfig/>
       <DeviceTypeSequence>
          <Image path="images/TUI1.png"/>
-         <DeviceType name="DummyDeviceMatrix4x4">
+         <DeviceType name="DummyDevMatrix4">
             <PortTypeSequence>
-               <PortType name="6" sink="0" source="1" typename="Matrix4x4Channel">
+               <PortType name="6" sink="0" source="1" typename="Matrix4">
                   <Description/>
                </PortType>
-               <PortType name="5" sink="0" source="1" typename="Matrix4x4Channel">
+               <PortType name="5" sink="0" source="1" typename="Matrix4">
                   <Description/>
                </PortType>
-               <PortType name="4" sink="0" source="1" typename="Matrix4x4Channel">
+               <PortType name="4" sink="0" source="1" typename="Matrix4">
                   <Description/>
                </PortType>
-               <PortType name="3" sink="0" source="1" typename="Matrix4x4Channel">
+               <PortType name="3" sink="0" source="1" typename="Matrix4">
                   <Description/>
                </PortType>
-               <PortType name="2" sink="0" source="1" typename="Matrix4x4Channel">
+               <PortType name="2" sink="0" source="1" typename="Matrix4">
                   <Description/>
                </PortType>
-               <PortType name="1" sink="0" source="1" typename="Matrix4x4Channel">
+               <PortType name="1" sink="0" source="1" typename="Matrix4">
                   <Description/>
                </PortType>
-               <PortType name="8" sink="0" source="1" typename="Matrix4x4Channel">
+               <PortType name="8" sink="0" source="1" typename="Matrix4">
                   <Description/>
                </PortType>
-               <PortType name="7" sink="0" source="1" typename="Matrix4x4Channel">
+               <PortType name="7" sink="0" source="1" typename="Matrix4">
                   <Description/>
                </PortType>
             </PortTypeSequence>
@@ -127,7 +127,7 @@
                <PortType name="LED" sink="1" source="0" typename="DigitalChannel">
                   <Description/>
                </PortType>
-               <PortType name="Transf" sink="0" source="1" typename="Matrix4x4Channel">
+               <PortType name="Transf" sink="0" source="1" typename="Matrix4">
                   <Description/>
                </PortType>
                <PortType name="Pressure" sink="0" source="1" typename="AnalogChannel">
@@ -138,7 +138,7 @@
       </TUIObjectTypeSequence>
       <DeviceInstanceSequence>
          <DeviceInstance name="Signal" typename="DummyDeviceDA"/>
-         <DeviceInstance name="Tracker" typename="DummyDeviceMatrix4x4"/>
+         <DeviceInstance name="Tracker" typename="DummyDevMatrix4"/>
       </DeviceInstanceSequence>
       <MSPInstanceSequence/>
       <TUIObjectInstanceSequence>

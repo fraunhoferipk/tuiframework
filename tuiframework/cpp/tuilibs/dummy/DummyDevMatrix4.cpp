@@ -35,9 +35,14 @@
 #include <ctime>
 
 #include <iostream>
+#include <cstdio>
 
 #ifdef _WIN32
 #include <windows.h>
+#else
+#include <sys/types.h>
+#include <sys/time.h>
+#include <unistd.h>
 #endif
 
 using namespace tuiframework;
@@ -53,7 +58,7 @@ IDevice * DummyDevMatrix4::createFunction(void * arg) {
 
 
 std::string DummyDevMatrix4::getDeviceName() {
-    return "DummyDeviceMatrix4";
+    return "DummyDevMatrix4";
 }
 
 
@@ -162,27 +167,24 @@ void * DummyDevMatrix4::inputLoopThread_run(void * arg) {
 }
 
 
-
 void DummyDevMatrix4::executeInputLoop() {
-
-#ifndef _WIN32
-    struct timeval tv;
-    tv.tv_sec = 0;
-    tv.tv_usec = 300000;
-    select(0, 0, 0, 0, &tv);
-#endif
-
     this->inputLoopRunning = true;
     while (this->inputLoopRunning) {
 #ifndef _WIN32
-        tv.tv_sec = 0;
-        tv.tv_usec = 300000;
-        select(0, 0, 0, 0, &tv);
+    fd_set rfds;
+    struct timeval tv;
+    int retval;
+
+    FD_ZERO(&rfds);
+    FD_SET(0, &rfds);
+
+    tv.tv_sec = 0;
+    tv.tv_usec = 100000;
+    retval = select(1, &rfds, 0, 0, &tv);
 #endif
 #ifdef _WIN32
-		Sleep(300);
+        Sleep(100);
 #endif
-
         if (this->eventSink) {
             {
                 int a = 0;
@@ -190,14 +192,25 @@ void DummyDevMatrix4::executeInputLoop() {
                 map<std::string, int>::iterator i = this->deviceDescriptor.getNameChannelNrMap().begin();
                 map<std::string, int>::iterator e = this->deviceDescriptor.getNameChannelNrMap().end();
                 while (i != e && a < 1) {
-                    Matrix4ChangedEvent * event = new Matrix4ChangedEvent();
+                    Matrix4Event * event = new Matrix4Event();
                     event->setAddress(EPAddress(this->entityID, (*i).second));
-                    Matrix4Data mat;
-                    mat.setRow(0, static_cast<float>(rand())/static_cast<float>(RAND_MAX),
-                            100.0f*c + 1.0f, 100.0f*c + 2.0f, 100.0f*c + 3.0f);
-                    mat.setRow(1, 100.0f*c + 4.0f, 100.0f*c + 5.0f, 100.0f*c + 6.0f, 100.0f*c + 7.0f);
-                    mat.setRow(2, 100.0f*c + 8.0f, 100.0f*c + 9.0f, 100.0f*c + 10.0f, 100.0f*c + 11.0f);
-                    mat.setRow(3, 100.0f*c + 12.0f, 100.0f*c + 13.0f, 100.0f*c + 14.0f, 100.0f*c + 15.0f);
+                    Matrix4<double> mat;
+                    mat[0][0] = 1;
+                    mat[0][1] = 0;
+                    mat[0][2] = 0;
+                    mat[0][3] = 0;
+                    mat[1][0] = 0;
+                    mat[1][1] = 1;
+                    mat[1][2] = 0;
+                    mat[1][3] = 0;
+                    mat[2][0] = 0;
+                    mat[2][1] = 0;
+                    mat[2][2] = 1;
+                    mat[2][3] = 0;
+                    mat[3][0] = c;
+                    mat[3][1] = 0;
+                    mat[3][2] = 0;
+                    mat[3][3] = 1;
                     event->setPayload(mat);
                     eventSink->push(event);
                     c += 1.0f;
@@ -217,7 +230,7 @@ void DummyDevMatrix4::executeOutputLoop() {
         IEvent * event = this->outputEventQueue.pop();
         if (event) {
             cout << "DummyDevMatrix4: " << event->getEventTypeID() << " " << event << endl;
-           // delete event;
+            //delete event;
         }
     }
 }

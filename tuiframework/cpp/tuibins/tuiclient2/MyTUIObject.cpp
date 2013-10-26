@@ -40,7 +40,7 @@ MyTUIObject::~MyTUIObject() {
 
 void MyTUIObject::connect() {
     try {
-        MCONNECT(Matrix4x4ChangedEvent, "MyTUIObjectInstance", "Transf",
+        MCONNECT(Matrix4Event, "MyTUIObjectInstance", "Transf",
                 MyTUIObject, this, &MyTUIObject::transfChanged, 1);
         MCONNECT(DigitalChangedEvent, "MyTUIObjectInstance", "Button",
                 MyTUIObject, this, &MyTUIObject::buttonChanged, 2);
@@ -61,7 +61,7 @@ void MyTUIObject::connect() {
 
 void MyTUIObject::disconnect() {
     try {
-        MDISCONNECT(Matrix4x4ChangedEvent, "MyTUIObjectInstance", "Transf",
+        MDISCONNECT(Matrix4Event, "MyTUIObjectInstance", "Transf",
                 MyTUIObject, this, &MyTUIObject::transfChanged, 1);
         MDISCONNECT(DigitalChangedEvent, "MyTUIObjectInstance", "Button",
                 MyTUIObject, this, &MyTUIObject::buttonChanged, 2);
@@ -74,7 +74,7 @@ void MyTUIObject::disconnect() {
 }
 
 
-void MyTUIObject::transfChanged(const Matrix4x4ChangedEvent * e) {
+void MyTUIObject::transfChanged(const Matrix4Event * e) {
     this->transf = e->getPayload();
     cout << "(1)MyTUIObject: transformation changed: " << this->transf << endl;
 }

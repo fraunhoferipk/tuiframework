@@ -21,53 +21,78 @@
     along with the TUIFramework.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-
-
-#ifndef _tuiframework_Matrix4x4_h_
-#define _tuiframework_Matrix4x4_h_
+#ifndef _tuiframework_Matrix4_h_
+#define _tuiframework_Matrix4_h_
 
 #include <tuiframework/core/ISerializable.h>
 #include <iostream>
 
 template <typename T>
-class Matrix4x4 : public tuiframework::ISerializable {
+class Matrix4 : public tuiframework::ISerializable {
 public:
-    Matrix4x4() { }
-    ~Matrix4x4() { }
+    Matrix4() { }
+    ~Matrix4() { }
     
-    const T * getData() const {
+    inline const T * getData() const {
         return this->data;
     }
-
-
-    void setData(const T * data) {
+    
+    
+    inline void setData(const T * data) {
         for (int i = 0; i < 16; ++i) {
             this->data[i] = data[i];
         }
     }
-
-
-    const T * const operator [](int i) const {
+    
+    
+    inline const T * const operator [](int i) const {
         return this->data + i*4;
+    }
+    
+    
+    inline T * operator [](int i) {
+        return this->data + i*4;
+    }
+    
+    
+    inline void setIdentity() {
+        for (int y = 0; y < 4; ++y) {
+            for (int x = 0; x < 4; ++x) {
+                this->data[y][x] = x == y ? 1 : 0;
+            }
+        }
+    }
+    
+    
+        /// index from 0 to 3
+    inline void setRow(int index, T r1, T r2, T r3, T r4) {
+        this->data[index*4] = r1;
+        this->data[index*4 + 1] = r2;
+        this->data[index*4 + 2] = r3;
+        this->data[index*4 + 3] = r4;
     }
 
 
-    T * operator [](int i) {
-        return this->data + i*4;
+        /// index from 0 to 3
+    inline void setColumn(int index, T c1, T c2, T c3, T c4) {
+        this->data[index] = c1;
+        this->data[index + 4] = c2;
+        this->data[index + 8] = c3;
+        this->data[index + 12] = c4;
     }
-
-
-    static T product(const T * const row, const T * const column) {
+    
+    
+    inline static T product(const T * const row, const T * const column) {
         return
-            row[0]*column[0] +
-            row[1]*column[4] +
-            row[2]*column[8] +
-            row[3]*column[12];
+        row[0]*column[0] +
+        row[1]*column[4] +
+        row[2]*column[8] +
+        row[3]*column[12];
     }
-
-
-    static Matrix4x4<T> product(const Matrix4x4<T> & a, const Matrix4x4<T> & b) {
-        Matrix4x4 c;
+    
+    
+    inline static Matrix4<T> product(const Matrix4<T> & a, const Matrix4<T> & b) {
+        Matrix4 c;
         for (int y = 0; y < 4; ++y) {
             for (int x = 0; x < 4; ++x) {
                 c[y][x] = product(a[y], &b[0][x]);
@@ -75,10 +100,10 @@ public:
         }
         return c;
     }
-
-
-    static Matrix4x4<T> transposed(const Matrix4x4<T> & a) {
-        Matrix4x4<T> b;
+    
+    
+    inline static Matrix4<T> transposed(const Matrix4<T> & a) {
+        Matrix4<T> b;
         for (int y = 0; y < 4; ++y) {
             for (int x = 0; x < 4; ++x) {
                 b[y][x] = a[x][y];
@@ -86,8 +111,8 @@ public:
         }
         return b;
     }
-
-
+    
+    
     virtual std::ostream & serialize(std::ostream & os) const {
         os << this->data[0];
         for (int i = 1; i < 16; ++i) {
@@ -95,8 +120,8 @@ public:
         }
         return os;
     }
-
-
+    
+    
     virtual std::istream & deSerialize(std::istream & is) {
         is >> this->data[0];
         for (int i = 1; i < 16; ++i) {
@@ -104,18 +129,17 @@ public:
         }
         return is;
     }
-
+    
 private:
-        /// comlumn wise
+    /// comlumn wise
     T data[16];
 };
 
 
 template <typename T>
-Matrix4x4<T> operator *(const Matrix4x4<T> & a, const Matrix4x4<T> & b) {
-    return Matrix4x4<T>::product(a, b);
+inline Matrix4<T> operator *(const Matrix4<T> & a, const Matrix4<T> & b) {
+    return Matrix4<T>::product(a, b);
 }
-
 
 #endif
 

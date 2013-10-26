@@ -34,7 +34,6 @@
 #include <pthread.h>
 
 #include <map>
-#include <cstdio>
 
 namespace tuiframework {
     class ITUIServer;

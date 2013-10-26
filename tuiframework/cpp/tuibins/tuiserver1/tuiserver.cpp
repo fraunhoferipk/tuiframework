@@ -34,11 +34,9 @@
 #include <dummy/DummyDevDA.h>
 #include <dummy/DummyDevTracker.h>
 #include <dummy/DummyDevMatrix4.h>
-#include <dummy/DummyDevMatrix4x4.h>
 #include <kinect/KinectDev.h>
 #include <dtrack/DTrackDev.h>
 
-#include <m4transf/MSPMatrix4x4Transf.h>
 #include <kinecttransf/MSPKinectARTTransformation.h>
 
 #include <map>
@@ -69,13 +67,11 @@ int main(int argc, char* argv[]) {
     deviceFactory.registerCreateFunction(DummyDevDA::getDeviceName(), DummyDevDA::createFunction);
     deviceFactory.registerCreateFunction(DummyDevTracker::getDeviceName(), DummyDevTracker::createFunction);
     deviceFactory.registerCreateFunction(DummyDevMatrix4::getDeviceName(), DummyDevMatrix4::createFunction);
-    deviceFactory.registerCreateFunction(DummyDevMatrix4x4::getDeviceName(), DummyDevMatrix4x4::createFunction);
 
     deviceFactory.registerCreateFunction(KinectDev::getDeviceName(), KinectDev::createFunction);
     deviceFactory.registerCreateFunction(DTrackDev::getDeviceName(), DTrackDev::createFunction);
 
     IMSPFactory & mspFactory = serverApp.getMSPFactory();
-    mspFactory.registerCreateFunction(MSPMatrix4x4Transf::getMSPTypeName(), MSPMatrix4x4Transf::createFunction);
     mspFactory.registerCreateFunction(MSPKinectARTTransformation::getMSPTypeName(), MSPKinectARTTransformation::createFunction);
 
     ServerConfig serverConfig;

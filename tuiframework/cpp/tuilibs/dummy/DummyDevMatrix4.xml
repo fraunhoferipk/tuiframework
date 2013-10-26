@@ -4,30 +4,30 @@
    <ServerConfig>
       <ServerStartupConfig/>
       <DeviceTypeSequence>
-         <DeviceType name="DummyDeviceMatrix4x4">
+         <DeviceType name="DummyDevMatrix4">
             <PortTypeSequence>
-               <PortType name="6" sink="0" source="1" typename="Matrix4x4Channel">
+               <PortType name="6" sink="0" source="1" typename="Matrix4">
                   <Description/>
                </PortType>
-               <PortType name="5" sink="0" source="1" typename="Matrix4x4Channel">
+               <PortType name="5" sink="0" source="1" typename="Matrix4">
                   <Description/>
                </PortType>
-               <PortType name="4" sink="0" source="1" typename="Matrix4x4Channel">
+               <PortType name="4" sink="0" source="1" typename="Matrix4">
                   <Description/>
                </PortType>
-               <PortType name="3" sink="0" source="1" typename="Matrix4x4Channel">
+               <PortType name="3" sink="0" source="1" typename="Matrix4">
                   <Description/>
                </PortType>
-               <PortType name="2" sink="0" source="1" typename="Matrix4x4Channel">
+               <PortType name="2" sink="0" source="1" typename="Matrix4">
                   <Description/>
                </PortType>
-               <PortType name="1" sink="0" source="1" typename="Matrix4x4Channel">
+               <PortType name="1" sink="0" source="1" typename="Matrix4">
                   <Description/>
                </PortType>
-               <PortType name="8" sink="0" source="1" typename="Matrix4x4Channel">
+               <PortType name="8" sink="0" source="1" typename="Matrix4">
                   <Description/>
                </PortType>
-               <PortType name="7" sink="0" source="1" typename="Matrix4x4Channel">
+               <PortType name="7" sink="0" source="1" typename="Matrix4">
                   <Description/>
                </PortType>
             </PortTypeSequence>

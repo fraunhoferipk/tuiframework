@@ -37,12 +37,12 @@ public:
     void connect();
     void disconnect();
 
-	void transfChanged(const Matrix4x4ChangedEvent * e);
+	void transfChanged(const Matrix4Event * e);
     void buttonChanged(const DigitalChangedEvent * e);
     void pressureChanged(const AnalogChangedEvent * e);
 
 public:
-	Matrix4x4<double> transf;
+	Matrix4<double> transf;
     bool button;
 	float pressure;
     tuiframework::IEventChannel * ledChannel;
