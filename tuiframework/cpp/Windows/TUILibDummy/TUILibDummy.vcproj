@@ -159,7 +159,7 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\tuilibs\dummy\DummyDevMatrix4x4.cpp"
+				RelativePath="..\..\tuilibs\dummy\DummyDevPackedVector3.cpp"
 				>
 			</File>
 			<File
@@ -181,7 +181,7 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\tuilibs\dummy\DummyDevMatrix4x4.h"
+				RelativePath="..\..\tuilibs\dummy\DummyDevPackedVector3.h"
 				>
 			</File>
 			<File
@@ -204,11 +204,11 @@
 			>
 		</File>
 		<File
-			RelativePath="..\..\tuilibs\dummy\DummyDeviceMatrix4x4.xml"
+			RelativePath="..\..\tuilibs\dummy\DummyDeviceTracker.xml"
 			>
 		</File>
 		<File
-			RelativePath="..\..\tuilibs\dummy\DummyDeviceTracker.xml"
+			RelativePath="..\..\tuilibs\dummy\DummyDevPackedVector3.xml"
 			>
 		</File>
 		<File
