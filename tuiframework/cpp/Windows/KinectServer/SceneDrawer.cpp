@@ -33,7 +33,6 @@ extern XnBool g_bDrawPixels;
 extern XnBool g_bDrawSkeleton;
 extern XnBool g_bPrintID;
 extern XnBool g_bPrintState;
-extern XnBool g_bDrawCaveMiddle;
 
 #include <map>
 std::map<XnUInt32, std::pair<XnCalibrationStatus, XnPoseDetectionStatus> > m_Errors;
@@ -420,19 +419,5 @@ void DrawDepthMap(const xn::DepthMetaData& dmd, const xn::SceneMetaData& smd)
 			glEnd();
 
 		}
-/*
-		//if(g_bDrawCaveMiddle){
-
-
-      glPushMatrix();			     // Draw Moon
-        glRotatef( 50, 0.0, 1.0, 0.0);	     // Rotate
-        glTranslatef(300.0, 150.0,0.0);	     // Move reference point
-        glColor3f(0.0,0.0,1.0);		     // Color Blue
-        glutSolidSphere(50,200,160);	     // Draw Sphere
-		glPopMatrix();		      // Return to base reference
-			//glutSolidSphere(1.0, 10, 10);
-			//glutSolidSphere(2.0, 10, 10);
-		//}
-*/
 	}
 }
