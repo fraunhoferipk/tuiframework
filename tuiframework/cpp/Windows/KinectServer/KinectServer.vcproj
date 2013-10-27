@@ -186,10 +186,6 @@
 				RelativePath=".\SceneDrawer.cpp"
 				>
 			</File>
-			<File
-				RelativePath=".\SimpleFilter.cpp"
-				>
-			</File>
 		</Filter>
 		<Filter
 			Name="Headerdateien"
@@ -198,10 +194,6 @@
 			>
 			<File
 				RelativePath=".\SceneDrawer.h"
-				>
-			</File>
-			<File
-				RelativePath=".\SimpleFilter.h"
 				>
 			</File>
 		</Filter>
