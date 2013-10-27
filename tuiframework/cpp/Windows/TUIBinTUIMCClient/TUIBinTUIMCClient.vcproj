@@ -88,7 +88,7 @@
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
-				CommandLine="copy $(SolutionDir)\netsrc\Pre-built.2\lib\pthreadVCE2.dll $(OutDir)&#x0D;&#x0A;copy $(SolutionDir)\..\tuibins\tuimcclient\mctestconfig.xml  $(OutDir)&#x0D;&#x0A;copy $(SolutionDir)\..\tuibins\tuimcclient\mctestconfigt2.xml  $(OutDir)&#x0D;&#x0A;copy $(SolutionDir)\..\tuibins\tuimcclient\Skeleton.xml  $(OutDir)"
+				CommandLine="copy $(SolutionDir)\netsrc\Pre-built.2\lib\pthreadVCE2.dll $(OutDir)&#x0D;&#x0A;copy $(SolutionDir)\..\tuibins\tuimcclient\mctestconfig.xml  $(OutDir)&#x0D;&#x0A;copy $(SolutionDir)\..\tuibins\tuimcclient\mctestconfig2.xml  $(OutDir)&#x0D;&#x0A;copy $(SolutionDir)\..\tuibins\tuimcclient\mctestconfig3.xml  $(OutDir)&#x0D;&#x0A;copy $(SolutionDir)\..\tuibins\tuimcclient\Skeleton.xml  $(OutDir)&#x0D;&#x0A;"
 			/>
 		</Configuration>
 		<Configuration
@@ -166,7 +166,7 @@
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
-				CommandLine="copy $(SolutionDir)\netsrc\Pre-built.2\lib\pthreadVCE2.dll $(OutDir)&#x0D;&#x0A;copy $(SolutionDir)\..\tuibins\tuimcclient\mctestconfig.xml  $(OutDir)&#x0D;&#x0A;copy $(SolutionDir)\..\tuibins\tuimcclient\mctestconfigt2.xml  $(OutDir)&#x0D;&#x0A;copy $(SolutionDir)\..\tuibins\tuimcclient\Skeleton.xml  $(OutDir)"
+				CommandLine="copy $(SolutionDir)\netsrc\Pre-built.2\lib\pthreadVCE2.dll $(OutDir)&#x0D;&#x0A;copy $(SolutionDir)\..\tuibins\tuimcclient\mctestconfig.xml  $(OutDir)&#x0D;&#x0A;copy $(SolutionDir)\..\tuibins\tuimcclient\mctestconfig2.xml  $(OutDir)&#x0D;&#x0A;copy $(SolutionDir)\..\tuibins\tuimcclient\mctestconfig3.xml  $(OutDir)&#x0D;&#x0A;copy $(SolutionDir)\..\tuibins\tuimcclient\Skeleton.xml  $(OutDir)&#x0D;&#x0A;"
 			/>
 		</Configuration>
 	</Configurations>
