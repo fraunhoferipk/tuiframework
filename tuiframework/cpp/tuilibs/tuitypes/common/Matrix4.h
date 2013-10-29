@@ -82,6 +82,67 @@ public:
     }
     
     
+    inline T getCofactor(int x, int y) const {
+        int x1 = (x + 1) & 3;
+        int x2 = (x + 2) & 3;
+        int x3 = (x + 3) & 3;
+        int y1 = (y + 1) & 3;
+        int y2 = (y + 2) & 3;
+        int y3 = (y + 3) & 3;
+        
+        T c = 
+        this->data[y1][x1]*this->data[y2][x2]*this->data[y3][x3] +
+        this->data[y1][x2]*this->data[y2][x3]*this->data[y3][x1] +
+        this->data[y1][x3]*this->data[y2][x1]*this->data[y3][x2] -
+        this->data[y1][x1]*this->data[y2][x3]*this->data[y3][x2] -
+        this->data[y1][x2]*this->data[y2][x1]*this->data[y3][x3] -
+        this->data[y1][x3]*this->data[y2][x2]*this->data[y3][x1];
+    
+        if ((x + y) & 1) {
+            c *= -1;
+        }
+        
+        return c;
+    }
+    
+    
+    inline Matrix4<T> getAdjunct() const {
+        Matrix4<T> adjunct;
+        for (int y = 0; y < 4; ++y) {
+            for (int x = 0; x < 4; ++x) {
+                    // the adjunct matrix is the transposed cofactor matrix
+                adjunct[x][y] = getCofactor(x, y);
+            }
+        }
+    }
+    
+    
+    inline bool getInverse(Matrix4<T> & out) const {
+        Matrix4<T> adjunct = this->getAdjunct();
+        T det = 0;
+        for (int y = 0; y < 4; ++y) {
+            for (int x = 0; x < 4; ++x) {
+                det += this->data[y][x]*adjunct[x][y];
+            }
+        }
+        
+            // if the determinant is zero the matrix is not invertible
+        if (det > -0.001 && det < 0.001) {
+            return false;
+        }
+        
+        T invDet = 1/det;
+        
+        for (int y = 0; y < 4; ++y) {
+            for (int x = 0; x < 4; ++x) {
+                out[y][x] = invDet*adjunct[y][x];
+            }
+        }
+        
+        return true;
+    }
+    
+    
     inline static T product(const T * const row, const T * const column) {
         return
         row[0]*column[0] +
