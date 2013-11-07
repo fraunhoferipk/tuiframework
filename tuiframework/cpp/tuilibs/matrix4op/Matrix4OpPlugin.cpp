@@ -25,6 +25,7 @@
 
 
 #include "Matrix4OpPlugin.h"
+#include "Matrix4InverseMSP.h"
 #include "Matrix4MulMSP.h"
 #include "Matrix4TranslMSP.h"
 
@@ -44,9 +45,11 @@ namespace tuiframework {
 static std::vector<std::string> mspTypeNameVector;
 
 void soInitPlugin() {
+    MSPFactorySingleton::getInstance()->registerCreateFunction(Matrix4InverseMSP::getMSPTypeName(), Matrix4InverseMSP::createFunction);
     MSPFactorySingleton::getInstance()->registerCreateFunction(Matrix4MulMSP::getMSPTypeName(), Matrix4MulMSP::createFunction);
     MSPFactorySingleton::getInstance()->registerCreateFunction(Matrix4TranslMSP::getMSPTypeName(), Matrix4TranslMSP::createFunction);
-    
+
+    mspTypeNameVector.push_back(Matrix4InverseMSP::getMSPTypeName());    
     mspTypeNameVector.push_back(Matrix4MulMSP::getMSPTypeName());
     mspTypeNameVector.push_back(Matrix4TranslMSP::getMSPTypeName());
 }
@@ -63,6 +66,7 @@ std::string soGetSOVersion() {
 
 
 void soMSPRegistration(IMSPFactory * MSPFactory) {
+    MSPFactory->registerCreateFunction(Matrix4InverseMSP::getMSPTypeName(), Matrix4InverseMSP::createFunction);
     MSPFactory->registerCreateFunction(Matrix4MulMSP::getMSPTypeName(), Matrix4MulMSP::createFunction);
     MSPFactory->registerCreateFunction(Matrix4TranslMSP::getMSPTypeName(), Matrix4TranslMSP::createFunction);
 }

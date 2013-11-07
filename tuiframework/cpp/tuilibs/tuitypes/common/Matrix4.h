@@ -89,14 +89,14 @@ public:
         int y1 = (y + 1) & 3;
         int y2 = (y + 2) & 3;
         int y3 = (y + 3) & 3;
-        
+               
         T c = 
-        this->data[y1][x1]*this->data[y2][x2]*this->data[y3][x3] +
-        this->data[y1][x2]*this->data[y2][x3]*this->data[y3][x1] +
-        this->data[y1][x3]*this->data[y2][x1]*this->data[y3][x2] -
-        this->data[y1][x1]*this->data[y2][x3]*this->data[y3][x2] -
-        this->data[y1][x2]*this->data[y2][x1]*this->data[y3][x3] -
-        this->data[y1][x3]*this->data[y2][x2]*this->data[y3][x1];
+        (*this)[y1][x1]*(*this)[y2][x2]*(*this)[y3][x3] +
+        (*this)[y1][x2]*(*this)[y2][x3]*(*this)[y3][x1] +
+        (*this)[y1][x3]*(*this)[y2][x1]*(*this)[y3][x2] -
+        (*this)[y1][x1]*(*this)[y2][x3]*(*this)[y3][x2] -
+        (*this)[y1][x2]*(*this)[y2][x1]*(*this)[y3][x3] -
+        (*this)[y1][x3]*(*this)[y2][x2]*(*this)[y3][x1];
     
         if ((x + y) & 1) {
             c *= -1;
@@ -106,24 +106,24 @@ public:
     }
     
     
-    inline Matrix4<T> getAdjunct() const {
-        Matrix4<T> adjunct;
+    inline Matrix4<T> getAdjoint() const {
+        Matrix4<T> adjoint;
         for (int y = 0; y < 4; ++y) {
             for (int x = 0; x < 4; ++x) {
-                    // the adjunct matrix is the transposed cofactor matrix
-                adjunct[x][y] = getCofactor(x, y);
+                    // the adjoint matrix is the transposed cofactor matrix
+                adjoint[x][y] = getCofactor(x, y);
             }
         }
+        return adjoint;
     }
     
     
     inline bool getInverse(Matrix4<T> & out) const {
-        Matrix4<T> adjunct = this->getAdjunct();
+        Matrix4<T> adjoint = this->getAdjoint();
         T det = 0;
+        int x = 0;
         for (int y = 0; y < 4; ++y) {
-            for (int x = 0; x < 4; ++x) {
-                det += this->data[y][x]*adjunct[x][y];
-            }
+            det += (*this)[y][0]*adjoint[0][y];
         }
         
             // if the determinant is zero the matrix is not invertible
@@ -135,7 +135,7 @@ public:
         
         for (int y = 0; y < 4; ++y) {
             for (int x = 0; x < 4; ++x) {
-                out[y][x] = invDet*adjunct[y][x];
+                out[y][x] = invDet*adjoint[y][x];
             }
         }
         

@@ -172,16 +172,19 @@ libMatrix4OpMSP_la_LDFLAGS = -L../tuiframework -version-info 1:1:0
 libMatrix4OpMSP_ladir = ${includedir}/tuilibs
 
 libMatrix4OpMSP_la_SOURCES = \
+    matrix4op/Matrix4InverseMSP.cpp \
     matrix4op/Matrix4MulMSP.cpp \
     matrix4op/Matrix4TranslMSP.cpp \
     matrix4op/Matrix4OpPlugin.cpp
 
 nobase_libMatrix4OpMSP_la_HEADERS = \
+    matrix4op/Matrix4InverseMSP.h \
     matrix4op/Matrix4MulMSP.h \
     matrix4op/Matrix4TranslMSP.h \
     matrix4op/Matrix4OpPlugin.h
 
 libMatrix4OpMSPxml_DATA = \
+    matrix4op/Matrix4Inverse.xml \
     matrix4op/Matrix4Mul.xml \
     matrix4op/Matrix4Transl.xml
 
