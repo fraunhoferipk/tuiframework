@@ -31,14 +31,10 @@
 #define USE_TFDEBUG
 #include <tuiframework/logging/Logger.h>
 
-static const char * inTag = "Ain";
-static const char * inPackedTag = "APin";
-static const char * outTag = "Aout";
-static const char * outPackedTag = "APout";
+static const char * inTag = "A";
+static const char * inPackedTag = "AP";
 static const char * invTag = "Ainv";
 static const char * invPackedTag = "APinv";
-
-
 
 using namespace std;
 
@@ -58,11 +54,11 @@ const std::string & Matrix4InverseMSP::getMSPTypeName() {
 
 Matrix4InverseMSP::Matrix4InverseMSP(const MSPConfig & config) :
     config(config),
-    out(0),
-    outPacked(0) {
+    inv(0),
+    invPacked(0) {
     
-    this->eventDelegateM.setReceiver(this, &Matrix4InverseMSP::handleM);
-    this->eventDelegateMP.setReceiver(this, &Matrix4InverseMSP::handleMP);
+    this->eventDelegateA.setReceiver(this, &Matrix4InverseMSP::handleA);
+    this->eventDelegateAP.setReceiver(this, &Matrix4InverseMSP::handleAP);
 }
 
 
@@ -77,9 +73,9 @@ const std::string & Matrix4InverseMSP::getTypeName() const {
 
 IEventSink * Matrix4InverseMSP::getEventSink(const std::string & name) {
     if (name.compare(inTag) == 0) {
-        return &this->eventDelegateM;
+        return &this->eventDelegateA;
     } else if (name.compare(inPackedTag) == 0) {
-        return &this->eventDelegateMP;
+        return &this->eventDelegateAP;
     } else {
         TFERROR("")
     }
@@ -89,11 +85,7 @@ IEventSink * Matrix4InverseMSP::getEventSink(const std::string & name) {
 
 
 void Matrix4InverseMSP::registerEventSink(const std::string & name, IEventSink * eventSink) {
-    if (name.compare(outTag) == 0) {
-        this->out = eventSink;
-    } else if (name.compare(outPackedTag) == 0) {
-        this->outPacked = eventSink;
-    } else if (name.compare(invTag) == 0) {
+    if (name.compare(invTag) == 0) {
         this->inv = eventSink;
     } else if (name.compare(invPackedTag) == 0) {
         this->invPacked = eventSink;
@@ -108,7 +100,7 @@ const MSPType & Matrix4InverseMSP::getMSPType() const {
 }
 
 
-void Matrix4InverseMSP::handleM(Matrix4Event * e) {
+void Matrix4InverseMSP::handleA(Matrix4Event * e) {
     if (this->inv) {
         const Matrix4<double> & m = e->getPayload();
         Matrix4<double> minv;
@@ -117,15 +109,11 @@ void Matrix4InverseMSP::handleM(Matrix4Event * e) {
         }
     }
     
-    if (this->out) {
-        this->out->push(new Matrix4Event(-1, -1, e->getPayload()));
-    }
-    
     delete e;
 }
 
 
-void Matrix4InverseMSP::handleMP(PackedMatrix4Event * e) {
+void Matrix4InverseMSP::handleAP(PackedMatrix4Event * e) {
     if (this->invPacked) {
         const PackedType<Matrix4<double> > & p = e->getPayload();
         const vector<pair<int, Matrix4<double> > > & vm = p.getItems();
@@ -148,10 +136,6 @@ void Matrix4InverseMSP::handleMP(PackedMatrix4Event * e) {
         if(mv.size()) {
             this->invPacked->push(new PackedMatrix4Event(-1, -1, packedMatrix4Inverse));
         }
-    }
-    
-    if (this->outPacked) {
-        this->outPacked->push(new PackedMatrix4Event(-1, -1, e->getPayload()));
     }
     
     delete e;

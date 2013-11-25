@@ -55,18 +55,16 @@ public:
     virtual void registerEventSink(const std::string & name, IEventSink * eventSink);
     virtual const MSPType & getMSPType() const;
 
-    void handleM(Matrix4Event * e);
-    void handleMP(PackedMatrix4Event * e);
+    void handleA(Matrix4Event * e);
+    void handleAP(PackedMatrix4Event * e);
     
 protected:
     MSPConfig config;
     MSPType type;
 
-    EventDelegateNC<Matrix4Event, Matrix4InverseMSP> eventDelegateM;    
-    EventDelegateNC<PackedMatrix4Event, Matrix4InverseMSP> eventDelegateMP;
+    EventDelegateNC<Matrix4Event, Matrix4InverseMSP> eventDelegateA;    
+    EventDelegateNC<PackedMatrix4Event, Matrix4InverseMSP> eventDelegateAP;
     
-    IEventSink * out;
-    IEventSink * outPacked;
     IEventSink * inv;
     IEventSink * invPacked;
 };

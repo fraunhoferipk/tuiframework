@@ -6,22 +6,16 @@
       <MSPTypeSequence>
           <MSPType name="Matrix4Inverse">
             <PortTypeSequence>
-               <PortType name="Aout" sink="0" source="1" typename="Matrix4">
-                  <Description/>
-               </PortType>
                <PortType name="Ainv" sink="0" source="1" typename="Matrix4">
-                  <Description/>
-               </PortType>
-               <PortType name="APout" sink="0" source="1" typename="PackedMatrix4">
                   <Description/>
                </PortType>
                <PortType name="APinv" sink="0" source="1" typename="PackedMatrix4">
                   <Description/>
                </PortType>
-               <PortType name="Ain" sink="1" source="0" typename="Matrix4">
+               <PortType name="A" sink="1" source="0" typename="Matrix4">
                   <Description/>
                </PortType>
-               <PortType name="APin" sink="1" source="0" typename="PackedMatrix4">
+               <PortType name="AP" sink="1" source="0" typename="PackedMatrix4">
                   <Description/>
                </PortType>
             </PortTypeSequence>
