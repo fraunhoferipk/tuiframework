@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--document xmlns:xi='http://www.w3.org/2001/XInclude'-->
+<document xmlns:xi="http://www.w3.org/2001/XInclude">
+   <ServerConfig>
+      <ServerStartupConfig/>
+      <MSPTypeSequence>
+          <MSPType name="Matrix4Duplicate">
+            <PortTypeSequence>
+               <PortType name="A" sink="1" source="0" typename="Matrix4">
+                  <Description/>
+               </PortType>
+               <PortType name="A1" sink="0" source="1" typename="Matrix4">
+                  <Description/>
+               </PortType>
+               <PortType name="A2" sink="0" source="1" typename="Matrix4">
+                  <Description/>
+               </PortType>
+            </PortTypeSequence>
+         </MSPType>
+      </MSPTypeSequence>
+   </ServerConfig>
+</document>
+
