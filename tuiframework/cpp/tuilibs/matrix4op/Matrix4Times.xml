@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--document xmlns:xi='http://www.w3.org/2001/XInclude'-->
+<document xmlns:xi="http://www.w3.org/2001/XInclude">
+   <ServerConfig>
+      <ServerStartupConfig/>
+      <MSPTypeSequence>
+          <MSPType name="Matrix4Times">
+            <PortTypeSequence>
+               <PortType name="A*B" sink="0" source="1" typename="Matrix4">
+                  <Description/>
+               </PortType>
+               <PortType name="A*BP" sink="0" source="1" typename="PackedMatrix4">
+                  <Description/>
+               </PortType>
+               <PortType name="A" sink="1" source="0" typename="Matrix4">
+                  <Description/>
+               </PortType>
+               <PortType name="B" sink="1" source="0" typename="Matrix4">
+                  <Description/>
+               </PortType>
+               <PortType name="BP" sink="1" source="0" typename="PackedMatrix4">
+                  <Description/>
+               </PortType>
+            </PortTypeSequence>
+            <ParameterGroup name="A">
+               <ParameterGroup name="row4">
+                  <Parameter name="col4" value="1"/>
+                  <Parameter name="col3" value="1"/>
+                  <Parameter name="col2" value="1"/>
+                  <Parameter name="col1" value="1"/>
+               </ParameterGroup>
+               <ParameterGroup name="row3">
+                  <Parameter name="col4" value="1"/>
+                  <Parameter name="col3" value="1"/>
+                  <Parameter name="col2" value="1"/>
+                  <Parameter name="col1" value="1"/>
+               </ParameterGroup>
+               <ParameterGroup name="row2">
+                  <Parameter name="col4" value="1"/>
+                  <Parameter name="col3" value="1"/>
+                  <Parameter name="col2" value="1"/>
+                  <Parameter name="col1" value="1"/>
+               </ParameterGroup>
+               <ParameterGroup name="row1">
+                  <Parameter name="col4" value="1"/>
+                  <Parameter name="col3" value="1"/>
+                  <Parameter name="col2" value="1"/>
+                  <Parameter name="col1" value="1"/>
+               </ParameterGroup>
+            </ParameterGroup>
+            <ParameterGroup name="B">
+               <ParameterGroup name="row4">
+                  <Parameter name="col4" value="1"/>
+                  <Parameter name="col3" value="1"/>
+                  <Parameter name="col2" value="1"/>
+                  <Parameter name="col1" value="1"/>
+               </ParameterGroup>
+               <ParameterGroup name="row3">
+                  <Parameter name="col4" value="1"/>
+                  <Parameter name="col3" value="1"/>
+                  <Parameter name="col2" value="1"/>
+                  <Parameter name="col1" value="1"/>
+               </ParameterGroup>
+               <ParameterGroup name="row2">
+                  <Parameter name="col4" value="1"/>
+                  <Parameter name="col3" value="1"/>
+                  <Parameter name="col2" value="1"/>
+                  <Parameter name="col1" value="1"/>
+               </ParameterGroup>
+               <ParameterGroup name="row1">
+                  <Parameter name="col4" value="1"/>
+                  <Parameter name="col3" value="1"/>
+                  <Parameter name="col2" value="1"/>
+                  <Parameter name="col1" value="1"/>
+               </ParameterGroup>
+            </ParameterGroup>
+         </MSPType>
+      </MSPTypeSequence>
+   </ServerConfig>
+</document>
