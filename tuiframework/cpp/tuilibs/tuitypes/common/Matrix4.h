@@ -153,11 +153,20 @@ public:
     
     
     inline static Matrix4<T> product(const Matrix4<T> & a, const Matrix4<T> & b) {
-        Matrix4 c;
+        Matrix4<T> c;
         for (int y = 0; y < 4; ++y) {
             for (int x = 0; x < 4; ++x) {
                 c[y][x] = product(a[y], &b[0][x]);
             }
+        }
+        return c;
+    }
+    
+    
+    inline static Matrix4<T> times(const Matrix4<T> & a, const Matrix4<T> & b) {
+        Matrix4<T> c;
+        for (int i = 0; i < 16; ++i) {
+            c.data[i] = a.data[i]*b.data[i];
         }
         return c;
     }
