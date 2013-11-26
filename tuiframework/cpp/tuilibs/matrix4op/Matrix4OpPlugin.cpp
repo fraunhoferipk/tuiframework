@@ -28,6 +28,10 @@
 #include "Matrix4InverseMSP.h"
 #include "Matrix4MulMSP.h"
 #include "Matrix4TranslMSP.h"
+#include "Matrix4TimesMSP.h"
+#include "Matrix4DuplicateMSP.h"
+#include "Matrix4PackedDuplicateMSP.h"
+
 
 #include <tuiframework/server/MSPFactorySingleton.h>
 
@@ -48,10 +52,16 @@ void soInitPlugin() {
     MSPFactorySingleton::getInstance()->registerCreateFunction(Matrix4InverseMSP::getMSPTypeName(), Matrix4InverseMSP::createFunction);
     MSPFactorySingleton::getInstance()->registerCreateFunction(Matrix4MulMSP::getMSPTypeName(), Matrix4MulMSP::createFunction);
     MSPFactorySingleton::getInstance()->registerCreateFunction(Matrix4TranslMSP::getMSPTypeName(), Matrix4TranslMSP::createFunction);
+    MSPFactorySingleton::getInstance()->registerCreateFunction(Matrix4DuplicateMSP::getMSPTypeName(), Matrix4DuplicateMSP::createFunction);
+    MSPFactorySingleton::getInstance()->registerCreateFunction(Matrix4PackedDuplicateMSP::getMSPTypeName(), Matrix4PackedDuplicateMSP::createFunction);
+    MSPFactorySingleton::getInstance()->registerCreateFunction(Matrix4TimesMSP::getMSPTypeName(), Matrix4TimesMSP::createFunction);    
 
     mspTypeNameVector.push_back(Matrix4InverseMSP::getMSPTypeName());    
     mspTypeNameVector.push_back(Matrix4MulMSP::getMSPTypeName());
     mspTypeNameVector.push_back(Matrix4TranslMSP::getMSPTypeName());
+    mspTypeNameVector.push_back(Matrix4DuplicateMSP::getMSPTypeName());
+    mspTypeNameVector.push_back(Matrix4PackedDuplicateMSP::getMSPTypeName());
+    mspTypeNameVector.push_back(Matrix4TimesMSP::getMSPTypeName());
 }
 
 
@@ -69,6 +79,9 @@ void soMSPRegistration(IMSPFactory * MSPFactory) {
     MSPFactory->registerCreateFunction(Matrix4InverseMSP::getMSPTypeName(), Matrix4InverseMSP::createFunction);
     MSPFactory->registerCreateFunction(Matrix4MulMSP::getMSPTypeName(), Matrix4MulMSP::createFunction);
     MSPFactory->registerCreateFunction(Matrix4TranslMSP::getMSPTypeName(), Matrix4TranslMSP::createFunction);
+    MSPFactory->registerCreateFunction(Matrix4DuplicateMSP::getMSPTypeName(), Matrix4DuplicateMSP::createFunction);
+    MSPFactory->registerCreateFunction(Matrix4PackedDuplicateMSP::getMSPTypeName(), Matrix4PackedDuplicateMSP::createFunction);
+    MSPFactory->registerCreateFunction(Matrix4TimesMSP::getMSPTypeName(), Matrix4TimesMSP::createFunction);    
 }
 
 
