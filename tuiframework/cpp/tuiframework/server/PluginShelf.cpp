@@ -95,15 +95,11 @@ void PluginShelf::scanDirectory(const std::string & path) {
 
 void PluginShelf::scanDirectory(const std::string & path) {
     TFDEBUG(path)
-    TFINFO("-1")
     DIR * d = opendir(path.c_str());
-    TFINFO("0")
     if ( ! d) {
-      TFINFO("1")  
       return;
     }
     
-    TFINFO("2")
     struct dirent * e;
     while (e = readdir(d)) {
         char * s = strstr(e->d_name, ".so");
