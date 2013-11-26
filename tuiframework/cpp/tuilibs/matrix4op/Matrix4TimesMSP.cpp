@@ -119,7 +119,7 @@ const MSPType & Matrix4TimesMSP::getMSPType() const {
 void Matrix4TimesMSP::handleA(Matrix4Event * e) {    
     this->a = e->getPayload();
     if (this->outAB) {
-        this->outAB->push(new Matrix4Event(-1, -1, this->a*this->b));
+        this->outAB->push(new Matrix4Event(-1, -1, Matrix4<double>::times(this->a, this->b)));
     }
     
     delete e;

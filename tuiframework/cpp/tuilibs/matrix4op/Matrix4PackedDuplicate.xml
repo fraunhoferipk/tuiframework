@@ -9,10 +9,10 @@
                <PortType name="AP" sink="1" source="0" typename="PackedMatrix4">
                   <Description/>
                </PortType>
-               <PortType name="A1P" sink="0" source="1" typename="PackedMatrix4">
+               <PortType name="AP1" sink="0" source="1" typename="PackedMatrix4">
                   <Description/>
                </PortType>
-               <PortType name="A2P" sink="0" source="1" typename="PackedMatrix4">
+               <PortType name="AP2" sink="0" source="1" typename="PackedMatrix4">
                   <Description/>
                </PortType>
             </PortTypeSequence>
