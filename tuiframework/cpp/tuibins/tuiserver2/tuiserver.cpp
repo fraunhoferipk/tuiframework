@@ -73,7 +73,11 @@ int main(int argc, char* argv[]) {
     serverApp.tuiServerExecute();
 
     getchar();
-
+    
+    serverApp.tuiServerExit();
+    
+    // todo: delete the instance within the plugin libs 
+    
     return 0;
 }
 

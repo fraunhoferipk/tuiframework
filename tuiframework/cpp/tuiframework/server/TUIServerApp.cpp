@@ -388,6 +388,17 @@ void TUIServerApp::tuiServerExit() {
         (*i).second->deviceStop();
         ++i;
     }
+    
+        //@@TODO make it thread safe
+    if (this->usingMulticast) {
+        this->mcEventSerializer.cancel();
+    }
+    this->eventSerializer.cancel();
+    this->eventDeserializer.cancel();
+    this->udpSenderSocket.cancel();
+    
+    pthread_cancel(this->inputThread);
+    this->udpReceiverSocket.cancel();
 }
 
 
