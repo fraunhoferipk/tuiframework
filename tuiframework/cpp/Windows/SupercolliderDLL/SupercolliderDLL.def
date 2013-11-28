@@ -1,0 +1,10 @@
+LIBRARY "SupercolliderDLL"
+
+EXPORTS
+	soundDllCreateSoundManager	@1
+	soundDllPlay				@2
+	soundDllGetMaxGradations	@3
+	soundDllDeleteSoundManager	@4
+
+
+

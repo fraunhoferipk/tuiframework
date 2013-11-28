@@ -1,0 +1,164 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{0C30B2C6-6FC0-41DF-B6EF-3A85631C74F1}</ProjectGuid>
+    <RootNamespace>TUIFrameworkCore</RootNamespace>
+    <Keyword>Win32Proj</Keyword>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <CharacterSet>Unicode</CharacterSet>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.30319.1</_ProjectFileVersion>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(SolutionDir)$(Configuration)\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(Configuration)\</IntDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(SolutionDir)$(Configuration)\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(Configuration)\</IntDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>$(SolutionDir)\netsrc\Pre-built.2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>true</MinimalRebuild>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <Optimization>MaxSpeed</Optimization>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <AdditionalIncludeDirectories>$(SolutionDir)\netsrc\Pre-built.2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\tuiframework\core\AttachedObjects.cpp" />
+    <ClCompile Include="..\..\tuiframework\core\EPAddress.cpp" />
+    <ClCompile Include="..\..\tuiframework\core\EventChannelFactory.cpp" />
+    <ClCompile Include="..\..\tuiframework\core\EventDeserializer.cpp" />
+    <ClCompile Include="..\..\tuiframework\core\EventFactory.cpp" />
+    <ClCompile Include="..\..\tuiframework\core\EventSerializer.cpp" />
+    <ClCompile Include="..\..\tuiframework\core\EventTerminator.cpp" />
+    <ClCompile Include="..\..\tuiframework\core\Exception.cpp" />
+    <ClCompile Include="..\..\tuiframework\core\GUIDEventTypeIDVector.cpp" />
+    <ClCompile Include="..\..\tuiframework\core\HostAddress.cpp" />
+    <ClCompile Include="..\..\tuiframework\core\HostMsg.cpp" />
+    <ClCompile Include="..\..\tuiframework\core\HostMsgDispatcher.cpp" />
+    <ClCompile Include="..\..\tuiframework\core\ISerializable.cpp" />
+    <ClCompile Include="..\..\tuiframework\logging\Logger.cpp" />
+    <ClCompile Include="..\..\tuiframework\sockets\MulticastListenerWinSock2.cpp" />
+    <ClCompile Include="..\..\tuiframework\core\Port.cpp" />
+    <ClCompile Include="..\..\tuiframework\logging\SStreamSingleton.cpp" />
+    <ClCompile Include="..\..\tuiframework\core\SystemCmd.cpp" />
+    <ClCompile Include="..\..\tuiframework\core\TUIObjectDescriptor.cpp" />
+    <ClCompile Include="..\..\tuiframework\core\TUIObjectInstance.cpp" />
+    <ClCompile Include="..\..\tuiframework\core\TUIObjectType.cpp" />
+    <ClCompile Include="..\..\tuiframework\core\TypeRegistration.cpp" />
+    <ClCompile Include="..\..\tuiframework\sockets\UDPReceiverWinSock2.cpp" />
+    <ClCompile Include="..\..\tuiframework\sockets\UDPSenderWinSock2.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\tuiframework\core\AttachedObjects.h" />
+    <ClInclude Include="..\..\tuiframework\core\EPAddress.h" />
+    <ClInclude Include="..\..\tuiframework\core\EPEventMsg.h" />
+    <ClInclude Include="..\..\tuiframework\core\Event.h" />
+    <ClInclude Include="..\..\tuiframework\core\EventChannel.h" />
+    <ClInclude Include="..\..\tuiframework\core\EventChannelFactory.h" />
+    <ClInclude Include="..\..\tuiframework\core\EventDelegate.h" />
+    <ClInclude Include="..\..\tuiframework\core\EventDeserializer.h" />
+    <ClInclude Include="..\..\tuiframework\core\EventFactory.h" />
+    <ClInclude Include="..\..\tuiframework\core\EventMsg.h" />
+    <ClInclude Include="..\..\tuiframework\core\EventMsgRouter.h" />
+    <ClInclude Include="..\..\tuiframework\core\EventQueue.h" />
+    <ClInclude Include="..\..\tuiframework\core\EventRouter.h" />
+    <ClInclude Include="..\..\tuiframework\core\EventSerializer.h" />
+    <ClInclude Include="..\..\tuiframework\core\EventTerminator.h" />
+    <ClInclude Include="..\..\tuiframework\core\Exception.h" />
+    <ClInclude Include="..\..\tuiframework\core\Factory.h" />
+    <ClInclude Include="..\..\tuiframework\core\FactoryDS.h" />
+    <ClInclude Include="..\..\tuiframework\core\GUIDEventTypeIDVector.h" />
+    <ClInclude Include="..\..\tuiframework\core\HostAddress.h" />
+    <ClInclude Include="..\..\tuiframework\core\HostEventMsg.h" />
+    <ClInclude Include="..\..\tuiframework\core\HostMsg.h" />
+    <ClInclude Include="..\..\tuiframework\core\HostMsgDispatcher.h" />
+    <ClInclude Include="..\..\tuiframework\core\HostMsgQueue.h" />
+    <ClInclude Include="..\..\tuiframework\core\IDevice.h" />
+    <ClInclude Include="..\..\tuiframework\core\IEvent.h" />
+    <ClInclude Include="..\..\tuiframework\core\IEventChannel.h" />
+    <ClInclude Include="..\..\tuiframework\core\IEventChannelFactory.h" />
+    <ClInclude Include="..\..\tuiframework\core\IEventFactory.h" />
+    <ClInclude Include="..\..\tuiframework\core\IEventMsg.h" />
+    <ClInclude Include="..\..\tuiframework\core\IEventProcessor.h" />
+    <ClInclude Include="..\..\tuiframework\core\IEventSink.h" />
+    <ClInclude Include="..\..\tuiframework\core\IEventSource.h" />
+    <ClInclude Include="..\..\tuiframework\core\IHostMsgSink.h" />
+    <ClInclude Include="..\..\tuiframework\core\IHostMsgSource.h" />
+    <ClInclude Include="..\..\tuiframework\core\IMSP.h" />
+    <ClInclude Include="..\..\tuiframework\core\ISerializable.h" />
+    <ClInclude Include="..\..\tuiframework\core\ISerializedDataSink.h" />
+    <ClInclude Include="..\..\tuiframework\core\ISerializedDataSource.h" />
+    <ClInclude Include="..\..\tuiframework\core\IThreadMessageSink.h" />
+    <ClInclude Include="..\..\tuiframework\core\ITUIServer.h" />
+    <ClInclude Include="..\..\tuiframework\logging\Logger.h" />
+    <ClInclude Include="..\..\tuiframework\sockets\MulticastListenerWinSock2.h" />
+    <ClInclude Include="..\..\tuiframework\core\Multiton.h" />
+    <ClInclude Include="..\..\tuiframework\core\Port.h" />
+    <ClInclude Include="..\..\tuiframework\core\Queue.h" />
+    <ClInclude Include="..\..\tuiframework\core\SerializedDataQueue.h" />
+    <ClInclude Include="..\..\tuiframework\core\Singleton.h" />
+    <ClInclude Include="..\..\tuiframework\logging\SStreamSingleton.h" />
+    <ClInclude Include="..\..\tuiframework\core\SystemCmd.h" />
+    <ClInclude Include="..\..\tuiframework\core\TUIObjectDescriptor.h" />
+    <ClInclude Include="..\..\tuiframework\core\TUIObjectInstance.h" />
+    <ClInclude Include="..\..\tuiframework\core\TUIObjectType.h" />
+    <ClInclude Include="..\..\tuiframework\core\TypeRegistration.h" />
+    <ClInclude Include="..\..\tuiframework\sockets\UDPReceiverWinSock2.h" />
+    <ClInclude Include="..\..\tuiframework\sockets\UDPSenderWinSock2.h" />
+    <ClInclude Include="..\..\tuiframework\core\Version.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ReadMe.txt" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

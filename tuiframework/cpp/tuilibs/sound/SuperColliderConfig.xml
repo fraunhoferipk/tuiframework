@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--document xmlns:xi='http://www.w3.org/2001/XInclude'-->
+<document xmlns:xi="http://www.w3.org/2001/XInclude">
+   <ServerConfig>
+      <ServerStartupConfig/>
+      <DeviceTypeSequence>
+         <Image path="images/TUI1.png"/>
+         <DeviceType name="SoundDevice">
+            <PortTypeSequence>
+               <PortType name="RoughnessVector" sink="1" source="0" typename="VectorList3dChannel">
+                  <Description/>
+               </PortType>
+            </PortTypeSequence>
+			      <ParameterGroup name="cfgfile">
+				        <Parameter name="Path" value="c:\git\tuiframework\tuiframework\cpp\tuilibs\sound\"/>
+				        <Parameter name="CfgFilename" value="friction.cfg"/>
+				        <Parameter name="GradationFilename" value="frictionSpeedGradations.cfg"/>
+			      </ParameterGroup>
+         </DeviceType>
+      </DeviceTypeSequence>
+      <MSPTypeSequence>
+         <Image path="images/DefaultMSP.png"/>
+      </MSPTypeSequence>
+      <TUIObjectTypeSequence>
+         <Image path="images/TUI1.png"/>
+         <TUIObjectType name="SuperCollider">
+            <PortTypeSequence>
+               <PortType name="VectorList3dPort" sink="1" source="0" typename="VectorList3dChannel">
+                  <Description/>
+               </PortType>
+            </PortTypeSequence>
+         </TUIObjectType>
+      </TUIObjectTypeSequence>
+      <DeviceInstanceSequence>
+         <DeviceInstance name="OversketchSoundDevice" typename="SoundDevice">
+			      <ParameterGroup name="cfgfile">
+				        <Parameter name="Path" value="c:\git\tuiframework\tuiframework\cpp\tuilibs\sound\"/>
+				        <Parameter name="CfgFilename" value="friction.cfg"/>
+				        <Parameter name="GradationFilename" value="frictionSpeedGradations.cfg"/>
+			      </ParameterGroup>
+		     </DeviceInstance>
+      </DeviceInstanceSequence>
+      <MSPInstanceSequence/>
+      <TUIObjectInstanceSequence>
+         <TUIObjectInstance name="SuperColliderTUI" typename="SuperCollider"/>
+      </TUIObjectInstanceSequence>
+      <ConnectorSequence>
+         <Connector>
+            <SrcAddress entityName="SuperColliderTUI" entityType="TUI" portName="VectorList3dPort"/>
+            <DstAddress entityName="OversketchSoundDevice" entityType="DEV" portName="RoughnessVector"/>
+         </Connector>
+      </ConnectorSequence>
+   </ServerConfig>
+</document>

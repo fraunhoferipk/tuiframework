@@ -73,13 +73,13 @@ std::istream & VectorList3d::deSerialize(std::istream & is) {
     m_vectorList.clear();
     
     is >> i;
-    std::cout << "==========> vector size" << i << std::endl;
+    //std::cout << "==========> vector size" << i << std::endl;
 
     
     while (i != 0) {
         Vector3d v;
         v.deSerialize(is);
-        std::cout << "==========> " << v << std::endl;
+        //std::cout << "==========> " << v << std::endl;
         this->m_vectorList.push_back(v);
         --i;
     }
@@ -100,9 +100,11 @@ double VectorList3d::getAverageAngleChange(){
         sum = 0.0;
         ctr = 0;
 
-        std::vector<Vector3d>::const_iterator i = m_directionVectorList.begin();    
-        std::vector<Vector3d>::const_iterator e = m_directionVectorList.end() - 1;    
-        while (i != e) {
+		if(m_directionVectorList.size() > 3){
+
+			std::vector<Vector3d>::const_iterator i = m_directionVectorList.begin(); 
+			std::vector<Vector3d>::const_iterator e = m_directionVectorList.end();    
+			while ((i + 1) != e) {
 
                 Vector3d firstVector = Vector3d((*(i)).getX(), (*(i)).getY(), (*(i)).getZ());
                 Vector3d secondVector = Vector3d((*(i+1)).getX(), (*(i+1)).getY(), (*(i+1)).getZ());
@@ -130,33 +132,48 @@ double VectorList3d::getAverageAngleChange(){
                 ctr++;
                 
                 ++i;
-        }
+			}
+
         
-        return sum / ctr;
+			return sum / ctr;
+		}else{
+			return sum;
+		}
 
 }
 
-void VectorList3d::computeDirections(){
+int VectorList3d::computeDirections(){
         
         m_directionVectorList = std::vector<Vector3d>();
         
         double dx, dy, dz;
         double x1, y1, z1, x2, y2, z2;
         
+		int numRemoved = 0;
+
         std::vector<Vector3d>::const_iterator i = m_vectorList.begin();    
-        std::vector<Vector3d>::const_iterator e = m_vectorList.end() - 1;    
+        std::vector<Vector3d>::const_iterator e = m_vectorList.end() - 1;
         while (i != e) {
 
                 Vector3d destinationVector = Vector3d((*(i+1)).getX(), (*(i+1)).getY(), (*(i+1)).getZ());
                 
                 destinationVector.subtract(*i);
                 
-                m_directionVectorList.push_back(Vector3d(destinationVector.getX(), destinationVector.getY(), destinationVector.getZ()));
+				//only append if there is substantial enough change in position
+				if(std::abs(destinationVector.getX()) > 0.0001 || std::abs(destinationVector.getZ()) > 0.0001 || std::abs(destinationVector.getZ()) > 0.0001){
+
+					m_directionVectorList.push_back(Vector3d(destinationVector.getX(), destinationVector.getY(), destinationVector.getZ()));
+
+				}else{
+				
+					numRemoved = numRemoved + 1;
+				}
                 
                 
                 ++i;
         }       
         
+		return numRemoved;
         //std::cout << "number of directions are: " << m_directionVectorList.size() << std::endl;
 
 }

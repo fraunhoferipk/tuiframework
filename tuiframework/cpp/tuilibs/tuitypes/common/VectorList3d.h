@@ -29,6 +29,7 @@
 
 #include <tuiframework/core/ISerializable.h>
 #include <vector>
+#include <cmath>
 #include "Vector3d.h"
 
 /**
@@ -74,7 +75,7 @@ public:
     /**
     * @computes difference between pairs of vectors, and places results in m_directionVectorList
     */
-    void computeDirections();
+    int computeDirections();
     
     /**
     * @returns average of angle changes (a metric between 0 to 1: 0 is smooth, 1 is rough)

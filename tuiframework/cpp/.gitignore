@@ -1,0 +1,56 @@
+# Compiled Object files
+*.slo
+*.lo
+*.o
+
+# Compiled Dynamic libraries
+*.so
+*.dylib
+
+# Compiled Static libraries
+*.lai
+*.la
+*.a
+
+# Linux
+*~
+Makefile
+Makefile.in
+aclocal.m4
+autom4te.cache/
+config.guess
+config.h
+config.h.in
+config.log
+config.status
+config.sub
+configure
+depcomp
+install-sh
+libtool
+ltmain.sh
+m4/libtool.m4
+m4/ltoptions.m4
+m4/ltsugar.m4
+m4/ltversion.m4
+m4/lt~obsolete.m4
+missing
+stamp-h1
+tuibins/.deps/
+tuibins/.libs/
+tuibins/Makefile
+tuibins/Makefile.in
+tuibins/testtuiclient1
+tuibins/testtuiclient2
+tuibins/testtuimcclient
+tuibins/testtuimouseclient
+tuibins/testtuiserver1
+tuibins/testtuiserver2
+tuiframework/.deps/
+tuiframework/Makefile
+tuiframework/Makefile.in
+tuilibs/.deps/
+tuilibs/.libs/
+tuilibs/Makefile
+tuilibs/Makefile.in
+

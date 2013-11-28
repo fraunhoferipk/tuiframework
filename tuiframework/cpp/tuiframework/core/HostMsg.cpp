@@ -30,8 +30,9 @@ using namespace std;
 
 namespace tuiframework {
 
-HostMsg::HostMsg() :
-    data(0, 0) {
+HostMsg::HostMsg() {
+	data.first = 0;
+	data.second = 0;
 }
 
 

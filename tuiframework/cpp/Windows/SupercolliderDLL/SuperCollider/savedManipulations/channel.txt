@@ -1,0 +1,104 @@
+Friction = 
+{
+	tensorContent = (
+		{ elaboratedDimension = 2;
+		fixDimensions = (1, 1, 0);
+		values = (3.0, 0.9, 0.986409, 17.7778, 0.126384, 0.406346);
+		},
+
+		{ elaboratedDimension = 2;
+		fixDimensions = (1, 2, 0);
+		values = (1.0, 0.9, 0.0, 1.0, 0.0, 0.0);
+		},
+
+		{ elaboratedDimension = 2;
+		fixDimensions = (2, 1, 0);
+		values = (3.0, 0.9, 5.0, 3.0, 0.1, 0.2);
+		},
+
+		{ elaboratedDimension = 2;
+		fixDimensions = (2, 2, 0);
+		values = (1.0, 0.9, 5.0, 3.0, 0.1, 0.2);
+		},
+
+		{ elaboratedDimension = 2;
+		fixDimensions = (3, 1, 0);
+		values = (3.0, 0.5, 9.0, 9.0, 0.2, 0.5);
+		},
+
+		{ elaboratedDimension = 2;
+		fixDimensions = (3, 2, 0);
+		values = (1.0, 0.5, 9.0, 9.0, 0.2, 0.5);
+		},
+
+		{ elaboratedDimension = 2;
+		fixDimensions = (4, 1, 0);
+		values = (3.0, 0.5, 9.0, 20.0, 0.3, 0.8);
+		},
+
+		{ elaboratedDimension = 2;
+		fixDimensions = (4, 2, 0);
+		values = (1.0, 0.5, 9.0, 20.0, 0.3, 0.8);
+		},
+
+		{ elaboratedDimension = 2;
+		fixDimensions = (5, 1, 0);
+		values = (3.0, 0.9, 0.0, 30.0, 0.4, 1.2);
+		},
+
+		{ elaboratedDimension = 2;
+		fixDimensions = (5, 2, 0);
+		values = (1.0, 0.9, 0.0, 30.0, 0.4, 1.2);
+		},
+
+		{ elaboratedDimension = 2;
+		fixDimensions = (6, 1, 0);
+		values = (3.0, 0.9, 5.0, 50.0, 0.5, 1.6);
+		},
+
+		{ elaboratedDimension = 2;
+		fixDimensions = (6, 2, 0);
+		values = (1.0, 0.9, 5.0, 50.0, 0.5, 1.6);
+		},
+
+		{ elaboratedDimension = 2;
+		fixDimensions = (7, 1, 0);
+		values = (3.0, 0.5, 9.0, 90.0, 0.6, 1.9);
+		},
+
+		{ elaboratedDimension = 2;
+		fixDimensions = (7, 2, 0);
+		values = (1.0, 0.5, 9.0, 90.0, 0.6, 1.9);
+		},
+
+		{ elaboratedDimension = 2;
+		fixDimensions = (8, 1, 0);
+		values = (3.0, 0.5, 9.0, 100.0, 0.7, 2.2);
+		},
+
+		{ elaboratedDimension = 2;
+		fixDimensions = (8, 2, 0);
+		values = (1.0, 0.5, 9.0, 100.0, 0.7, 2.2);
+		},
+
+		{ elaboratedDimension = 2;
+		fixDimensions = (9, 1, 0);
+		values = (3.0, 0.9, 0.0, 110.0, 0.8, 2.6);
+		},
+
+		{ elaboratedDimension = 2;
+		fixDimensions = (9, 2, 0);
+		values = (1.0, 0.9, 0.0, 110.0, 0.8, 2.6);
+		},
+
+		{ elaboratedDimension = 2;
+		fixDimensions = (10, 1, 0);
+		values = (3.0, 0.9, 5.0, 120.0, 0.9, 3.0);
+		},
+
+		{ elaboratedDimension = 2;
+		fixDimensions = (10, 2, 0);
+		values = (1.0, 0.9, 5.0, 120.0, 0.9, 3.0);
+		}
+	);
+};

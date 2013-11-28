@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--document xmlns:xi='http://www.w3.org/2001/XInclude'-->
+<document xmlns:xi="http://www.w3.org/2001/XInclude">
+   <ServerConfig>
+      <ServerStartupConfig/>
+      <DeviceTypeSequence>
+         <Image path="images/TUI1.png"/>
+         <DeviceType name="RFCommDevice">
+            <PortTypeSequence>
+               <PortType name="DOUT8" sink="0" source="1" typename="DigitalChannel">
+                  <Description/>
+               </PortType>
+               <PortType name="DOUT7" sink="0" source="1" typename="DigitalChannel">
+                  <Description/>
+               </PortType>
+               <PortType name="DOUT6" sink="0" source="1" typename="DigitalChannel">
+                  <Description/>
+               </PortType>
+               <PortType name="DOUT5" sink="0" source="1" typename="DigitalChannel">
+                  <Description/>
+               </PortType>
+               <PortType name="DOUT4" sink="0" source="1" typename="DigitalChannel">
+                  <Description/>
+               </PortType>
+               <PortType name="DOUT3" sink="0" source="1" typename="DigitalChannel">
+                  <Description/>
+               </PortType>
+               <PortType name="DOUT2" sink="0" source="1" typename="DigitalChannel">
+                  <Description/>
+               </PortType>
+               <PortType name="AOUT8" sink="0" source="1" typename="AnalogChannel">
+                  <Description/>
+               </PortType>
+               <PortType name="AOUT7" sink="0" source="1" typename="AnalogChannel">
+                  <Description/>
+               </PortType>
+               <PortType name="DOUT1" sink="0" source="1" typename="DigitalChannel">
+                  <Description/>
+               </PortType>
+               <PortType name="AOUT6" sink="0" source="1" typename="AnalogChannel">
+                  <Description/>
+               </PortType>
+               <PortType name="AOUT5" sink="0" source="1" typename="AnalogChannel">
+                  <Description/>
+               </PortType>
+               <PortType name="AOUT4" sink="0" source="1" typename="AnalogChannel">
+                  <Description/>
+               </PortType>
+               <PortType name="AOUT3" sink="0" source="1" typename="AnalogChannel">
+                  <Description/>
+               </PortType>
+               <PortType name="AOUT2" sink="0" source="1" typename="AnalogChannel">
+                  <Description/>
+               </PortType>
+               <PortType name="AOUT1" sink="0" source="1" typename="AnalogChannel">
+                  <Description/>
+               </PortType>
+            </PortTypeSequence>
+            <ParameterTypeDefSequence/>
+            <ParameterTypeSequence/>
+         </DeviceType>
+         <DeviceType name="DTrackDevice">
+            <PortTypeSequence>
+               <PortType name="M4OUT8" sink="0" source="1" typename="Matrix4Channel">
+                  <Description/>
+               </PortType>
+               <PortType name="M4OUT7" sink="0" source="1" typename="Matrix4Channel">
+                  <Description/>
+               </PortType>
+               <PortType name="M4OUT6" sink="0" source="1" typename="Matrix4Channel">
+                  <Description/>
+               </PortType>
+               <PortType name="M4OUT5" sink="0" source="1" typename="Matrix4Channel">
+                  <Description/>
+               </PortType>
+               <PortType name="M4OUT4" sink="0" source="1" typename="Matrix4Channel">
+                  <Description/>
+               </PortType>
+               <PortType name="M4OUT3" sink="0" source="1" typename="Matrix4Channel">
+                  <Description/>
+               </PortType>
+               <PortType name="M4OUT2" sink="0" source="1" typename="Matrix4Channel">
+                  <Description/>
+               </PortType>
+               <PortType name="M4OUT1" sink="0" source="1" typename="Matrix4Channel">
+                  <Description/>
+               </PortType>
+            </PortTypeSequence>
+            <ParameterTypeDefSequence/>
+            <ParameterTypeSequence/>
+         </DeviceType>
+         <DeviceType name="SoundDevice">
+            <PortTypeSequence>
+               <PortType name="RoughnessVector" sink="1" source="0" typename="VectorList3dChannel">
+                  <Description/>
+               </PortType>
+            </PortTypeSequence>
+         </DeviceType>
+      </DeviceTypeSequence>
+      <MSPTypeSequence>
+         <Image path="images/DefaultMSP.png"/>
+      </MSPTypeSequence>
+      <TUIObjectTypeSequence>
+         <Image path="images/TUI1.png"/>
+         <TUIObjectType name="HeadtrackToolART">
+            <PortTypeSequence>
+               <PortType name="Transf" sink="0" source="1" typename="Matrix4Channel">
+                  <Description/>
+               </PortType>
+            </PortTypeSequence>
+         </TUIObjectType>
+         <TUIObjectType name="SuperCollider">
+            <PortTypeSequence>
+               <PortType name="VectorList3dPort" sink="1" source="0" typename="VectorList3dChannel">
+                  <Description/>
+               </PortType>
+            </PortTypeSequence>
+         </TUIObjectType>
+         <TUIObjectType name="BezierToolART">
+            <PortTypeSequence>
+               <PortType name="TransfLeft" sink="0" source="1" typename="Matrix4Channel">
+                  <Description/>
+               </PortType>
+               <PortType name="TransfRight" sink="0" source="1" typename="Matrix4Channel">
+                  <Description/>
+               </PortType>
+               <PortType name="Draw" sink="0" source="1" typename="DigitalChannel">
+                  <Description/>
+               </PortType>
+            </PortTypeSequence>
+         </TUIObjectType>
+         <TUIObjectType name="TongsToolART">
+            <PortTypeSequence>
+               <PortType name="Menu" sink="0" source="1" typename="DigitalChannel">
+                  <Description/>
+               </PortType>
+               <PortType name="Transf" sink="0" source="1" typename="Matrix4Channel">
+                  <Description/>
+               </PortType>
+               <PortType name="Grab" sink="0" source="1" typename="DigitalChannel">
+                  <Description/>
+               </PortType>
+            </PortTypeSequence>
+         </TUIObjectType>
+         <TUIObjectType name="StrokeToolART">
+            <PortTypeSequence>
+               <PortType name="Width" sink="0" source="1" typename="AnalogChannel">
+                  <Description/>
+               </PortType>
+               <PortType name="Menu" sink="0" source="1" typename="DigitalChannel">
+                  <Description/>
+               </PortType>
+               <PortType name="Transf" sink="0" source="1" typename="Matrix4Channel">
+                  <Description/>
+               </PortType>
+            </PortTypeSequence>
+         </TUIObjectType>
+      </TUIObjectTypeSequence>
+      <DeviceInstanceSequence>
+          <DeviceInstance name="OversketchSoundDevice" typename="SoundDevice">
+            <ParameterGroup name="cfgfile">
+              <Parameter name="Path" value="c:\git\tuiframework\tuiframework\cpp\tuilibs\sound\"/>
+              <Parameter name="CfgFilename" value="friction.cfg"/>
+              <Parameter name="GradationFilename" value="frictionSpeedGradations.cfg"/>
+            </ParameterGroup>
+          </DeviceInstance>
+           
+         <DeviceInstance name="SignalDeviceTongs" typename="RFCommDevice">
+            <ParameterGroup name="Config">
+               <Parameter name="Channel" value="/dev/rfcomm1"/>
+            </ParameterGroup>
+         </DeviceInstance>
+         <DeviceInstance name="SignalDeviceBezier" typename="RFCommDevice">
+            <ParameterGroup name="Config">
+               <Parameter name="Channel" value="/dev/rfcomm2"/>
+            </ParameterGroup>
+         </DeviceInstance>
+         <DeviceInstance name="SignalDevicePen" typename="RFCommDevice">
+            <ParameterGroup name="Config">
+               <Parameter name="Channel" value="/dev/rfcomm0"/>
+            </ParameterGroup>
+         </DeviceInstance>
+         <DeviceInstance name="TrackerDevice2" typename="DTrackDevice">
+            <ParameterGroup name="Server">
+               <Parameter name="IPAddress" value="100.100.100.131"/>
+            </ParameterGroup>
+         </DeviceInstance>
+      </DeviceInstanceSequence>
+      <MSPInstanceSequence/>
+      <TUIObjectInstanceSequence>
+         <TUIObjectInstance name="SuperColliderTUI" typename="SuperCollider"/>
+         <TUIObjectInstance name="MyStrokeToolART" typename="StrokeToolART"/>
+         <TUIObjectInstance name="MyBezierToolART" typename="BezierToolART"/>
+         <TUIObjectInstance name="MyTongsToolART" typename="TongsToolART"/>
+         <TUIObjectInstance name="MyHeadtrackToolART" typename="HeadtrackToolART"/>
+      </TUIObjectInstanceSequence>
+      <ConnectorSequence>
+         <Connector>
+            <SrcAddress entityName="TrackerDevice2" entityType="DEV" portName="M4OUT1"/>
+            <DstAddress entityName="MyHeadtrackToolART" entityType="TUI" portName="Transf"/>
+         </Connector>
+         <Connector>
+            <SrcAddress entityName="TrackerDevice2" entityType="DEV" portName="M4OUT5"/>
+            <DstAddress entityName="MyStrokeToolART" entityType="TUI" portName="Transf"/>
+         </Connector>
+         <Connector>
+            <SrcAddress entityName="SignalDevicePen" entityType="DEV" portName="AOUT1"/>
+            <DstAddress entityName="MyStrokeToolART" entityType="TUI" portName="Width"/>
+         </Connector>
+         <Connector>
+            <SrcAddress entityName="SignalDevicePen" entityType="DEV" portName="DOUT1"/>
+            <DstAddress entityName="MyStrokeToolART" entityType="TUI" portName="Menu"/>
+         </Connector>
+         <Connector>
+            <SrcAddress entityName="TrackerDevice2" entityType="DEV" portName="M4OUT4"/>
+            <DstAddress entityName="MyTongsToolART" entityType="TUI" portName="Transf"/>
+         </Connector>
+         <Connector>
+            <SrcAddress entityName="SignalDeviceTongs" entityType="DEV" portName="DOUT1"/>
+            <DstAddress entityName="MyTongsToolART" entityType="TUI" portName="Grab"/>
+         </Connector>
+         <Connector>
+            <SrcAddress entityName="SignalDeviceTongs" entityType="DEV" portName="DOUT2"/>
+            <DstAddress entityName="MyTongsToolART" entityType="TUI" portName="Menu"/>
+         </Connector>
+         <Connector>
+            <SrcAddress entityName="TrackerDevice2" entityType="DEV" portName="M4OUT6"/>
+            <DstAddress entityName="MyBezierToolART" entityType="TUI" portName="TransfRight"/>
+         </Connector>
+         <Connector>
+            <SrcAddress entityName="TrackerDevice2" entityType="DEV" portName="M4OUT7"/>
+            <DstAddress entityName="MyBezierToolART" entityType="TUI" portName="TransfLeft"/>
+         </Connector>
+         <Connector>
+            <SrcAddress entityName="SignalDeviceBezier" entityType="DEV" portName="DOUT1"/>
+            <DstAddress entityName="MyBezierToolART" entityType="TUI" portName="Draw"/>
+         </Connector>
+         <Connector>
+            <SrcAddress entityName="SuperColliderTUI" entityType="TUI" portName="VectorList3dPort"/>
+            <DstAddress entityName="OversketchSoundDevice" entityType="DEV" portName="RoughnessVector"/>
+         </Connector>
+      </ConnectorSequence>
+   </ServerConfig>
+</document>
