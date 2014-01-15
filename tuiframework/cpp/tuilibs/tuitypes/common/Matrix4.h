@@ -58,11 +58,17 @@ public:
     inline void setIdentity() {
         for (int y = 0; y < 4; ++y) {
             for (int x = 0; x < 4; ++x) {
-                this->data[y][x] = x == y ? 1 : 0;
+                (*this)[y][x] = x == y ? 1 : 0;
             }
         }
     }
     
+    
+    inline void setZero() {
+        for (int i = 0; i < 16; ++i) {
+            this->data[i] = 0;
+        }
+    }
     
         /// index from 0 to 3
     inline void setRow(int index, T r1, T r2, T r3, T r4) {
@@ -80,6 +86,52 @@ public:
         this->data[index + 8] = c3;
         this->data[index + 12] = c4;
     }
+    
+        /// index from 0 to 3
+    inline T getColumnAbs(int index, int dim) const {
+        T a = 0;
+        for (int i = 0; i < dim; ++i) {
+            a += this->data[index + 4*i]*this->data[index + 4*i];
+        }
+        return static_cast<T>(sqrt(a));
+    }
+    
+        /// index from 0 to 3, dim from 1 to 4
+    inline T getRowAbs(int index, int dim) const {
+        T a = 0;
+        for (int i = 0; i < dim; ++i) {
+            a += this->data[index*4 + i]*this->data[index*4 + i];
+        }
+        return static_cast<T>(sqrt(a));
+    }
+    
+        /// index from 0 to 3, dim from 1 to 4
+    inline void scaleColumnAbs(int index, int dim, T factor) {
+        
+        T a = getColumnAbs(index, dim);
+        if (a < 0.001) {
+            return;
+        }
+        
+        T f = factor/a;
+        for (int i = 0; i < dim; ++i) {
+            this->data[index + 4*i] *= f;
+        }
+    }
+    
+        /// index from 0 to 3, dim from 1 to 4
+    inline void scaleRowAbs(int index, int dim, T factor) {
+        
+        T a = getRowAbs(index, dim);
+        if (a < 0.001) {
+            return;
+        }
+        
+        T f = factor/a;
+        for (int i = 0; i < dim; ++i) {
+            this->data[index*4 + i] *= f;
+        }
+    }    
     
     
     inline T getCofactor(int x, int y) const {
@@ -115,6 +167,17 @@ public:
             }
         }
         return adjoint;
+    }
+    
+    
+    inline T getDeterminant() const {
+        Matrix4<T> adjoint = this->getAdjoint();
+        T det = 0;
+        int x = 0;
+        for (int y = 0; y < 4; ++y) {
+            det += (*this)[y][0]*adjoint[0][y];
+        }
+        return det;
     }
     
     
@@ -200,6 +263,22 @@ public:
         return is;
     }
     
+    
+    inline Matrix4<T> & operator +=(const Matrix4<T> & a) {
+        for (int i = 0; i < 16; ++i) {
+            this->data[i] -= a.data[i];
+        }
+        return *this;
+    }
+    
+    
+    inline Matrix4<T> & operator -=(const Matrix4<T> & a) {
+        for (int i = 0; i < 16; ++i) {
+            this->data[i] -= a.data[i];
+        }
+        return *this;
+    }
+    
 private:
     /// comlumn wise
     T data[16];
@@ -210,6 +289,8 @@ template <typename T>
 inline Matrix4<T> operator *(const Matrix4<T> & a, const Matrix4<T> & b) {
     return Matrix4<T>::product(a, b);
 }
+
+
 
 #endif
 
