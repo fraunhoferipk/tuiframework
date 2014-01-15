@@ -76,14 +76,14 @@ public:
         /// cleanupAfterWaitCanceled should be called to unlock the mutex
         /// which is set after the conditional wait is canceled.
     void cleanupAfterWaitCanceled() {
-		pthread_cond_signal(&this->condition);
-    	pthread_mutex_unlock(&this->mutex);
-		/*
+        pthread_cond_signal(&this->condition);
+        pthread_mutex_unlock(&this->mutex);
+        /*
         pthread_cond_destroy(&this->condition);
         pthread_mutex_destroy(&this->mutex);
         pthread_mutex_init(&this->mutex, NULL);
         pthread_cond_init(&this->condition, NULL);
-		*/
+        */
     }
 
         /// Data of type T is pushed in the Queue.

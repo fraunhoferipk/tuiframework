@@ -129,6 +129,7 @@ void Matrix4MulMSP::handleA(Matrix4Event * e) {
     if (this->outAB) {
         this->outAB->push(new Matrix4Event(-1, -1, this->a*this->b));
     }
+    
     delete e;
 }
 
@@ -138,6 +139,7 @@ void Matrix4MulMSP::handleB(Matrix4Event * e) {
     if (this->outAB) {
         this->outAB->push(new Matrix4Event(-1, -1, this->a*this->b));
     }
+    
     delete e;
 }
 
@@ -160,6 +162,7 @@ void Matrix4MulMSP::handleAP(PackedMatrix4Event * e) {
 
         this->outAPackedB->push(new PackedMatrix4Event(-1, -1, p2));
     }
+    
     delete e;
 }
 
@@ -182,6 +185,7 @@ void Matrix4MulMSP::handleBP(PackedMatrix4Event * e) {
         
         this->outABPacked->push(new PackedMatrix4Event(-1, -1, p2));
     }
+
     delete e;
 }
 
@@ -207,4 +211,5 @@ void Matrix4MulMSP::initMatrix(const ParameterGroup & parameterGroup, Matrix4<do
 
 
 }
+
 

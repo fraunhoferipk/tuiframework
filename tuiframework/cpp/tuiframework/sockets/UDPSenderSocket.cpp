@@ -117,7 +117,7 @@ void UDPSenderSocket::run() {
             dst_sin.sin_addr.s_addr = htonl(hostMsg->getHostAddress().getIPAddress());
             sendto(sfd, hostMsg->getData().first, hostMsg->getData().second, 0, (struct sockaddr *)&dst_sin, sizeof(dst_sin));
 
-            TFDEBUG(hostMsg->getHostAddress().toString() << " " << hostMsg->getData().first);
+            //TFDEBUG(hostMsg->getHostAddress().toString() << " " << hostMsg->getData().first);
             //std::cout << "sender socket: " << hostMsg->getHostAddress().toString() << std::endl;
 
             delete hostMsg;
