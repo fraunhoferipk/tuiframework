@@ -80,12 +80,33 @@ public:
     }
     
     
+    inline static Vector3<T> scale(const T & a, const Vector3<T> & b) {
+        return Vector3<T>(a*b[0], a*b[1], a*b[2]);
+    }
+    
+    
     inline static Vector3<T> crossProduct(const Vector3<T> & a, const Vector3<T> & b) {
         Vector3<T> c;
         c[0] = a[1]*b[2] - a[2]*b[1];
         c[1] = a[2]*b[0] - a[0]*b[2];
         c[2] = a[0]*b[1] - a[1]*b[0];
         return c;
+    }
+    
+    
+    inline Vector3<T> & operator +=(const Vector3<T> & a) {
+        for (int i = 0; i < 4; ++i) {
+            this->data[i] += a.data[i];
+        }
+        return *this;
+    }
+    
+    
+    inline Vector3<T> & operator -=(const Vector3<T> & a) {
+        for (int i = 0; i < 4; ++i) {
+            this->data[i] -= a.data[i];
+        }
+        return *this;
     }
     
     
@@ -112,8 +133,42 @@ private:
 
 
 template <typename T>
-inline Vector3<T> operator *(const Vector3<T> & a, const Vector3<T> & b) {
+inline T operator *(const Vector3<T> & a, const Vector3<T> & b) {
     return Vector3<T>::dotProduct(a, b);
 }
+
+
+template <typename T>
+inline Vector3<T> operator *(const T & a, const Vector3<T> & b) {
+    return Vector3<T>::scale(a, b);
+}
+
+
+template <typename T>
+inline Vector3<T> operator *(const Vector3<T> & b, const T & a) {
+    return Vector3<T>::scale(a, b);
+}
+
+
+template <typename T>
+inline Vector3<T> operator +(const Vector3<T> & a, const Vector3<T> & b) {
+    Vector3<T> c;
+    c[0] = a[0] + b[0];
+    c[1] = a[1] + b[1];
+    c[2] = a[2] + b[2];
+    return c;
+}
+
+
+template <typename T>
+inline Vector3<T> operator -(const Vector3<T> & a, const Vector3<T> & b) {
+    Vector3<T> c;
+    c[0] = a[0] - b[0];
+    c[1] = a[1] - b[1];
+    c[2] = a[2] - b[2];
+    return c;
+}
+
+
 
 #endif
