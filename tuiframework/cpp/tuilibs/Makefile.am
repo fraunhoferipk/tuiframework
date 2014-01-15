@@ -374,3 +374,23 @@ libVRPNTUIDevicexml_DATA = \
 
 libVRPNTUIDevicexmldir = $(datadir)/@PACKAGE@
 
+################################
+
+lib_LTLIBRARIES += libMatrix4CalibrationDev.la
+libMatrix4CalibrationDev_la_CXXFLAGS = -fPIC -rdynamic -c -I$(INCDIR) -ggdb -g -O3
+libMatrix4CalibrationDev_la_LIBADD = -lCommonTUITypes -lTUIFrameworkServer -lTUIFrameworkCore
+libMatrix4CalibrationDev_la_LDFLAGS = -L../tuiframework -version-info 1:1:0
+
+libMatrix4CalibrationDev_ladir = ${includedir}/tuilibs
+
+libMatrix4CalibrationDev_la_SOURCES = \
+    matrix4calibration/Matrix4CalibrationDev.cpp
+
+nobase_libMatrix4CalibrationDev_la_HEADERS = \
+    matrix4calibration/Matrix4CalibrationDev.h 
+
+libMatrix4CalibrationDevxml_DATA = \
+    matrix4calibration/Matrix4Calibration.xml 
+
+libMatrix4CalibrationDevxmldir = $(datadir)/@PACKAGE@
+

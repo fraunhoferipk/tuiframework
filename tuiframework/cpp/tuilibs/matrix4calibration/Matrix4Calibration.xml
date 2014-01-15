@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--document xmlns:xi='http://www.w3.org/2001/XInclude'-->
+<document xmlns:xi="http://www.w3.org/2001/XInclude">
+   <ServerConfig>
+      <ServerStartupConfig/>
+      <DeviceTypeSequence>
+         <DeviceType name="Matrix4CalibrationDev">
+            <PortTypeSequence>
+               <PortType name="Vector1" sink="1" source="0" typename="Vector3">
+                  <Description/>
+               </PortType>
+               <PortType name="Vector2" sink="1" source="0" typename="Vector3">
+                  <Description/>
+               </PortType>
+               <PortType name="CalibratedMatrix" sink="0" source="1" typename="Matrix4">
+                  <Description/>
+               </PortType>
+               <PortType name="ApplyVectors" sink="1" source="0" typename="DigitalChannel">
+                  <Description/>
+               </PortType>
+               <PortType name="ClearVectors" sink="1" source="0" typename="DigitalChannel">
+                  <Description/>
+               </PortType>
+               <PortType name="LoadCalibratedMatrix" sink="1" source="0" typename="DigitalChannel">
+                  <Description/>
+               </PortType>
+               <PortType name="SaveCalibratedMatrix" sink="1" source="0" typename="DigitalChannel">
+                  <Description/>
+               </PortType>
+               <PortType name="SendCalibratedMatrix" sink="1" source="0" typename="DigitalChannel">
+                  <Description/>
+               </PortType>
+               <PortType name="CalcCalibratedMatrix" sink="1" source="0" typename="DigitalChannel">
+                  <Description/>
+               </PortType>               
+            </PortTypeSequence>
+            <ParameterGroup name="CalibratedMatrix">
+              <Parameter name="InitialSend" value="0"/>
+              <Parameter name="Path" value="./calibrationMatrix.dat"/>
+            </ParameterGroup>
+         </DeviceType>
+      </DeviceTypeSequence>
+   </ServerConfig>
+</document>
