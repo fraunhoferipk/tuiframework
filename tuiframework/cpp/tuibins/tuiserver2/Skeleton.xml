@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--document xmlns:xi='http://www.w3.org/2001/XInclude'-->
+<document xmlns:xi="http://www.w3.org/2001/XInclude">
+  <ServerConfig>
+    <ServerStartupConfig/> 
+    <TUIObjectTypeSequence>
+      <TUIObjectType name="SkeletonTUI">
+        <PortTypeSequence>
+          <PortType name="CALIBRATION" sink="0" source="1" typename="Matrix4">
+            <Description/>
+          </PortType>
+          <PortType name="Head" sink="0" source="1" typename="Matrix4"> 
+            <Description/>
+          </PortType>
+          <PortType name="Neck" sink="0" source="1" typename="Matrix4">
+            <Description/>
+          </PortType>
+          <PortType name="Torso" sink="0" source="1" typename="Matrix4">
+            <Description/>
+          </PortType>
+          <PortType name="Waist" sink="0" source="1" typename="Matrix4">
+            <Description/>
+          </PortType>
+          <PortType name="left_Collar" sink="0" source="1" typename="Matrix4">
+            <Description/>
+          </PortType>
+          <PortType name="left_Shoulder" sink="0" source="1" typename="Matrix4">
+            <Description/>
+          </PortType>
+          <PortType name="left_Elbow" sink="0" source="1" typename="Matrix4">
+            <Description/>
+          </PortType>
+          <PortType name="left_Wrist" sink="0" source="1" typename="Matrix4">
+            <Description/>
+          </PortType>
+          <PortType name="left_Hand" sink="0" source="1" typename="Matrix4">
+            <Description/>
+          </PortType>
+          <PortType name="left_Fingertip" sink="0" source="1" typename="Matrix4">
+            <Description/>
+          </PortType>
+          <PortType name="right_Collar" sink="0" source="1" typename="Matrix4">
+            <Description/>
+          </PortType>
+          <PortType name="right_Shoulder" sink="0" source="1" typename="Matrix4">
+            <Description/>
+          </PortType>
+          <PortType name="right_Elbow" sink="0" source="1" typename="Matrix4">
+            <Description/>
+          </PortType>
+          <PortType name="right_Wrist" sink="0" source="1" typename="Matrix4">
+            <Description/>
+          </PortType>
+          <PortType name="right_Hand" sink="0" source="1" typename="Matrix4">
+            <Description/>
+          </PortType>
+          <PortType name="right_Fingertip" sink="0" source="1" typename="Matrix4">
+            <Description/>
+          </PortType>
+          <PortType name="left_Hip" sink="0" source="1" typename="Matrix4">
+            <Description/>
+          </PortType>
+          <PortType name="left_Knee" sink="0" source="1" typename="Matrix4">
+            <Description/>
+          </PortType>
+          <PortType name="left_Ankle" sink="0" source="1" typename="Matrix4">
+            <Description/>
+          </PortType>
+          <PortType name="left_Foot" sink="0" source="1" typename="Matrix4">
+            <Description/>
+          </PortType>
+          <PortType name="right_Hip" sink="0" source="1" typename="Matrix4">
+            <Description/>
+          </PortType>
+          <PortType name="right_Knee" sink="0" source="1" typename="Matrix4">
+            <Description/>
+          </PortType>
+          <PortType name="right_Ankle" sink="0" source="1" typename="Matrix4">
+            <Description/>
+          </PortType>
+          <PortType name="right_Foot" sink="0" source="1" typename="Matrix4">
+            <Description/>
+          </PortType>
+        </PortTypeSequence>
+      </TUIObjectType>
+    </TUIObjectTypeSequence>
+  </ServerConfig>
+</document>
