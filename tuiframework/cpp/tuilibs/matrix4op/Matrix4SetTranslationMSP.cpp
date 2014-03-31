@@ -23,7 +23,7 @@
 */
 
 
-#include "Matrix4TranslMSP.h"
+#include "Matrix4SetTranslationMSP.h"
 
 #include <tuitypes/common/CommonTypeReg.h>
 #include <tuiframework/server/ParameterGroup.h>
@@ -40,47 +40,47 @@ using namespace std;
 
 namespace tuiframework {
 
-IMSP * Matrix4TranslMSP::createFunction(void * arg) {
+IMSP * Matrix4SetTranslationMSP::createFunction(void * arg) {
     MSPConfig * config = static_cast<MSPConfig *>(arg);
-    return new Matrix4TranslMSP(*config);
+    return new Matrix4SetTranslationMSP(*config);
 }
 
-static std::string typeName = "Matrix4Transl";
+static std::string typeName = "Matrix4SetTranslation";
 
-const std::string & Matrix4TranslMSP::getMSPTypeName() {
+const std::string & Matrix4SetTranslationMSP::getMSPTypeName() {
     return typeName;
 }
 
 
-Matrix4TranslMSP::Matrix4TranslMSP(const MSPConfig & config) :
+Matrix4SetTranslationMSP::Matrix4SetTranslationMSP(const MSPConfig & config) :
     config(config),
     out(0),
     outPacked(0) {
     
-    this->eventDelegateV.setReceiver(this, &Matrix4TranslMSP::handleV);
-    this->eventDelegateVP.setReceiver(this, &Matrix4TranslMSP::handleVP);
+    this->eventDelegateV.setReceiver(this, &Matrix4SetTranslationMSP::handleV);
+    this->eventDelegateVP.setReceiver(this, &Matrix4SetTranslationMSP::handleVP);
     
     try {
-        this->transpose = this->config.getParameterGroup().getParameterGroup("create").getInt("transposed") != 0;
-        TFINFO("Transpose = " << this->transpose);
+        this->premultiply = this->config.getParameterGroup().getParameterGroup("create").getInt("pre-multiply") != 0;
+        TFINFO("pre-multiply = " << this->premultiply);
     }
     catch (Exception & e) {
-        e.addErrorMessage("in Matrix4TranslMSP.", __FILE__, __LINE__);
+        e.addErrorMessage("in Matrix4SetTranslationMSP.", __FILE__, __LINE__);
         TFERROR(e.getFormattedString());
     }
 }
 
 
-Matrix4TranslMSP::~Matrix4TranslMSP() {
+Matrix4SetTranslationMSP::~Matrix4SetTranslationMSP() {
 }
 
 
-const std::string & Matrix4TranslMSP::getTypeName() const {
+const std::string & Matrix4SetTranslationMSP::getTypeName() const {
     return getMSPTypeName();
 }
 
 
-IEventSink * Matrix4TranslMSP::getEventSink(const std::string & name) {
+IEventSink * Matrix4SetTranslationMSP::getEventSink(const std::string & name) {
     if (name.compare(inTag) == 0) {
         return &this->eventDelegateV;
     } else if (name.compare(inPackedTag) == 0) {
@@ -93,7 +93,7 @@ IEventSink * Matrix4TranslMSP::getEventSink(const std::string & name) {
 }
 
 
-void Matrix4TranslMSP::registerEventSink(const std::string & name, IEventSink * eventSink) {
+void Matrix4SetTranslationMSP::registerEventSink(const std::string & name, IEventSink * eventSink) {
     if (name.compare(outTag) == 0) {
         this->out = eventSink;
     } else if (name.compare(outPackedTag) == 0) {
@@ -104,21 +104,21 @@ void Matrix4TranslMSP::registerEventSink(const std::string & name, IEventSink * 
 }
 
 
-const MSPType & Matrix4TranslMSP::getMSPType() const {
+const MSPType & Matrix4SetTranslationMSP::getMSPType() const {
     return this->type;
 }
 
 
-void Matrix4TranslMSP::handleV(Vector3Event * e) {
+void Matrix4SetTranslationMSP::handleV(Vector4Event * e) {
     if (this->out) {
-        const Vector3<double> & v = e->getPayload();
+        const Vector4<double> & v = e->getPayload();
         Matrix4<double> m;
         m.setRow(0, 1.0, 0, 0, 0);
         m.setRow(1, 0, 1.0, 0, 0);
         m.setRow(2, 0, 0, 1.0, 0);
         m.setRow(3, v[0], v[1], v[2], 1.0);
         
-        if (this->transpose) {
+        if (this->premultiply) {
             m = Matrix4<double>::transposed(m);
         }
         
@@ -129,16 +129,16 @@ void Matrix4TranslMSP::handleV(Vector3Event * e) {
 }
 
 
-void Matrix4TranslMSP::handleVP(PackedVector3Event * e) {
+void Matrix4SetTranslationMSP::handleVP(PackedVector4Event * e) {
     if (this->outPacked) {
-        const PackedType<Vector3<double> > & p = e->getPayload();
-        const vector<pair<int, Vector3<double> > > & vv = p.getItems();
+        const PackedType<Vector4<double> > & p = e->getPayload();
+        const vector<pair<int, Vector4<double> > > & vv = p.getItems();
         
         PackedType<Matrix4<double> > packedMatrix4;
         vector<pair<int, Matrix4<double> > > & mv = packedMatrix4.getItems();
         
-        vector<pair<int, Vector3<double> > >::const_iterator i = vv.begin();
-        vector<pair<int, Vector3<double> > >::const_iterator e = vv.end();
+        vector<pair<int, Vector4<double> > >::const_iterator i = vv.begin();
+        vector<pair<int, Vector4<double> > >::const_iterator e = vv.end();
         while (i != e) {
             Matrix4<double> m;
             m.setRow(0, 1.0, 0, 0, 0);
@@ -146,7 +146,7 @@ void Matrix4TranslMSP::handleVP(PackedVector3Event * e) {
             m.setRow(2, 0, 0, 1.0, 0);
             m.setRow(3, (*i).second[0], (*i).second[1], (*i).second[2], 1.0);
 
-            if (this->transpose) {
+            if (this->premultiply) {
                 m = Matrix4<double>::transposed(m);
             }
             

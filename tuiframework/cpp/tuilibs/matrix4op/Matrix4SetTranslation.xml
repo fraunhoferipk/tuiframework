@@ -4,7 +4,7 @@
    <ServerConfig>
       <ServerStartupConfig/>
       <MSPTypeSequence>
-          <MSPType name="Matrix4Transl">
+          <MSPType name="Matrix4SetTranslation">
             <PortTypeSequence>
                <PortType name="out" sink="0" source="1" typename="Matrix4">
                   <Description/>
@@ -12,15 +12,15 @@
                <PortType name="outPacked" sink="0" source="1" typename="PackedMatrix4">
                   <Description/>
                </PortType>
-               <PortType name="in" sink="1" source="0" typename="Vector3">
+               <PortType name="in" sink="1" source="0" typename="Vector4">
                   <Description/>
                </PortType>
-               <PortType name="inPacked" sink="1" source="0" typename="PackedVector3">
+               <PortType name="inPacked" sink="1" source="0" typename="PackedVector4">
                   <Description/>
                </PortType>
             </PortTypeSequence>
             <ParameterGroup name="create">
-                <Parameter name="transposed" value="0"/>
+                <Parameter name="pre-multiply" value="0"/>
             </ParameterGroup>
          </MSPType>
       </MSPTypeSequence>

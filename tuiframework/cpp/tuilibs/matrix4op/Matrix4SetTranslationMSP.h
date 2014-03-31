@@ -23,8 +23,8 @@
 */
 
 
-#ifndef _tuiframework_Matrix4TranslMSP_h_
-#define _tuiframework_Matrix4TranslMSP_h_
+#ifndef _tuiframework_Matrix4SetTranslationMSP_h_
+#define _tuiframework_Matrix4SetTranslationMSP_h_
 
 #include <tuiframework/server/MSPConfig.h>
 #include <tuiframework/server/MSPType.h>
@@ -37,35 +37,35 @@
 
 namespace tuiframework {
 /**
- *  Matrix4TranslMSP
+ *  Matrix4SetTranslationMSP
  *
  *  \author Oliver Belaifa
  *  \date 2013
  */ 
-class Matrix4TranslMSP : public IMSP {
+class Matrix4SetTranslationMSP : public IMSP {
 public:
     static IMSP * createFunction(void * arg);
     static const std::string & getMSPTypeName();
 
-    Matrix4TranslMSP(const MSPConfig & config);
-    virtual ~Matrix4TranslMSP();
+    Matrix4SetTranslationMSP(const MSPConfig & config);
+    virtual ~Matrix4SetTranslationMSP();
 
     virtual const std::string & getTypeName() const;
     virtual IEventSink * getEventSink(const std::string & name);
     virtual void registerEventSink(const std::string & name, IEventSink * eventSink);
     virtual const MSPType & getMSPType() const;
 
-    void handleV(Vector3Event * e);
-    void handleVP(PackedVector3Event * e);
+    void handleV(Vector4Event * e);
+    void handleVP(PackedVector4Event * e);
     
 protected:
     MSPConfig config;
     MSPType type;
 
-    EventDelegateNC<Vector3Event, Matrix4TranslMSP> eventDelegateV;    
-    EventDelegateNC<PackedVector3Event, Matrix4TranslMSP> eventDelegateVP;
+    EventDelegateNC<Vector4Event, Matrix4SetTranslationMSP> eventDelegateV;    
+    EventDelegateNC<PackedVector4Event, Matrix4SetTranslationMSP> eventDelegateVP;
 
-    bool transpose;
+    bool premultiply;
     
     IEventSink * out;
     IEventSink * outPacked;
