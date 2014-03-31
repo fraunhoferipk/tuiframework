@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--document xmlns:xi='http://www.w3.org/2001/XInclude'-->
+<document xmlns:xi="http://www.w3.org/2001/XInclude">
+   <ServerConfig>
+      <ServerStartupConfig/>
+      <MSPTypeSequence>
+          <MSPType name="Matrix4GetTranslation">
+            <PortTypeSequence>
+               <PortType name="out" sink="0" source="1" typename="Vector4">
+                  <Description/>
+               </PortType>
+               <PortType name="outPacked" sink="0" source="1" typename="PackedVector4">
+                  <Description/>
+               </PortType>
+               <PortType name="in" sink="1" source="0" typename="Matrix4">
+                  <Description/>
+               </PortType>
+               <PortType name="inPacked" sink="1" source="0" typename="PackedMatrix4">
+                  <Description/>
+               </PortType>
+            </PortTypeSequence>
+            <ParameterGroup name="create">
+                <Parameter name="pre-multiply" value="0"/>
+            </ParameterGroup>
+         </MSPType>
+      </MSPTypeSequence>
+   </ServerConfig>
+</document>
