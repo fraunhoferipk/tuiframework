@@ -129,6 +129,7 @@ bool VRPNTrackerDev::deviceExecute() {
 
 void VRPNTrackerDev::deviceStop() {
     pthread_cancel(this->inputLoopThread);
+    pthread_join(this->inputLoopThread, 0);
 }
 
 

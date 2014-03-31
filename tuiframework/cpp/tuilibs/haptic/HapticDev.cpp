@@ -164,7 +164,10 @@ void HapticDev::executeInputLoop() {
 
 void HapticDev::deviceStop() {
   this->inputLoopRunning = false;
-  this->udpReceiverSocket.cancel();  
+  this->udpReceiverSocket.cancel(); 
+  this->udpReceiverSocket.join();
+  pthread_cancel(this->inputLoopThread);
+  pthread_join(this->inputLoopThread, 0);
 }
 
 void HapticDev::deviceConnect(tuiframework::ITUIServer & tuiServer) {

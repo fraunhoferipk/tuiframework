@@ -107,15 +107,17 @@ bool MouseDev::deviceExecute() {
             TFERROR("ERROR; return code from pthread_create() is " << rc)
         }
     }
-	this->receiver.setHostEventPrefix(false);
-	this->receiver.create();
+    this->receiver.setHostEventPrefix(false);
+    this->receiver.create();
     return true;
 }
 
 
 void MouseDev::deviceStop() {
-	this->receiver.cancel();
-	pthread_cancel(this->inputLoopThread);
+    this->receiver.cancel();
+    this->receiver.join();
+    pthread_cancel(this->inputLoopThread);
+    pthread_join(this->inputLoopThread, 0);
 }
 
 

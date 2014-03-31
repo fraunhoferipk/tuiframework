@@ -171,6 +171,10 @@ bool RFCommDev::deviceExecute() {
 
 
 void RFCommDev::deviceStop() {
+    pthread_cancel(this->senderTID);
+    pthread_join(this->senderTID, 0);
+    pthread_cancel(this->receiverTID);
+    pthread_join(this->receiverTID, 0);
 }
 
 
