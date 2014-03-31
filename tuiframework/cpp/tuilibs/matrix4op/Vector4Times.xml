@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--document xmlns:xi='http://www.w3.org/2001/XInclude'-->
+<document xmlns:xi="http://www.w3.org/2001/XInclude">
+   <ServerConfig>
+      <ServerStartupConfig/>
+      <MSPTypeSequence>
+          <MSPType name="Vector4Times">
+            <PortTypeSequence>
+               <PortType name="A*B" sink="0" source="1" typename="Vector4">
+                  <Description/>
+               </PortType>
+               <PortType name="A*BP" sink="0" source="1" typename="PackedVector4">
+                  <Description/>
+               </PortType>
+               <PortType name="A" sink="1" source="0" typename="Vector4">
+                  <Description/>
+               </PortType>
+               <PortType name="B" sink="1" source="0" typename="Vector4">
+                  <Description/>
+               </PortType>
+               <PortType name="BP" sink="1" source="0" typename="PackedVector4">
+                  <Description/>
+               </PortType>
+            </PortTypeSequence>
+            <ParameterGroup name="A">
+               <Parameter name="x" value="0"/>
+               <Parameter name="y" value="0"/>
+               <Parameter name="z" value="0"/>
+               <Parameter name="w" value="1"/>
+            </ParameterGroup>
+            <ParameterGroup name="B">
+               <Parameter name="x" value="0"/>
+               <Parameter name="y" value="0"/>
+               <Parameter name="z" value="0"/>
+               <Parameter name="w" value="1"/>
+            </ParameterGroup>
+         </MSPType>
+      </MSPTypeSequence>
+   </ServerConfig>
+</document>
