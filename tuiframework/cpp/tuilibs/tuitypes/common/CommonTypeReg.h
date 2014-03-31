@@ -34,7 +34,7 @@
 #include "Vector3d.h"
 #include "MouseData.h"
 
-#include "Vector3.h"
+#include "Vector4.h"
 #include "Matrix4.h"
 #include "PackedType.h"
 
@@ -58,10 +58,10 @@ typedef tuiframework::EPEventMsg<Vector3d, 20>              Vector3dEvent;
 typedef tuiframework::EPEventMsg<MouseData, 21>             MouseEvent;
 typedef tuiframework::EPEventMsg<VectorList3d, 22>          VectorList3dEvent;
 
-typedef tuiframework::EPEventMsg<Vector3<double>, 22>                   Vector3Event;
-typedef tuiframework::EPEventMsg<PackedType<Vector3<double> >, 23>      PackedVector3Event;
-typedef tuiframework::EPEventMsg<Matrix4<double>, 24>                   Matrix4Event;
-typedef tuiframework::EPEventMsg<PackedType<Matrix4<double> >, 25>      PackedMatrix4Event;
+typedef tuiframework::EPEventMsg<Vector4<double>, 23>                   Vector4Event;
+typedef tuiframework::EPEventMsg<PackedType<Vector4<double> >, 24>      PackedVector4Event;
+typedef tuiframework::EPEventMsg<Matrix4<double>, 25>                   Matrix4Event;
+typedef tuiframework::EPEventMsg<PackedType<Matrix4<double> >, 26>      PackedMatrix4Event;
 
 namespace CommonTypeReg {
 

@@ -25,11 +25,9 @@
 
 #include "CommonTypeReg.h"
 
-#define USE_TFDEBUG
 #include <tuiframework/core/TypeRegistration.h>
 
 using namespace tuiframework;
-
 
 namespace CommonTypeReg {
 
@@ -47,10 +45,10 @@ void registerTypes(IEventFactory * eventFactory, IEventChannelFactory * eventCha
     tuiframework::registerType<MouseData, 21>(eventFactory, eventChannelFactory, "MouseChannel");
     tuiframework::registerType<VectorList3d, 22>(eventFactory, eventChannelFactory, "VectorList3dChannel");
     
-    tuiframework::registerType<Vector3<double>, 22>(eventFactory, eventChannelFactory, "Vector3");
-    tuiframework::registerType<PackedType<Vector3<double> >, 23>(eventFactory, eventChannelFactory, "PackedVector3");
-    tuiframework::registerType<Matrix4<double>, 24>(eventFactory, eventChannelFactory, "Matrix4");
-    tuiframework::registerType<PackedType<Matrix4<double> >, 25>(eventFactory, eventChannelFactory, "PackedMatrix4");
+    tuiframework::registerType<Vector4<double>, 23>(eventFactory, eventChannelFactory, "Vector4");
+    tuiframework::registerType<PackedType<Vector4<double> >, 24>(eventFactory, eventChannelFactory, "PackedVector4");
+    tuiframework::registerType<Matrix4<double>, 25>(eventFactory, eventChannelFactory, "Matrix4");
+    tuiframework::registerType<PackedType<Matrix4<double> >, 26>(eventFactory, eventChannelFactory, "PackedMatrix4");
 }
 
 }
