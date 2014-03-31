@@ -144,6 +144,10 @@ bool DummyDevDA::deviceExecute() {
 
 
 void DummyDevDA::deviceStop() {
+    pthread_cancel(this->inputLoopThread);
+    pthread_join(this->inputLoopThread, 0);
+    pthread_cancel(this->outputLoopThread);
+    pthread_join(this->outputLoopThread, 0);
 }
 
 

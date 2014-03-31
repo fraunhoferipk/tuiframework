@@ -4,9 +4,9 @@
    <ServerConfig>
       <ServerStartupConfig/>
       <DeviceTypeSequence>
-         <DeviceType name="DummyDevPackedVector3">
+         <DeviceType name="DummyDevPackedVector4">
             <PortTypeSequence>
-               <PortType name="pv1" sink="0" source="1" typename="PackedVector3">
+               <PortType name="pv1" sink="0" source="1" typename="PackedVector4">
                   <Description/>
                </PortType>
             </PortTypeSequence>

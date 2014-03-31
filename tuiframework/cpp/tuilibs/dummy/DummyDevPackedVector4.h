@@ -23,8 +23,8 @@
 
 
 
-#ifndef _tuidevices_DummyDevPackedVector3_h_
-#define _tuidevices_DummyDevPackedVector3_h_
+#ifndef _tuidevices_DummyDevPackedVector4_h_
+#define _tuidevices_DummyDevPackedVector4_h_
 
 #include <tuiframework/core/EventQueue.h>
 #include <tuiframework/core/IDevice.h>
@@ -42,13 +42,13 @@ namespace tuiframework {
 namespace tuidevices {
 
 
-class DummyDevPackedVector3  : public tuiframework::IDevice, public tuiframework::IEventSink {
+class DummyDevPackedVector4  : public tuiframework::IDevice, public tuiframework::IEventSink {
 public:
     static IDevice * createFunction(void * arg);
     static std::string getDeviceName();
 
-    DummyDevPackedVector3(const tuiframework::DeviceConfig & deviceConfig);
-    virtual ~DummyDevPackedVector3();
+    DummyDevPackedVector4(const tuiframework::DeviceConfig & deviceConfig);
+    virtual ~DummyDevPackedVector4();
 
         // IDevice
     virtual void deviceConnect(tuiframework::ITUIServer & tuiServer);

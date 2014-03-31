@@ -125,6 +125,10 @@ bool DummyDevMatrix4::deviceExecute() {
 
 
 void DummyDevMatrix4::deviceStop() {
+    pthread_cancel(this->inputLoopThread);
+    pthread_join(this->inputLoopThread, 0);
+    pthread_cancel(this->outputLoopThread);
+    pthread_join(this->outputLoopThread, 0);
 }
 
 

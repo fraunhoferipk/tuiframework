@@ -23,12 +23,14 @@
 
 
 
-#include "DummyDevPackedVector3.h"
+#include "DummyDevPackedVector4.h"
 
 #include <tuiframework/core/ITUIServer.h>
 #include <tuiframework/core/IEvent.h>
 #include <tuiframework/server/DeviceConfig.h>
 #include <tuitypes/common/CommonTypeReg.h>
+#define USE_TFDEBUG
+#include <tuiframework/logging/Logger.h>
 
 #include <cstdlib> // GCC 4.3 related build problem
 
@@ -51,30 +53,30 @@ using namespace std;
 namespace tuidevices {
 
 
-IDevice * DummyDevPackedVector3::createFunction(void * arg) {
+IDevice * DummyDevPackedVector4::createFunction(void * arg) {
     DeviceConfig * deviceConfig = static_cast<DeviceConfig *>(arg);
-    return new DummyDevPackedVector3(*deviceConfig);
+    return new DummyDevPackedVector4(*deviceConfig);
 }
 
 
-std::string DummyDevPackedVector3::getDeviceName() {
-    return "DummyDevPackedVector3";
+std::string DummyDevPackedVector4::getDeviceName() {
+    return "DummyDevPackedVector4";
 }
 
 
 
-DummyDevPackedVector3::DummyDevPackedVector3(const DeviceConfig & deviceConfig) {
+DummyDevPackedVector4::DummyDevPackedVector4(const DeviceConfig & deviceConfig) {
 
     this->deviceDescriptor.setEntityID(deviceConfig.getEntityID());
     this->entityID = this->deviceDescriptor.getEntityID();
 
     map<string, Port> portMap;
 
-    portMap["pv1"] = Port("pv1", "PackedVector3", Port::Source, "");
+    portMap["pv1"] = Port("pv1", "PackedVector4", Port::Source, "");
 
     DeviceType deviceType;
     deviceType.setPortMap(portMap);
-    deviceType.setDeviceTypeName("DummyDevPackedVector3");
+    deviceType.setDeviceTypeName("DummyDevPackedVector4");
     deviceType.setDescription("");
 
     this->deviceDescriptor.setDeviceType(deviceType);
@@ -92,22 +94,22 @@ DummyDevPackedVector3::DummyDevPackedVector3(const DeviceConfig & deviceConfig) 
 }
 
 
-DummyDevPackedVector3::~DummyDevPackedVector3() {
+DummyDevPackedVector4::~DummyDevPackedVector4() {
 }
 
 
 
 
-bool DummyDevPackedVector3::deviceExecute() {
+bool DummyDevPackedVector4::deviceExecute() {
     {
-        int rc = pthread_create(&this->outputLoopThread, NULL, DummyDevPackedVector3::outputLoopThread_run, this);
+        int rc = pthread_create(&this->outputLoopThread, NULL, DummyDevPackedVector4::outputLoopThread_run, this);
         if (rc) {
             printf("ERROR; return code from pthread_create() is %d\n", rc);
         }
     }
 
     {
-        int rc = pthread_create(&this->inputLoopThread, NULL, DummyDevPackedVector3::inputLoopThread_run, this);
+        int rc = pthread_create(&this->inputLoopThread, NULL, DummyDevPackedVector4::inputLoopThread_run, this);
         if (rc) {
             printf("ERROR; return code from pthread_create() is %d\n", rc);
         }
@@ -117,23 +119,27 @@ bool DummyDevPackedVector3::deviceExecute() {
 }
 
 
-void DummyDevPackedVector3::deviceStop() {
+void DummyDevPackedVector4::deviceStop() {
+    pthread_cancel(this->inputLoopThread);
+    pthread_join(this->inputLoopThread, 0);
+    pthread_cancel(this->outputLoopThread);
+    pthread_join(this->outputLoopThread, 0);
 }
 
 
-void DummyDevPackedVector3::push(tuiframework::IEvent * event) {
+void DummyDevPackedVector4::push(tuiframework::IEvent * event) {
     this->outputEventQueue.push(event);
 }
 
 
-void DummyDevPackedVector3::deviceConnect(tuiframework::ITUIServer & tuiServer) {
+void DummyDevPackedVector4::deviceConnect(tuiframework::ITUIServer & tuiServer) {
     tuiServer.tuiServerRegisterDevice(this->entityID, *this);
     tuiServer.tuiServerRegisterEventSink(this->entityID, *this);
     this->tuiServer = &tuiServer;
 }
 
 
-void DummyDevPackedVector3::deviceDisconnect() {
+void DummyDevPackedVector4::deviceDisconnect() {
     if (tuiServer) {
         this->tuiServer->tuiServerDeregisterDevice(this->entityID);
         this->tuiServer->tuiServerDeregisterEventSink(this->entityID);
@@ -142,28 +148,35 @@ void DummyDevPackedVector3::deviceDisconnect() {
 }
 
 
-void DummyDevPackedVector3::deviceSetEventSink(tuiframework::IEventSink * eventSink) {
+void DummyDevPackedVector4::deviceSetEventSink(tuiframework::IEventSink * eventSink) {
     this->eventSink = eventSink;
 }
 
 
-const DeviceDescriptor & DummyDevPackedVector3::getDeviceDescriptor() const {
+const DeviceDescriptor & DummyDevPackedVector4::getDeviceDescriptor() const {
     return this->deviceDescriptor;
 }
 
 
-void * DummyDevPackedVector3::inputLoopThread_run(void * arg) {
-    printf("DummyDevPackedVector3 - input loop thread started\n");
-    DummyDevPackedVector3 * dummyDevice = static_cast<DummyDevPackedVector3 *>(arg);
+void * DummyDevPackedVector4::inputLoopThread_run(void * arg) {
+    printf("DummyDevPackedVector4 - input loop thread started\n");
+    DummyDevPackedVector4 * dummyDevice = static_cast<DummyDevPackedVector4 *>(arg);
     dummyDevice->executeInputLoop();
     return 0;
 }
 
+static double getRandomDouble(double range) {
+    return 2.0*range*(static_cast<double>(rand())/static_cast<double>(RAND_MAX) - 0.5);
+}
 
-void DummyDevPackedVector3::executeInputLoop() {
+
+static Vector4<double> getRandomVector4(double range) {
+    return Vector4<double>(getRandomDouble(range), getRandomDouble(range), getRandomDouble(range));
+}
+
+
+void DummyDevPackedVector4::executeInputLoop() {
     this->inputLoopRunning = true;
-    int a = 0;
-    double c = 0;
     while (this->inputLoopRunning) {
 #ifndef _WIN32
         fd_set rfds;
@@ -185,20 +198,17 @@ void DummyDevPackedVector3::executeInputLoop() {
                 map<std::string, int>::iterator i = this->deviceDescriptor.getNameChannelNrMap().begin();
                 map<std::string, int>::iterator e = this->deviceDescriptor.getNameChannelNrMap().end();
                 while (i != e) {
-                    PackedVector3Event * event = new PackedVector3Event();
+                    PackedVector4Event * event = new PackedVector4Event();
                     event->setAddress(EPAddress(this->entityID, (*i).second));
-                    PackedType<Vector3<double> > pv;
-                    vector<pair<int, Vector3<double> > > & v = pv.getItems();
-                    
+                   
+                    PackedType<Vector4<double> > pv;
+                    vector<pair<int, Vector4<double> > > & v = pv.getItems();
                     for (int i2 = 0; i2 < 24; ++i2) {
-                        v.push_back(pair<int, Vector3<double> >(101 + i2, Vector3<double>(101.0 + i2, a, c)));
-                        c += 1.0;
+                        v.push_back(pair<int, Vector4<double> >(101 + i2, getRandomVector4(1.0)));
                     }
-                    
                     event->setPayload(pv);
                     eventSink->push(event);
                     
-                    a += 1.0;
                     ++i;
                 }
             }
@@ -207,22 +217,22 @@ void DummyDevPackedVector3::executeInputLoop() {
 }
 
 
-void DummyDevPackedVector3::executeOutputLoop() {
+void DummyDevPackedVector4::executeOutputLoop() {
     this->outputLoopRunning = true;
     while (outputLoopRunning) {
         this->outputEventQueue.waitForData();
         IEvent * event = this->outputEventQueue.pop();
         if (event) {
-            cout << "DummyDevPackedVector3: " << event->getEventTypeID() << " " << event << endl;
+            cout << "DummyDevPackedVector4: " << event->getEventTypeID() << " " << event << endl;
             //delete event;
         }
     }
 }
 
 
-void * DummyDevPackedVector3::outputLoopThread_run(void * arg) {
-    printf("DummyDevPackedVector3 - output loop thread started\n");
-    DummyDevPackedVector3 * dummyDevice = static_cast<DummyDevPackedVector3 *>(arg);
+void * DummyDevPackedVector4::outputLoopThread_run(void * arg) {
+    printf("DummyDevPackedVector4 - output loop thread started\n");
+    DummyDevPackedVector4 * dummyDevice = static_cast<DummyDevPackedVector4 *>(arg);
     dummyDevice->executeOutputLoop();
     return 0;
 }
