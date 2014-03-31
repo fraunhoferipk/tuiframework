@@ -23,12 +23,12 @@
 */
 
 
-#include "Matrix4SkelDepackMSP.h"
+#include "Vector4SkeletonDepackMSP.h"
 
 #include <tuitypes/common/SkeletonJointID.h>
 
-static const char * inPackedMatrix4Tag      = "pmIn";
-static const char * outPackedMatrix4Tag     = "pmOut";
+static const char * inPackedVector4Tag      = "pvIn";
+static const char * outPackedVector4Tag     = "pvOut";
 #define PM_OUT 0
 
 static const char * outHeadTag              = "Head";
@@ -56,28 +56,66 @@ static const char * outRightKneeTag         = "right_Knee";
 static const char * outRightAnkleTag        = "right_Ankle";
 static const char * outRightFootTag         = "right_Foot";
 
+static std::string mspTypeNameAllTag        = "Vector4SkeletonDepack";
+static std::string mspTypeNameMainTag       = "Vector4SkeletonMainDepack";
+static std::string mspTypeNameArmsTag       = "Vector4SkeletonArmsDepack";
+static std::string mspTypeNameLegsTag       = "Vector4SkeletonLegsDepack";
+static std::string mspTypeNameHeadTag       = "Vector4SkeletonHeadDepack";
+static std::string mspTypeNameNeckTag       = "Vector4SkeletonNeckDepack";
+static std::string mspTypeNameTorsoTag      = "Vector4SkeletonTorsoDepack";
+static std::string mspTypeNameWaistTag      = "Vector4SkeletonWaistDepack";
+static std::string mspTypeNameCollarTag     = "Vector4SkeletonCollarDepack";
+static std::string mspTypeNameShoulderTag   = "Vector4SkeletonShoulderDepack";
+static std::string mspTypeNameElbowTag      = "Vector4SkeletonElbowDepack";
+static std::string mspTypeNameWristTag      = "Vector4SkeletonWristDepack";
+static std::string mspTypeNameHandTag       = "Vector4SkeletonHandDepack";
+static std::string mspTypeNameFingertipTag  = "Vector4SkeletonFingertipDepack";
+static std::string mspTypeNameHipTag        = "Vector4SkeletonHipDepack";
+static std::string mspTypeNameKneeTag       = "Vector4SkeletonKneeDepack";
+static std::string mspTypeNameAnkleTag      = "Vector4SkeletonAnkleDepack";
+static std::string mspTypeNameFootTag       = "Vector4SkeletonFootDepack";
+
 using namespace std;
 
 namespace tuiframework {
-
-IMSP * Matrix4SkelDepackMSP::createFunction(void * arg) {
-    MSPConfig * config = static_cast<MSPConfig *>(arg);
-    return new Matrix4SkelDepackMSP(*config);
-}
-
-static std::string typeName = "Matrix4SkelDepackMSP";
-
-const std::string & Matrix4SkelDepackMSP::getMSPTypeName() {
-    return typeName;
-}
-
-
-Matrix4SkelDepackMSP::Matrix4SkelDepackMSP(const MSPConfig & config) :
-    config(config) {
-
-    this->matrix4EventDelegate.setReceiver(this, &Matrix4SkelDepackMSP::handlePackedMatrix4Event);
+// number of enums values numbered consecutively 
+int Vector4SkeletonDepackMSP::typeCount = 18;    
     
-    this->nameToIdMap[outPackedMatrix4Tag   ] = PM_OUT; 
+IMSP * Vector4SkeletonDepackMSP::createFunction(void * arg) {
+    MSPConfig * config = static_cast<MSPConfig *>(arg);
+    return new Vector4SkeletonDepackMSP(*config);
+}
+
+const std::string & Vector4SkeletonDepackMSP::getMSPTypeName(TYPE type) {
+    switch (type) {
+        case ALL: return mspTypeNameAllTag;
+        case MAIN: return mspTypeNameMainTag;
+        case ARMS: return mspTypeNameArmsTag;
+        case LEGS: return mspTypeNameLegsTag;
+        case HEAD: return mspTypeNameHeadTag;
+        case NECK: return mspTypeNameNeckTag;
+        case TORSO: return mspTypeNameTorsoTag;
+        case WAIST: return mspTypeNameWaistTag;
+        case COLLAR: return mspTypeNameCollarTag;
+        case SHOULDER: return mspTypeNameShoulderTag;
+        case ELBOW: return mspTypeNameElbowTag;
+        case WRIST: return mspTypeNameWristTag;
+        case HAND: return mspTypeNameHandTag;
+        case FINGERTIP: return mspTypeNameFingertipTag;
+        case HIP: return mspTypeNameHipTag;
+        case KNEE: return mspTypeNameKneeTag;
+        case ANKLE: return mspTypeNameAnkleTag;
+        case FOOT: return mspTypeNameFootTag;
+        default: break;
+    }
+    return mspTypeNameAllTag;
+}
+
+Vector4SkeletonDepackMSP::Vector4SkeletonDepackMSP(const MSPConfig & config) :
+    config(config) {
+    this->vector4EventDelegate.setReceiver(this, &Vector4SkeletonDepackMSP::handlePackedVector4Event);
+    
+    this->nameToIdMap[outPackedVector4Tag   ] = PM_OUT; 
     this->nameToIdMap[outHeadTag            ] = SKEL_HEAD; 
     this->nameToIdMap[outNeckTag            ] = SKEL_NECK; 
     this->nameToIdMap[outTorsoTag           ] = SKEL_TORSO; 
@@ -105,24 +143,24 @@ Matrix4SkelDepackMSP::Matrix4SkelDepackMSP(const MSPConfig & config) :
 }
 
 
-Matrix4SkelDepackMSP::~Matrix4SkelDepackMSP() {
+Vector4SkeletonDepackMSP::~Vector4SkeletonDepackMSP() {
 }
 
 
-const std::string & Matrix4SkelDepackMSP::getTypeName() const {
-    return getMSPTypeName();
+const std::string & Vector4SkeletonDepackMSP::getTypeName() const {
+    return this->config.getTypeName();
 }
 
 
-IEventSink * Matrix4SkelDepackMSP::getEventSink(const std::string & name) {
-    if (name.compare(inPackedMatrix4Tag) == 0) {
-        return &matrix4EventDelegate;
+IEventSink * Vector4SkeletonDepackMSP::getEventSink(const std::string & name) {
+    if (name.compare(inPackedVector4Tag) == 0) {
+        return &vector4EventDelegate;
     }
     return 0;
 }
 
 
-void Matrix4SkelDepackMSP::registerEventSink(const std::string & name, IEventSink * eventSink) {
+void Vector4SkeletonDepackMSP::registerEventSink(const std::string & name, IEventSink * eventSink) {
     map<string, int>::iterator iter = this->nameToIdMap.find(name);
     if (iter == this->nameToIdMap.end()) {
         return;
@@ -131,30 +169,30 @@ void Matrix4SkelDepackMSP::registerEventSink(const std::string & name, IEventSin
 }
 
 
-const MSPType & Matrix4SkelDepackMSP::getMSPType() const {
+const MSPType & Vector4SkeletonDepackMSP::getMSPType() const {
     return this->type;
 }
 
 
-void Matrix4SkelDepackMSP::handlePackedMatrix4Event(PackedMatrix4Event * e) {
-    const PackedType<Matrix4<double> > & pm = e->getPayload();
+void Vector4SkeletonDepackMSP::handlePackedVector4Event(PackedVector4Event * e) {
+    const PackedType<Vector4<double> > & pm = e->getPayload();
 
-    const vector<pair<int, Matrix4<double> > > & vm = pm.getItems();
+    const vector<pair<int, Vector4<double> > > & vm = pm.getItems();
     
-    vector<pair<int, Matrix4<double> > >::const_iterator i2 = vm.begin();
-    vector<pair<int, Matrix4<double> > >::const_iterator e2 = vm.end();
+    vector<pair<int, Vector4<double> > >::const_iterator i2 = vm.begin();
+    vector<pair<int, Vector4<double> > >::const_iterator e2 = vm.end();
     
     while (i2 != e2) {
         map<int, IEventSink *>::iterator iter = this->out.find((*i2).first);
         if (iter != this->out.end()) {
-            (*iter).second->push(new Matrix4Event(-1, -1, (*i2).second));
+            (*iter).second->push(new Vector4Event(-1, -1, (*i2).second));
         }
         ++i2;
     }
 
     map<int, IEventSink *>::iterator iter = this->out.find(PM_OUT);
     if (iter != this->out.end()) {
-        (*iter).second->push(new PackedMatrix4Event(-1, -1, pm));
+        (*iter).second->push(new PackedVector4Event(-1, -1, pm));
     }
 
     delete e;

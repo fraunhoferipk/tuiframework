@@ -22,8 +22,8 @@
     along with the TUIFramework.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#include "Matrix4DepackPlugin.h"
-#include "Matrix4SkelDepackMSP.h"
+#include "Vector4DepackPlugin.h"
+#include "Vector4SkeletonDepackMSP.h"
 
 #include <tuiframework/server/MSPFactorySingleton.h>
 
@@ -41,8 +41,10 @@ namespace tuiframework {
 static std::vector<std::string> mspTypeNameVector;
 
 void soInitPlugin() {
-    MSPFactorySingleton::getInstance()->registerCreateFunction(Matrix4SkelDepackMSP::getMSPTypeName(), Matrix4SkelDepackMSP::createFunction);
-    mspTypeNameVector.push_back(Matrix4SkelDepackMSP::getMSPTypeName());
+    for (int i = 0; i < Vector4SkeletonDepackMSP::typeCount; ++i) {
+        MSPFactorySingleton::getInstance()->registerCreateFunction(Vector4SkeletonDepackMSP::getMSPTypeName(static_cast<Vector4SkeletonDepackMSP::TYPE>(i)), Vector4SkeletonDepackMSP::createFunction);
+        mspTypeNameVector.push_back(Vector4SkeletonDepackMSP::getMSPTypeName(static_cast<Vector4SkeletonDepackMSP::TYPE>(i)));
+    }
 }
 
 
@@ -57,7 +59,9 @@ std::string soGetSOVersion() {
 
 
 void soMSPRegistration(IMSPFactory * MSPFactory) {
-    MSPFactory->registerCreateFunction(Matrix4SkelDepackMSP::getMSPTypeName(), Matrix4SkelDepackMSP::createFunction);
+    for (int i = 0; i < Vector4SkeletonDepackMSP::typeCount; ++i) { 
+        MSPFactory->registerCreateFunction(Vector4SkeletonDepackMSP::getMSPTypeName(static_cast<Vector4SkeletonDepackMSP::TYPE>(i)), Vector4SkeletonDepackMSP::createFunction);
+    }
 }
 
 

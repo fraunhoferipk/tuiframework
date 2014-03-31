@@ -4,88 +4,402 @@
   <ServerConfig>
     <ServerStartupConfig/>
     <MSPTypeSequence>
-      <MSPType name="Matrix4SkelDepackMSP">
+      <MSPType name="Vector4SkeletonDepackMSP">
         <PortTypeSequence>
-          <PortType name="Head" sink="0" source="1" typename="Matrix4"> 
+          <PortType name="Head" sink="0" source="1" typename="Vector4"> 
             <Description/>
           </PortType>
-          <PortType name="Neck" sink="0" source="1" typename="Matrix4">
+          <PortType name="Neck" sink="0" source="1" typename="Vector4">
             <Description/>
           </PortType>
-          <PortType name="Torso" sink="0" source="1" typename="Matrix4">
+          <PortType name="Torso" sink="0" source="1" typename="Vector4">
             <Description/>
           </PortType>
-          <PortType name="Waist" sink="0" source="1" typename="Matrix4">
+          <PortType name="Waist" sink="0" source="1" typename="Vector4">
             <Description/>
           </PortType>
-          <PortType name="left_Collar" sink="0" source="1" typename="Matrix4">
+          <PortType name="left_Collar" sink="0" source="1" typename="Vector4">
             <Description/>
           </PortType>
-          <PortType name="left_Shoulder" sink="0" source="1" typename="Matrix4">
+          <PortType name="left_Shoulder" sink="0" source="1" typename="Vector4">
             <Description/>
           </PortType>
-          <PortType name="left_Elbow" sink="0" source="1" typename="Matrix4">
+          <PortType name="left_Elbow" sink="0" source="1" typename="Vector4">
             <Description/>
           </PortType>
-          <PortType name="left_Wrist" sink="0" source="1" typename="Matrix4">
+          <PortType name="left_Wrist" sink="0" source="1" typename="Vector4">
             <Description/>
           </PortType>
-          <PortType name="left_Hand" sink="0" source="1" typename="Matrix4">
+          <PortType name="left_Hand" sink="0" source="1" typename="Vector4">
             <Description/>
           </PortType>
-          <PortType name="left_Fingertip" sink="0" source="1" typename="Matrix4">
+          <PortType name="left_Fingertip" sink="0" source="1" typename="Vector4">
             <Description/>
           </PortType>
-          <PortType name="right_Collar" sink="0" source="1" typename="Matrix4">
+          <PortType name="right_Collar" sink="0" source="1" typename="Vector4">
             <Description/>
           </PortType>
-          <PortType name="right_Shoulder" sink="0" source="1" typename="Matrix4">
+          <PortType name="right_Shoulder" sink="0" source="1" typename="Vector4">
             <Description/>
           </PortType>
-          <PortType name="right_Elbow" sink="0" source="1" typename="Matrix4">
+          <PortType name="right_Elbow" sink="0" source="1" typename="Vector4">
             <Description/>
           </PortType>
-          <PortType name="right_Wrist" sink="0" source="1" typename="Matrix4">
+          <PortType name="right_Wrist" sink="0" source="1" typename="Vector4">
             <Description/>
           </PortType>
-          <PortType name="right_Hand" sink="0" source="1" typename="Matrix4">
+          <PortType name="right_Hand" sink="0" source="1" typename="Vector4">
             <Description/>
           </PortType>
-          <PortType name="right_Fingertip" sink="0" source="1" typename="Matrix4">
+          <PortType name="right_Fingertip" sink="0" source="1" typename="Vector4">
             <Description/>
           </PortType>
-          <PortType name="left_Hip" sink="0" source="1" typename="Matrix4">
+          <PortType name="left_Hip" sink="0" source="1" typename="Vector4">
             <Description/>
           </PortType>
-          <PortType name="left_Knee" sink="0" source="1" typename="Matrix4">
+          <PortType name="left_Knee" sink="0" source="1" typename="Vector4">
             <Description/>
           </PortType>
-          <PortType name="left_Ankle" sink="0" source="1" typename="Matrix4">
+          <PortType name="left_Ankle" sink="0" source="1" typename="Vector4">
             <Description/>
           </PortType>
-          <PortType name="left_Foot" sink="0" source="1" typename="Matrix4">
+          <PortType name="left_Foot" sink="0" source="1" typename="Vector4">
             <Description/>
           </PortType>
-          <PortType name="right_Hip" sink="0" source="1" typename="Matrix4">
+          <PortType name="right_Hip" sink="0" source="1" typename="Vector4">
             <Description/>
           </PortType>
-          <PortType name="right_Knee" sink="0" source="1" typename="Matrix4">
+          <PortType name="right_Knee" sink="0" source="1" typename="Vector4">
             <Description/>
           </PortType>
-          <PortType name="right_Ankle" sink="0" source="1" typename="Matrix4">
+          <PortType name="right_Ankle" sink="0" source="1" typename="Vector4">
             <Description/>
           </PortType>
-          <PortType name="right_Foot" sink="0" source="1" typename="Matrix4">
+          <PortType name="right_Foot" sink="0" source="1" typename="Vector4">
             <Description/>
           </PortType>
-          <PortType name="pmIn" sink="1" source="0" typename="PackedMatrix4">
+          <PortType name="pvIn" sink="1" source="0" typename="PackedVector4">
             <Description/>
           </PortType>          
-          <PortType name="pmOut" sink="0" source="1" typename="PackedMatrix4">
+          <PortType name="pvOut" sink="0" source="1" typename="PackedVector4">
             <Description/>
           </PortType>       
         </PortTypeSequence>
       </MSPType>
+      <MSPType name="Vector4SkeletonMainDepack">
+        <PortTypeSequence>
+          <PortType name="Head" sink="0" source="1" typename="Vector4"> 
+            <Description/>
+          </PortType>
+          <PortType name="Neck" sink="0" source="1" typename="Vector4">
+            <Description/>
+          </PortType>
+          <PortType name="Torso" sink="0" source="1" typename="Vector4">
+            <Description/>
+          </PortType>
+          <PortType name="Waist" sink="0" source="1" typename="Vector4">
+            <Description/>
+          </PortType>
+          <PortType name="left_Collar" sink="0" source="1" typename="Vector4">
+            <Description/>
+          </PortType>
+          <PortType name="right_Collar" sink="0" source="1" typename="Vector4">
+            <Description/>
+          </PortType>
+          <PortType name="left_Hip" sink="0" source="1" typename="Vector4">
+            <Description/>
+          </PortType>
+          <PortType name="right_Hip" sink="0" source="1" typename="Vector4">
+            <Description/>
+          </PortType>
+          <PortType name="pvIn" sink="1" source="0" typename="PackedVector4">
+            <Description/>
+          </PortType>          
+          <PortType name="pvOut" sink="0" source="1" typename="PackedVector4">
+            <Description/>
+          </PortType>       
+        </PortTypeSequence>
+      </MSPType>
+      <MSPType name="Vector4SkeletonArmsDepack">
+        <PortTypeSequence>
+          <PortType name="left_Shoulder" sink="0" source="1" typename="Vector4">
+            <Description/>
+          </PortType>            
+          <PortType name="left_Elbow" sink="0" source="1" typename="Vector4">
+            <Description/>
+          </PortType>
+          <PortType name="left_Wrist" sink="0" source="1" typename="Vector4">
+            <Description/>
+          </PortType>
+          <PortType name="left_Hand" sink="0" source="1" typename="Vector4">
+            <Description/>
+          </PortType>
+          <PortType name="left_Fingertip" sink="0" source="1" typename="Vector4">
+            <Description/>
+          </PortType>
+          <PortType name="right_Shoulder" sink="0" source="1" typename="Vector4">
+            <Description/>
+          </PortType>
+          <PortType name="right_Elbow" sink="0" source="1" typename="Vector4">
+            <Description/>
+          </PortType>
+          <PortType name="right_Wrist" sink="0" source="1" typename="Vector4">
+            <Description/>
+          </PortType>
+          <PortType name="right_Hand" sink="0" source="1" typename="Vector4">
+            <Description/>
+          </PortType>
+          <PortType name="right_Fingertip" sink="0" source="1" typename="Vector4">
+            <Description/>
+          </PortType>
+          <PortType name="pvIn" sink="1" source="0" typename="PackedVector4">
+            <Description/>
+          </PortType>          
+          <PortType name="pvOut" sink="0" source="1" typename="PackedVector4">
+            <Description/>
+          </PortType>       
+        </PortTypeSequence>
+      </MSPType>
+      <MSPType name="Vector4SkeletonLegsDepack">
+        <PortTypeSequence>
+          <PortType name="left_Knee" sink="0" source="1" typename="Vector4">
+            <Description/>
+          </PortType>
+          <PortType name="left_Ankle" sink="0" source="1" typename="Vector4">
+            <Description/>
+          </PortType>
+          <PortType name="left_Foot" sink="0" source="1" typename="Vector4">
+            <Description/>
+          </PortType>
+          <PortType name="right_Knee" sink="0" source="1" typename="Vector4">
+            <Description/>
+          </PortType>
+          <PortType name="right_Ankle" sink="0" source="1" typename="Vector4">
+            <Description/>
+          </PortType>
+          <PortType name="right_Foot" sink="0" source="1" typename="Vector4">
+            <Description/>
+          </PortType>
+          <PortType name="pvIn" sink="1" source="0" typename="PackedVector4">
+            <Description/>
+          </PortType>          
+          <PortType name="pvOut" sink="0" source="1" typename="PackedVector4">
+            <Description/>
+          </PortType>       
+        </PortTypeSequence>
+      </MSPType>
+      <MSPType name="Vector4SkeletonHeadDepack">
+        <PortTypeSequence>
+          <PortType name="Head" sink="0" source="1" typename="Vector4"> 
+            <Description/>
+          </PortType>
+          <PortType name="pvIn" sink="1" source="0" typename="PackedVector4">
+            <Description/>
+          </PortType>          
+          <PortType name="pvOut" sink="0" source="1" typename="PackedVector4">
+            <Description/>
+          </PortType>       
+        </PortTypeSequence>
+      </MSPType>
+      <MSPType name="Vector4SkeletonNeckDepack">
+        <PortTypeSequence>
+           <PortType name="Neck" sink="0" source="1" typename="Vector4">
+            <Description/>
+          </PortType>
+          <PortType name="pvIn" sink="1" source="0" typename="PackedVector4">
+            <Description/>
+          </PortType>          
+          <PortType name="pvOut" sink="0" source="1" typename="PackedVector4">
+            <Description/>
+          </PortType>       
+        </PortTypeSequence>
+      </MSPType>
+      <MSPType name="Vector4SkeletonTorsoDepack">
+        <PortTypeSequence>
+          <PortType name="Torso" sink="0" source="1" typename="Vector4">
+            <Description/>
+          </PortType>
+           <PortType name="pvIn" sink="1" source="0" typename="PackedVector4">
+            <Description/>
+          </PortType>          
+          <PortType name="pvOut" sink="0" source="1" typename="PackedVector4">
+            <Description/>
+          </PortType>       
+        </PortTypeSequence>
+      </MSPType>
+      <MSPType name="Vector4SkeletonWaistDepack">
+        <PortTypeSequence>
+          <PortType name="Waist" sink="0" source="1" typename="Vector4">
+            <Description/>
+          </PortType>
+          <PortType name="pvIn" sink="1" source="0" typename="PackedVector4">
+            <Description/>
+          </PortType>          
+          <PortType name="pvOut" sink="0" source="1" typename="PackedVector4">
+            <Description/>
+          </PortType>       
+        </PortTypeSequence>
+      </MSPType>
+      <MSPType name="Vector4SkeletonCollarDepack">
+        <PortTypeSequence>
+          <PortType name="left_Collar" sink="0" source="1" typename="Vector4">
+            <Description/>
+          </PortType>
+         <PortType name="right_Collar" sink="0" source="1" typename="Vector4">
+            <Description/>
+          </PortType>
+           <PortType name="pvIn" sink="1" source="0" typename="PackedVector4">
+            <Description/>
+          </PortType>          
+          <PortType name="pvOut" sink="0" source="1" typename="PackedVector4">
+            <Description/>
+          </PortType>       
+        </PortTypeSequence>
+      </MSPType>
+      <MSPType name="Vector4SkeletonShoulderDepack">
+        <PortTypeSequence>
+           <PortType name="left_Shoulder" sink="0" source="1" typename="Vector4">
+            <Description/>
+          </PortType>
+          <PortType name="right_Shoulder" sink="0" source="1" typename="Vector4">
+            <Description/>
+          </PortType>
+          <PortType name="pvIn" sink="1" source="0" typename="PackedVector4">
+            <Description/>
+          </PortType>          
+          <PortType name="pvOut" sink="0" source="1" typename="PackedVector4">
+            <Description/>
+          </PortType>       
+        </PortTypeSequence>
+      </MSPType>
+      <MSPType name="Vector4SkeletonElbowDepack">
+        <PortTypeSequence>
+          <PortType name="left_Elbow" sink="0" source="1" typename="Vector4">
+            <Description/>
+          </PortType>
+          <PortType name="right_Elbow" sink="0" source="1" typename="Vector4">
+            <Description/>
+          </PortType>
+          <PortType name="pvIn" sink="1" source="0" typename="PackedVector4">
+            <Description/>
+          </PortType>          
+          <PortType name="pvOut" sink="0" source="1" typename="PackedVector4">
+            <Description/>
+          </PortType>       
+        </PortTypeSequence>
+      </MSPType>
+      <MSPType name="Vector4SkeletonWristDepack">
+        <PortTypeSequence>
+          <PortType name="left_Wrist" sink="0" source="1" typename="Vector4">
+            <Description/>
+          </PortType>
+          <PortType name="right_Wrist" sink="0" source="1" typename="Vector4">
+            <Description/>
+          </PortType>
+          <PortType name="pvIn" sink="1" source="0" typename="PackedVector4">
+            <Description/>
+          </PortType>          
+          <PortType name="pvOut" sink="0" source="1" typename="PackedVector4">
+            <Description/>
+          </PortType>       
+        </PortTypeSequence>
+      </MSPType>
+      <MSPType name="Vector4SkeletonHandDepack">
+        <PortTypeSequence>
+          <PortType name="left_Hand" sink="0" source="1" typename="Vector4">
+            <Description/>
+          </PortType>
+          <PortType name="right_Hand" sink="0" source="1" typename="Vector4">
+            <Description/>
+          </PortType>
+          <PortType name="pvIn" sink="1" source="0" typename="PackedVector4">
+            <Description/>
+          </PortType>          
+          <PortType name="pvOut" sink="0" source="1" typename="PackedVector4">
+            <Description/>
+          </PortType>       
+        </PortTypeSequence>
+      </MSPType>
+      <MSPType name="Vector4SkeletonFingertipDepack">
+        <PortTypeSequence>
+          <PortType name="left_Fingertip" sink="0" source="1" typename="Vector4">
+            <Description/>
+          </PortType>
+          <PortType name="right_Fingertip" sink="0" source="1" typename="Vector4">
+            <Description/>
+          </PortType>
+          <PortType name="pvIn" sink="1" source="0" typename="PackedVector4">
+            <Description/>
+          </PortType>          
+          <PortType name="pvOut" sink="0" source="1" typename="PackedVector4">
+            <Description/>
+          </PortType>       
+        </PortTypeSequence>
+      </MSPType>
+      <MSPType name="Vector4SkeletonHipDepack">
+        <PortTypeSequence>
+          <PortType name="left_Hip" sink="0" source="1" typename="Vector4">
+            <Description/>
+          </PortType>
+          <PortType name="right_Hip" sink="0" source="1" typename="Vector4">
+            <Description/>
+          </PortType>
+          <PortType name="pvIn" sink="1" source="0" typename="PackedVector4">
+            <Description/>
+          </PortType>          
+          <PortType name="pvOut" sink="0" source="1" typename="PackedVector4">
+            <Description/>
+          </PortType>       
+        </PortTypeSequence>
+      </MSPType>
+      <MSPType name="Vector4SkeletonKneeDepack">
+        <PortTypeSequence>
+          <PortType name="left_Knee" sink="0" source="1" typename="Vector4">
+            <Description/>
+          </PortType>
+          <PortType name="right_Knee" sink="0" source="1" typename="Vector4">
+            <Description/>
+          </PortType>
+          <PortType name="pvIn" sink="1" source="0" typename="PackedVector4">
+            <Description/>
+          </PortType>          
+          <PortType name="pvOut" sink="0" source="1" typename="PackedVector4">
+            <Description/>
+          </PortType>       
+        </PortTypeSequence>
+      </MSPType>
+      <MSPType name="Vector4SkeletonAnkleDepack">
+        <PortTypeSequence>
+          <PortType name="left_Ankle" sink="0" source="1" typename="Vector4">
+            <Description/>
+          </PortType>
+          <PortType name="right_Ankle" sink="0" source="1" typename="Vector4">
+            <Description/>
+          </PortType>
+          <PortType name="pvIn" sink="1" source="0" typename="PackedVector4">
+            <Description/>
+          </PortType>          
+          <PortType name="pvOut" sink="0" source="1" typename="PackedVector4">
+            <Description/>
+          </PortType>       
+        </PortTypeSequence>
+      </MSPType>
+      <MSPType name="Vector4SkeletonFootDepack">
+        <PortTypeSequence>
+          <PortType name="left_Foot" sink="0" source="1" typename="Vector4">
+            <Description/>
+          </PortType>
+          <PortType name="right_Foot" sink="0" source="1" typename="Vector4">
+            <Description/>
+          </PortType>
+          <PortType name="pvIn" sink="1" source="0" typename="PackedVector4">
+            <Description/>
+          </PortType>          
+          <PortType name="pvOut" sink="0" source="1" typename="PackedVector4">
+            <Description/>
+          </PortType>       
+        </PortTypeSequence>
+      </MSPType>      
     </MSPTypeSequence>
   </ServerConfig>
 </document>

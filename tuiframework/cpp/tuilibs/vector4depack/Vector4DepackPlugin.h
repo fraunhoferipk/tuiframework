@@ -23,8 +23,8 @@
 
 
 
-#ifndef _Matrix4SkelDepackPlugin_h_
-#define _Matrix4SkelDepackPlugin_h_
+#ifndef _Vector4SkelDepackPlugin_h_
+#define _Vector4SkelDepackPlugin_h_
 
 #include <string>
 #include <vector>

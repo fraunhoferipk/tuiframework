@@ -23,8 +23,8 @@
 */
 
 
-#ifndef _tuiframework_Matrix4SkelDepackMSP_h_
-#define _tuiframework_Matrix4SkelDepackMSP_h_
+#ifndef _tuiframework_Vector4SkeletonDepackMSP_h_
+#define _tuiframework_Vector4SkeletonDepackMSP_h_
 
 #include <tuiframework/server/MSPConfig.h>
 #include <tuiframework/server/MSPType.h>
@@ -37,31 +37,52 @@
 
 namespace tuiframework {
 /**
- *  Matrix4SkelDepackMSP
+ *  Vector4SkeletonDepackMSP
  *
  *  \author Oliver Belaifa
  *  \date 2013
  */ 
-class Matrix4SkelDepackMSP : public IMSP {
+class Vector4SkeletonDepackMSP : public IMSP {
 public:
+    enum TYPE {
+        ALL = 0,
+        MAIN = 1,
+        ARMS = 2,
+        LEGS = 3,
+        HEAD = 4,
+        NECK = 5,
+        TORSO = 6,
+        WAIST = 7,
+        COLLAR = 8,
+        SHOULDER = 9,
+        ELBOW = 10,
+        WRIST = 11,
+        HAND = 12,
+        FINGERTIP = 13,
+        HIP = 14,
+        KNEE = 15,
+        ANKLE = 16,
+        FOOT = 17
+    };
+    static int typeCount;
     static IMSP * createFunction(void * arg);
-    static const std::string & getMSPTypeName();
+    static const std::string & getMSPTypeName(TYPE type);
 
-    Matrix4SkelDepackMSP(const MSPConfig & config);
-    virtual ~Matrix4SkelDepackMSP();
+    Vector4SkeletonDepackMSP(const MSPConfig & config);
+    virtual ~Vector4SkeletonDepackMSP();
 
     virtual const std::string & getTypeName() const;
     virtual IEventSink * getEventSink(const std::string & name);
     virtual void registerEventSink(const std::string & name, IEventSink * eventSink);
     virtual const MSPType & getMSPType() const;
 
-    void handlePackedMatrix4Event(PackedMatrix4Event * e);
+    void handlePackedVector4Event(PackedVector4Event * e);
 
 protected:
     MSPConfig config;
     MSPType type;
 
-    EventDelegateNC<PackedMatrix4Event, Matrix4SkelDepackMSP> matrix4EventDelegate;
+    EventDelegateNC<PackedVector4Event, Vector4SkeletonDepackMSP> vector4EventDelegate;
     
     std::map<std::string, int> nameToIdMap;
     std::map<int, IEventSink *> out;
