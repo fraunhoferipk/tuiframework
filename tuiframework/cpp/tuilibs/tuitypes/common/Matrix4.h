@@ -24,6 +24,7 @@
 #ifndef _tuiframework_Matrix4_h_
 #define _tuiframework_Matrix4_h_
 
+#include "Vector4.h"
 #include <tuiframework/core/ISerializable.h>
 #include <iostream>
 
@@ -109,7 +110,7 @@ public:
     inline void scaleColumnAbs(int index, int dim, T factor) {
         
         T a = getColumnAbs(index, dim);
-        if (a < 0.001) {
+        if (a < 0.000000001) {
             return;
         }
         
@@ -123,7 +124,7 @@ public:
     inline void scaleRowAbs(int index, int dim, T factor) {
         
         T a = getRowAbs(index, dim);
-        if (a < 0.001) {
+        if (a < 0.000000001) {
             return;
         }
         
@@ -190,7 +191,7 @@ public:
         }
         
             // if the determinant is zero the matrix is not invertible
-        if (det > -0.001 && det < 0.001) {
+        if (det > -0.000000001 && det < 0.000000001) {
             return false;
         }
         
@@ -215,6 +216,15 @@ public:
     }
     
     
+    inline static T scalarProduct(const T * const vec1, const T * const vec2) {
+        return
+        vec1[0]*vec2[0] +
+        vec1[1]*vec2[1] +
+        vec1[2]*vec2[2] +
+        vec1[3]*vec2[3];
+    }
+    
+    
     inline static Matrix4<T> product(const Matrix4<T> & a, const Matrix4<T> & b) {
         Matrix4<T> c;
         for (int y = 0; y < 4; ++y) {
@@ -224,8 +234,26 @@ public:
         }
         return c;
     }
+
+    
+    inline static Vector4<T> product(const Vector4<T> & v, const Matrix4<T> & m) {
+        Vector4<T> c;
+        for (int x = 0; x < 4; ++x) {
+            c[x] = product(&v[0], &m[0][x]);
+        }
+        return c;
+    }
     
     
+    inline static Vector4<T> product(const Matrix4<T> & m, const Vector4<T> & v) {
+        Vector4<T> c;
+        for (int y = 0; y < 4; ++y) {
+            c[y] = scalarProduct(m[y], &v[0]);
+        }
+        return c;
+    }
+    
+     
     inline static Matrix4<T> times(const Matrix4<T> & a, const Matrix4<T> & b) {
         Matrix4<T> c;
         for (int i = 0; i < 16; ++i) {
@@ -266,7 +294,7 @@ public:
     
     inline Matrix4<T> & operator +=(const Matrix4<T> & a) {
         for (int i = 0; i < 16; ++i) {
-            this->data[i] -= a.data[i];
+            this->data[i] += a.data[i];
         }
         return *this;
     }
@@ -291,6 +319,16 @@ inline Matrix4<T> operator *(const Matrix4<T> & a, const Matrix4<T> & b) {
 }
 
 
+template <typename T>
+inline Vector4<T> operator *(const Vector4<T> & v, const Matrix4<T> & m) {
+    return Matrix4<T>::product(v, m);
+}
+
+
+template <typename T>
+inline Vector4<T> operator *(const Matrix4<T> & m, const Vector4<T> & v) {
+    return Matrix4<T>::product(m, v);
+}
 
 #endif
 
