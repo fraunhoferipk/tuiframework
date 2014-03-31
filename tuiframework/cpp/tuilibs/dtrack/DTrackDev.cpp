@@ -73,14 +73,14 @@ DTrackDev::DTrackDev(const DeviceConfig & deviceConfig) {
 
     map<string, Port> portMap;
 
-    portMap["M4OUT1"] = Port("M4OUT1", "Matrix4Channel", Port::Source);
-    portMap["M4OUT2"] = Port("M4OUT2", "Matrix4Channel", Port::Source);
-    portMap["M4OUT3"] = Port("M4OUT3", "Matrix4Channel", Port::Source);
-    portMap["M4OUT4"] = Port("M4OUT4", "Matrix4Channel", Port::Source);
-    portMap["M4OUT5"] = Port("M4OUT5", "Matrix4Channel", Port::Source);
-    portMap["M4OUT6"] = Port("M4OUT6", "Matrix4Channel", Port::Source);
-    portMap["M4OUT7"] = Port("M4OUT7", "Matrix4Channel", Port::Source);
-    portMap["M4OUT8"] = Port("M4OUT8", "Matrix4Channel", Port::Source);
+    portMap["M4OUT1"] = Port("M4OUT1", "Matrix4", Port::Source);
+    portMap["M4OUT2"] = Port("M4OUT2", "Matrix4", Port::Source);
+    portMap["M4OUT3"] = Port("M4OUT3", "Matrix4", Port::Source);
+    portMap["M4OUT4"] = Port("M4OUT4", "Matrix4", Port::Source);
+    portMap["M4OUT5"] = Port("M4OUT5", "Matrix4", Port::Source);
+    portMap["M4OUT6"] = Port("M4OUT6", "Matrix4", Port::Source);
+    portMap["M4OUT7"] = Port("M4OUT7", "Matrix4", Port::Source);
+    portMap["M4OUT8"] = Port("M4OUT8", "Matrix4", Port::Source);
 
     DeviceType deviceType;
     deviceType.setPortMap(portMap);
@@ -281,7 +281,7 @@ void DTrackDev::executeInputLoop() {
     tv.tv_sec = 0;
     tv.tv_usec = 100000;
     select(0, 0, 0, 0, &tv); 
-  
+    int k = 0;  
     this->inputLoopRunning = true;
     while (this->inputLoopRunning) {
 /*
@@ -307,28 +307,32 @@ void DTrackDev::executeInputLoop() {
         } else if (this->eventSink) {
             //      data_error_to_console(dt);
             int i;
+
             dtrack2_body_type body;
-            Matrix4Data mat;
+            Matrix4<double> mat;
             for (i=0; i < dt->get_num_body() && i < 8; i++) {
                 body = dt->get_body(i);
                 
                 if (body.quality < 0) {
                     //cout << "bod " << body.id << " not tracked" << endl;
                 } else {
-                    Matrix4ChangedEvent * event = new Matrix4ChangedEvent();
+                
+                    Matrix4Event * event = new Matrix4Event();
                     event->setAddress(EPAddress(this->entityID, i));
-                    mat.setRow(0,body.rot[0], body.rot[1], body.rot[2], 0);
-                    mat.setRow(1,body.rot[3], body.rot[4], body.rot[5], 0);
-                    mat.setRow(2,body.rot[6], body.rot[7], body.rot[8], 0);
-                    mat.setRow(3,body.loc[0], body.loc[1], body.loc[2], 1);
+                    mat.setRow(0, body.rot[0], body.rot[1], body.rot[2], 0);
+                    mat.setRow(1, body.rot[3], body.rot[4], body.rot[5], 0);
+                    mat.setRow(2, body.rot[6], body.rot[7], body.rot[8], 0);
+                    mat.setRow(3, body.loc[0], body.loc[1], body.loc[2], 1);
                     event->setPayload(mat);
                     eventSink->push(event);
                     //std::cout << "mat send "<< std::endl;
-
-                    cout << "bodyid: " << body.id << " " << mat << endl;
+                    if (k % 30 == 0) {
+                        cout << "bodyid: " << body.id << " " << mat << endl;
+                    }
                 }
             }
         }
+        ++k;
     }
 }
 
@@ -348,7 +352,7 @@ void DTrackDev::deviceStop() {
 
     this->inputLoopRunning = false;
 
-  		// stop measurement:
+    // stop measurement:
   
     if(!dt->set_parameter("output", "net ch01", "none")){  // command: deactivate tracking data
         command_error_to_console(dt);
@@ -362,8 +366,11 @@ void DTrackDev::deviceStop() {
         return;
     }
 
-	delete this->dt;
-	cout << "DTrackDev::deviceStop()" << endl;
+    delete this->dt;
+    
+    pthread_cancel(this->inputLoopThread);
+    pthread_join(this->inputLoopThread, 0);
+    cout << "DTrackDev::deviceStop()" << endl;
 }
 
 
