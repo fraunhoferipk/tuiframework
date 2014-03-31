@@ -114,7 +114,7 @@ void TrackerToMatrix4MSP::handleEvent(TrackerChangedEvent * e) {
             m.setColumn(3, p[0], p[1], p[2], 1.0f);
             */
             
-            Matrix4Data m;
+            Matrix4<double> m;
             /*
             m.setRow(0, 1.0f - 2.0f*qy*qy - 2.0f*qz*qz, 2.0f*qx*qy - 2.0f*qz*qw, 2.0f*qx*qz + 2.0f*qy*qw, 0.0f);
             m.setRow(1, 2.0f*qx*qy + 2.0f*qz*qw, 1.0f - 2.0f*qx*qx - 2.0f*qz*qz, 2.0f*qy*qz - 2.0f*qx*qw, 0.0f);
@@ -127,7 +127,7 @@ void TrackerToMatrix4MSP::handleEvent(TrackerChangedEvent * e) {
             
             m.setRow(3, 1000.0f*p[0], 1000.0f*p[1], 1000.0f*p[2], 1.0f);
                     
-            Matrix4ChangedEvent * e2 = new Matrix4ChangedEvent(-1, -1, m);
+            Matrix4Event * e2 = new Matrix4Event(-1, -1, m);
             //TFINFO(e2)
             this->out->push(e2);
         }        

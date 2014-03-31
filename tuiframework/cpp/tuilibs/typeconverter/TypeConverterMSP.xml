@@ -36,7 +36,7 @@
           <PortType name="in" sink="1" source="0" typename="TrackerChannel">
             <Description/>
           </PortType>          
-          <PortType name="out" sink="0" source="1" typename="Matrix4Channel">
+          <PortType name="out" sink="0" source="1" typename="Matrix4">
             <Description/>
           </PortType>
         </PortTypeSequence>
