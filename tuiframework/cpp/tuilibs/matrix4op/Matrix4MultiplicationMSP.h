@@ -23,8 +23,8 @@
 */
 
 
-#ifndef _tuiframework_Matrix4MulMSP_h_
-#define _tuiframework_Matrix4MulMSP_h_
+#ifndef _tuiframework_Matrix4MultiplicationMSP_h_
+#define _tuiframework_Matrix4MultiplicationMSP_h_
 
 #include <tuiframework/server/MSPConfig.h>
 #include <tuiframework/server/MSPType.h>
@@ -37,18 +37,18 @@
 
 namespace tuiframework {
 /**
- *  Matrix4MulMSP
+ *  Matrix4MultiplicationMSP
  *
  *  \author Oliver Belaifa
  *  \date 2013
  */ 
-class Matrix4MulMSP : public IMSP {
+class Matrix4MultiplicationMSP : public IMSP {
 public:
     static IMSP * createFunction(void * arg);
     static const std::string & getMSPTypeName();
 
-    Matrix4MulMSP(const MSPConfig & config);
-    virtual ~Matrix4MulMSP();
+    Matrix4MultiplicationMSP(const MSPConfig & config);
+    virtual ~Matrix4MultiplicationMSP();
 
     virtual const std::string & getTypeName() const;
     virtual IEventSink * getEventSink(const std::string & name);
@@ -67,14 +67,17 @@ protected:
     MSPConfig config;
     MSPType type;
 
-    EventDelegateNC<Matrix4Event, Matrix4MulMSP> eventDelegateA;
-    EventDelegateNC<Matrix4Event, Matrix4MulMSP> eventDelegateB;
+    EventDelegateNC<Matrix4Event, Matrix4MultiplicationMSP> eventDelegateA;
+    EventDelegateNC<Matrix4Event, Matrix4MultiplicationMSP> eventDelegateB;
     
-    EventDelegateNC<PackedMatrix4Event, Matrix4MulMSP> eventDelegateAP;
-    EventDelegateNC<PackedMatrix4Event, Matrix4MulMSP> eventDelegateBP;
+    EventDelegateNC<PackedMatrix4Event, Matrix4MultiplicationMSP> eventDelegateAP;
+    EventDelegateNC<PackedMatrix4Event, Matrix4MultiplicationMSP> eventDelegateBP;
     
     Matrix4<double> a;
     Matrix4<double> b;
+    
+    bool triggerA;
+    bool triggerB;
 
     IEventSink * outAB;
     IEventSink * outAPackedB;

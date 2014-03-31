@@ -4,7 +4,7 @@
    <ServerConfig>
       <ServerStartupConfig/>
       <MSPTypeSequence>
-          <MSPType name="Matrix4Mul">
+          <MSPType name="Matrix4Multiplication">
             <PortTypeSequence>
                <PortType name="A*B" sink="0" source="1" typename="Matrix4">
                   <Description/>
@@ -79,6 +79,10 @@
                   <Parameter name="col2" value="0"/>
                   <Parameter name="col1" value="1"/>
                </ParameterGroup>
+            </ParameterGroup>
+            <ParameterGroup name="multiply">
+                <Parameter name="triggerA" value="1"/>
+                <Parameter name="triggerB" value="1"/>
             </ParameterGroup>
          </MSPType>
       </MSPTypeSequence>

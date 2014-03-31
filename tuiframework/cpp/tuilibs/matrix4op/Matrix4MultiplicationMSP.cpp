@@ -23,7 +23,7 @@
 */
 
 
-#include "Matrix4MulMSP.h"
+#include "Matrix4MultiplicationMSP.h"
 
 #include <tuitypes/common/CommonTypeReg.h>
 #include <tuiframework/server/ParameterGroup.h>
@@ -43,53 +43,56 @@ using namespace std;
 
 namespace tuiframework {
 
-IMSP * Matrix4MulMSP::createFunction(void * arg) {
+IMSP * Matrix4MultiplicationMSP::createFunction(void * arg) {
     MSPConfig * config = static_cast<MSPConfig *>(arg);
-    return new Matrix4MulMSP(*config);
+    return new Matrix4MultiplicationMSP(*config);
 }
 
-static std::string typeName = "Matrix4Mul";
+static std::string typeName = "Matrix4Multiplication";
 
-const std::string & Matrix4MulMSP::getMSPTypeName() {
+const std::string & Matrix4MultiplicationMSP::getMSPTypeName() {
     return typeName;
 }
 
 
-Matrix4MulMSP::Matrix4MulMSP(const MSPConfig & config) :
+Matrix4MultiplicationMSP::Matrix4MultiplicationMSP(const MSPConfig & config) :
     config(config),
     outAB(0),
     outAPackedB(0),
     outABPacked(0) {
     
-    this->eventDelegateA.setReceiver(this, &Matrix4MulMSP::handleA);
-    this->eventDelegateB.setReceiver(this, &Matrix4MulMSP::handleB);
-    this->eventDelegateAP.setReceiver(this, &Matrix4MulMSP::handleAP);
-    this->eventDelegateBP.setReceiver(this, &Matrix4MulMSP::handleBP);
+    this->eventDelegateA.setReceiver(this, &Matrix4MultiplicationMSP::handleA);
+    this->eventDelegateB.setReceiver(this, &Matrix4MultiplicationMSP::handleB);
+    this->eventDelegateAP.setReceiver(this, &Matrix4MultiplicationMSP::handleAP);
+    this->eventDelegateBP.setReceiver(this, &Matrix4MultiplicationMSP::handleBP);
     
     try {
         this->initMatrix(this->config.getParameterGroup().getParameterGroup("A"), this->a);
         this->initMatrix(this->config.getParameterGroup().getParameterGroup("B"), this->b);
-        
         TFINFO("initial matrix A:" << this->a);
-        TFINFO("initial matrix B:" << this->a);
+        TFINFO("initial matrix B:" << this->b);
+        this->triggerA = this->config.getParameterGroup().getParameterGroup("multiply").getInt("triggerA") != 0;
+        this->triggerB = this->config.getParameterGroup().getParameterGroup("multiply").getInt("triggerB") != 0;
+        TFINFO("triggerA = " << this->triggerA);
+        TFINFO("triggerB = " << this->triggerB);
     }
     catch (Exception & e) {
-        e.addErrorMessage("in Matrix4MulMSP.", __FILE__, __LINE__);
+        e.addErrorMessage("in Matrix4MultiplicationMSP.", __FILE__, __LINE__);
         TFERROR(e.getFormattedString());
     }
 }
 
 
-Matrix4MulMSP::~Matrix4MulMSP() {
+Matrix4MultiplicationMSP::~Matrix4MultiplicationMSP() {
 }
 
 
-const std::string & Matrix4MulMSP::getTypeName() const {
+const std::string & Matrix4MultiplicationMSP::getTypeName() const {
     return getMSPTypeName();
 }
 
 
-IEventSink * Matrix4MulMSP::getEventSink(const std::string & name) {
+IEventSink * Matrix4MultiplicationMSP::getEventSink(const std::string & name) {
     if (name.compare(inATag) == 0) {
         return &this->eventDelegateA;
     } else if (name.compare(inBTag) == 0) {
@@ -106,7 +109,7 @@ IEventSink * Matrix4MulMSP::getEventSink(const std::string & name) {
 }
 
 
-void Matrix4MulMSP::registerEventSink(const std::string & name, IEventSink * eventSink) {
+void Matrix4MultiplicationMSP::registerEventSink(const std::string & name, IEventSink * eventSink) {
     if (name.compare(outABTag) == 0) {
         this->outAB = eventSink;
     } else if (name.compare(outAPackedBTag) == 0) {
@@ -119,14 +122,14 @@ void Matrix4MulMSP::registerEventSink(const std::string & name, IEventSink * eve
 }
 
 
-const MSPType & Matrix4MulMSP::getMSPType() const {
+const MSPType & Matrix4MultiplicationMSP::getMSPType() const {
     return this->type;
 }
 
 
-void Matrix4MulMSP::handleA(Matrix4Event * e) {    
+void Matrix4MultiplicationMSP::handleA(Matrix4Event * e) {    
     this->a = e->getPayload();
-    if (this->outAB) {
+    if (this->outAB && this->triggerA) {
         this->outAB->push(new Matrix4Event(-1, -1, this->a*this->b));
     }
     
@@ -134,9 +137,9 @@ void Matrix4MulMSP::handleA(Matrix4Event * e) {
 }
 
 
-void Matrix4MulMSP::handleB(Matrix4Event * e) {    
+void Matrix4MultiplicationMSP::handleB(Matrix4Event * e) {    
     this->b = e->getPayload();
-    if (this->outAB) {
+    if (this->outAB && this->triggerB) {
         this->outAB->push(new Matrix4Event(-1, -1, this->a*this->b));
     }
     
@@ -144,7 +147,7 @@ void Matrix4MulMSP::handleB(Matrix4Event * e) {
 }
 
 
-void Matrix4MulMSP::handleAP(PackedMatrix4Event * e) {
+void Matrix4MultiplicationMSP::handleAP(PackedMatrix4Event * e) {
     if (this->outAPackedB) {
         const PackedType<Matrix4<double> > & p = e->getPayload();
         const vector<pair<int, Matrix4<double> > > & items = p.getItems();
@@ -167,7 +170,7 @@ void Matrix4MulMSP::handleAP(PackedMatrix4Event * e) {
 }
 
 
-void Matrix4MulMSP::handleBP(PackedMatrix4Event * e) {    
+void Matrix4MultiplicationMSP::handleBP(PackedMatrix4Event * e) {    
     if (this->outABPacked) {
         const PackedType<Matrix4<double> > & p = e->getPayload();
         const vector<pair<int, Matrix4<double> > > & items = p.getItems();
@@ -190,7 +193,7 @@ void Matrix4MulMSP::handleBP(PackedMatrix4Event * e) {
 }
 
 
-void Matrix4MulMSP::initMatrix(const ParameterGroup & parameterGroup, Matrix4<double> & mat) {
+void Matrix4MultiplicationMSP::initMatrix(const ParameterGroup & parameterGroup, Matrix4<double> & mat) {
     mat[0][0] = parameterGroup.getParameterGroup("row1").getDouble("col1");
     mat[0][1] = parameterGroup.getParameterGroup("row1").getDouble("col2");
     mat[0][2] = parameterGroup.getParameterGroup("row1").getDouble("col3");
