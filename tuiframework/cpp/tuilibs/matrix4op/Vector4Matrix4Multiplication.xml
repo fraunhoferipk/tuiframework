@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--document xmlns:xi='http://www.w3.org/2001/XInclude'-->
+<document xmlns:xi="http://www.w3.org/2001/XInclude">
+   <ServerConfig>
+      <ServerStartupConfig/>
+      <MSPTypeSequence>
+          <MSPType name="Vector4Matrix4Multiplication">
+            <PortTypeSequence>
+               <PortType name="V*M" sink="0" source="1" typename="Vector4">
+                  <Description/>
+               </PortType>
+               <PortType name="M*V" sink="0" source="1" typename="Vector4">
+                  <Description/>
+               </PortType>
+               <PortType name="VP*M" sink="0" source="1" typename="PackedVector4">
+                  <Description/>
+               </PortType>
+               <PortType name="M*VP" sink="0" source="1" typename="PackedVector4">
+                  <Description/>
+               </PortType>
+               <PortType name="MP*V" sink="0" source="1" typename="PackedVector4">
+                  <Description/>
+               </PortType>
+               <PortType name="V*MP" sink="0" source="1" typename="PackedVector4">
+                  <Description/>
+               </PortType>
+               <PortType name="V" sink="1" source="0" typename="Vector4">
+                  <Description/>
+               </PortType>
+               <PortType name="M" sink="1" source="0" typename="Matrix4">
+                  <Description/>
+               </PortType>
+               <PortType name="VP" sink="1" source="0" typename="PackedVector4">
+                  <Description/>
+               </PortType>
+               <PortType name="MP" sink="1" source="0" typename="PackedMatrix4">
+                  <Description/>
+               </PortType>
+            </PortTypeSequence>
+            <ParameterGroup name="V">
+               <Parameter name="x" value="0"/>
+               <Parameter name="y" value="0"/>
+               <Parameter name="z" value="0"/>
+               <Parameter name="w" value="1"/>
+            </ParameterGroup>
+            <ParameterGroup name="M">
+               <ParameterGroup name="row4">
+                  <Parameter name="col4" value="1"/>
+                  <Parameter name="col3" value="0"/>
+                  <Parameter name="col2" value="0"/>
+                  <Parameter name="col1" value="0"/>
+               </ParameterGroup>
+               <ParameterGroup name="row3">
+                  <Parameter name="col4" value="0"/>
+                  <Parameter name="col3" value="1"/>
+                  <Parameter name="col2" value="0"/>
+                  <Parameter name="col1" value="0"/>
+               </ParameterGroup>
+               <ParameterGroup name="row2">
+                  <Parameter name="col4" value="0"/>
+                  <Parameter name="col3" value="0"/>
+                  <Parameter name="col2" value="1"/>
+                  <Parameter name="col1" value="0"/>
+               </ParameterGroup>
+               <ParameterGroup name="row1">
+                  <Parameter name="col4" value="0"/>
+                  <Parameter name="col3" value="0"/>
+                  <Parameter name="col2" value="0"/>
+                  <Parameter name="col1" value="1"/>
+               </ParameterGroup>
+            </ParameterGroup>
+            <ParameterGroup name="multiply">
+                <Parameter name="triggerV" value="1"/>
+                <Parameter name="triggerM" value="1"/>
+            </ParameterGroup>
+         </MSPType>
+      </MSPTypeSequence>
+   </ServerConfig>
+</document>
