@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--document xmlns:xi='http://www.w3.org/2001/XInclude'-->
+<document xmlns:xi="http://www.w3.org/2001/XInclude">
+   <ServerConfig>
+      <ServerStartupConfig/>
+      <MSPTypeSequence>
+          <MSPType name="Vector4PackedDuplicate">
+            <PortTypeSequence>
+               <PortType name="AP" sink="1" source="0" typename="PackedVector4">
+                  <Description/>
+               </PortType>
+               <PortType name="AP1" sink="0" source="1" typename="PackedVector4">
+                  <Description/>
+               </PortType>
+               <PortType name="AP2" sink="0" source="1" typename="PackedVector4">
+                  <Description/>
+               </PortType>
+            </PortTypeSequence>
+         </MSPType>
+      </MSPTypeSequence>
+   </ServerConfig>
+</document>
