@@ -27,6 +27,20 @@ testtuiclient2_SOURCES = \
     tuiclient2/Init.cpp \
     tuiclient2/MyTUIObject.cpp
 
+    
+#################################
+
+bin_PROGRAMS += testtuiclient4
+
+testtuiclient4_CXXFLAGS = -fPIC -rdynamic -I../tuilibs -I$(INCDIR) -ggdb -g -O3
+
+testtuiclient4_LDADD = -lCommonTUITypes -lTUIFrameworkClient -lTUIFrameworkCore -lpthread
+testtuiclient4_LDFLAGS = -L../tuiframework -L../tuilibs
+
+testtuiclient4_SOURCES = \
+    tuiclient4/tuiclient.cpp \
+    tuiclient4/Init.cpp \
+    tuiclient4/MyTUIObject.cpp    
 
 #################################
 
@@ -99,7 +113,9 @@ testtuiserver2_SOURCES = \
 
 testtuiserver2xml_DATA = \
     tuiserver2/mousetestconfig.xml \
-    tuiserver2/testconfig.xml
+    tuiserver2/testconfig.xml  \
+    tuiserver2/mctestconfig.xml \
+    tuiserver2/matrix4calib.xml
 
 
 testtuiserver2xmldir = $(datadir)/@PACKAGE@
