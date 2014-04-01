@@ -73,9 +73,14 @@ int main(int argc, char* argv[]) {
     serverApp.tuiServerExecute();
 
     getchar();
-    
+    cout << "before serverApp.tuiServerExit()" << endl;
     serverApp.tuiServerExit();
+    cout << "after serverApp.tuiServerExit()" << endl;
     
+    cout << "before pluginShelf->freePluginShelf()" << endl;
+    pluginShelf->freePluginShelf();
+    cout << "after pluginShelf->freePluginShelf()" << endl;
+    getchar();
     // todo: delete the instance within the plugin libs 
     
     return 0;
