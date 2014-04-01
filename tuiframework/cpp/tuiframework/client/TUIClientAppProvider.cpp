@@ -72,5 +72,9 @@ IEventChannelFactory & getEventChannelFactory(int index) {
 }
 
 
+void processEvents(int index) {
+    TUIClientAppProvider::getInstance(index)->processEvents();
+}
+
 }
 

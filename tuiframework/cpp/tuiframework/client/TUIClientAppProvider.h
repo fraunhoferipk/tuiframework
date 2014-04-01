@@ -60,6 +60,7 @@ bool connectWithTUIServer(int mySendPortNr,
 
 
 bool disconnectFromTUIServer(int index = 0);
+void processEvents(int index = 0);
 
 IEventFactory & getEventFactory(int index = 0);
 IEventChannelFactory & getEventChannelFactory(int index = 0);
