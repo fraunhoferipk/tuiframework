@@ -84,8 +84,11 @@ std::string Matrix4CalibrationDev::getDeviceName() {
 Matrix4CalibrationDev::Matrix4CalibrationDev(const DeviceConfig & deviceConfig) :
     senderThreadActive(false),
     receiverThreadActive(false),
-    curVec1Avail(false),
-    curVec2Avail(false) {
+    vec1Size(0),
+    vec2Size(0),
+    trackVectors(false),
+    premultiply(false),
+    useAverage(false) {
 
     this->deviceDescriptor.setEntityID(deviceConfig.getEntityID());
     this->entityID = this->deviceDescriptor.getEntityID();
@@ -93,8 +96,8 @@ Matrix4CalibrationDev::Matrix4CalibrationDev(const DeviceConfig & deviceConfig) 
     map<string, Port> portMap;
     map<string, int> namePortNrMap;
     
-    addPort(Port("Vector1",               "Vector3",        Port::Sink, ""),    PortNR_Vector1,                 portMap, namePortNrMap);
-    addPort(Port("Vector2",               "Vector3",        Port::Sink, ""),    PortNR_Vector2,                 portMap, namePortNrMap);
+    addPort(Port("Vector1",               "Vector4",        Port::Sink, ""),    PortNR_Vector1,                 portMap, namePortNrMap);
+    addPort(Port("Vector2",               "Vector4",        Port::Sink, ""),    PortNR_Vector2,                 portMap, namePortNrMap);
     addPort(Port("CalibratedMatrix",      "Matrix4",        Port::Source, ""),  PortNR_CalibratedMatrix,        portMap, namePortNrMap);
     addPort(Port("ApplyVectors",          "DigitalChannel", Port::Sink, ""),    PortNR_ApplyVectors,            portMap, namePortNrMap);
     addPort(Port("ClearVectors",          "DigitalChannel", Port::Sink, ""),    PortNR_ClearVectors,            portMap, namePortNrMap);
@@ -117,6 +120,12 @@ Matrix4CalibrationDev::Matrix4CalibrationDev(const DeviceConfig & deviceConfig) 
         
         this->calibratedMatrixPath = deviceConfig.getParameterGroup().getString("CalibratedMatrix|Path");
         TFDEBUG("calibratedMatrixPath = " << this->calibratedMatrixPath);
+        
+        this->premultiply = deviceConfig.getParameterGroup().getInt("CalibratedMatrix|Pre-multiply") != 0;
+        TFINFO("pre-multiply = " << this->premultiply);
+        
+        this->useAverage = deviceConfig.getParameterGroup().getInt("ApplyVectors|useAverage") != 0;
+        TFINFO("useAverage = " << this->useAverage);
     }
     catch(Exception & e) {
         TFERROR(e.getFormattedString());
@@ -138,13 +147,6 @@ bool Matrix4CalibrationDev::deviceExecute() {
             }
             receiver_thread_created = true;
         }
-
-        {
-            int rc = pthread_create(&this->senderThread, NULL, Matrix4CalibrationDev::senderThread_run, this);
-            if (rc) {
-                throw Exception(TFSTR("pthread_create() failed, return code:" << rc), __FILE__, __LINE__);
-            }
-        }
     }
     catch(Exception & e) {
         TFERROR(e.getFormattedString());
@@ -153,6 +155,15 @@ bool Matrix4CalibrationDev::deviceExecute() {
         }
         return false;
     }
+    
+    DigitalChangedEvent e(-1, -1, true);
+    if (this->calibratedMatrixPath.size()) {
+        this->loadCalibratedMatrix(&e);
+    }
+    if (this->initialSend) {
+        this->sendCalibratedMatrix(&e);
+    }
+    
     return true;
 }
 
@@ -204,113 +215,66 @@ const DeviceDescriptor & Matrix4CalibrationDev::getDeviceDescriptor() const {
 }
 
 
-void * Matrix4CalibrationDev::senderThread_run(void * arg) {
-    printf("Matrix4CalibrationDev - input loop thread started\n");
-    Matrix4CalibrationDev * dummyDevice = static_cast<Matrix4CalibrationDev *>(arg);
-    dummyDevice->senderThreadLoop();
-    return 0;
-}
 
-
-void Matrix4CalibrationDev::senderThreadLoop() {
-    this->senderThreadActive = true;
-    while (this->senderThreadActive) {
-#ifndef _WIN32
-        fd_set rfds;
-        struct timeval tv;
-        int retval;
-
-        FD_ZERO(&rfds);
-        FD_SET(0, &rfds);
-
-        tv.tv_sec = 0;
-        tv.tv_usec = 100000;
-        retval = select(1, &rfds, 0, 0, &tv);
-#endif
-#ifdef _WIN32
-        Sleep(100);
-#endif
-        if (this->eventSink) {
-            {
-                int a = 0;
-                float c = 0;
-                map<std::string, int>::iterator i = this->deviceDescriptor.getNameChannelNrMap().begin();
-                map<std::string, int>::iterator e = this->deviceDescriptor.getNameChannelNrMap().end();
-                while (i != e && a < 1) {
-                    Matrix4Event * event = new Matrix4Event();
-                    event->setAddress(EPAddress(this->entityID, (*i).second));
-                    Matrix4<double> mat;
-                    /*
-                    mat[0][0] = 1;
-                    mat[0][1] = 0;
-                    mat[0][2] = 0;
-                    mat[0][3] = 0;
-                    mat[1][0] = 0;
-                    mat[1][1] = 1;
-                    mat[1][2] = 0;
-                    mat[1][3] = 0;
-                    mat[2][0] = 0;
-                    mat[2][1] = 0;
-                    mat[2][2] = 1;
-                    mat[2][3] = 0;
-                    mat[3][0] = c;
-                    mat[3][1] = 0;
-                    mat[3][2] = 0;
-                    mat[3][3] = 1;
-                    */
-                    
-                    mat[0][0] = 1;
-                    mat[0][1] = 0.5;
-                    mat[0][2] = 1;
-                    mat[0][3] = 1;
-                    
-                    mat[1][0] = 1;
-                    mat[1][1] = 1;
-                    mat[1][2] = 1;
-                    mat[1][3] = -1;
-                    
-                    mat[2][0] = 1;
-                    mat[2][1] = 2;
-                    mat[2][2] = 1;
-                    mat[2][3] = -1;
-                    
-                    mat[3][0] = 2;
-                    mat[3][1] = 2;
-                    mat[3][2] = 1;
-                    mat[3][3] = 1;
-                    
-                    event->setPayload(mat);
-                    eventSink->push(event);
-                    c += 1.0f;
-                    ++a;
-                    ++i;
-                }
-            }
+void Matrix4CalibrationDev::handleVector1(Vector4Event * event) {
+    if (this->useAverage) {
+        if (this->trackVectors) {
+            this->vec1 += event->getPayload();
+            ++this->vec1Size;
+            TFDEBUG("track vec1: " << event->getPayload())
         }
+    } else {
+        this->vec1 = event->getPayload();
+        //TFDEBUG("Vec1: " << this->vec1)
+        this->vec1Size = 1;
     }
 }
 
 
-void Matrix4CalibrationDev::handleVector1(Vector3Event * event) {
-    this->curVec1 = event->getPayload();
-    this->curVec1Avail = true;
+void Matrix4CalibrationDev::handleVector2(Vector4Event * event) {
+    if (this->useAverage) {
+        if (this->trackVectors) {
+            this->vec2 += event->getPayload();
+            ++this->vec2Size;
+            TFDEBUG("track vec2: " << event->getPayload())
+        }
+    } else {
+        this->vec2 = event->getPayload();
+        //TFDEBUG("Vec2: " << this->vec2)
+        this->vec2Size = true;
+    }
 }
 
-
-void Matrix4CalibrationDev::handleVector2(Vector3Event * event) {
-    this->curVec2 = event->getPayload();
-    this->curVec2Avail = true;
+void Matrix4CalibrationDev::applyVectors() {
+    if (this->vec1Size && this->vec2Size) {
+        this->vec1.scale(1.0/static_cast<double>(this->vec1Size));
+        this->vec2.scale(1.0/static_cast<double>(this->vec2Size));
+        this->vecPairVector.push_back(pair<Vector4<double>, Vector4<double> >(this->vec1, this->vec2));
+        TFDEBUG("apply vec1: " << this->vec1 << "   vec2: " << this->vec2)
+    }
+    
+    this->vec1 = Vector4<double>();
+    this->vec2 = Vector4<double>();
+    this->vec1Size = 0;
+    this->vec2Size = 0;
 }
 
 
 void Matrix4CalibrationDev::applyVectors(DigitalChangedEvent * event) {
-    if ( ! event->getPayload()) {
-        return;
-    }
-    if (this->curVec1Avail && this->curVec2Avail) {
-        this->vecPairVector.push_back(pair<Vector3<double>, Vector3<double> >(this->curVec1, this->curVec2));
-        this->curVec1Avail = false;
-        this->curVec2Avail = false;
+    TFDEBUG("applyVectors")
+    if (this->useAverage) {
+        if (this->trackVectors != event->getPayload()) {
+            if ( ! event->getPayload()) {
+                this->applyVectors();
+            }
+            this->trackVectors = event->getPayload();
+        }
+        
+    } else {
+        if ( ! event->getPayload()) {
+            return;
+        }
+        this->applyVectors();
     }
 }
 
@@ -319,6 +283,7 @@ void Matrix4CalibrationDev::clearVectors(DigitalChangedEvent * event) {
     if ( ! event->getPayload()) {
         return;
     }
+    TFDEBUG("clearVectors")
     this->vecPairVector.clear();
 }
 
@@ -327,13 +292,14 @@ void Matrix4CalibrationDev::loadCalibratedMatrix(DigitalChangedEvent * event) {
     if ( ! event->getPayload()) {
         return;
     }
-    
+    TFDEBUG("loadCalibratedMatrix")
     std::fstream fs;
-    fs.open (this->calibratedMatrixPath.c_str(), std::fstream::in);
+    fs.open(this->calibratedMatrixPath.c_str(), std::fstream::in);
     if (fs.is_open()) {
         fs >> this->matrix;
         fs.close();
     } else {
+        TFERROR("")
         //@@TODO
     }
 }
@@ -343,13 +309,14 @@ void Matrix4CalibrationDev::saveCalibratedMatrix(DigitalChangedEvent * event) {
     if ( ! event->getPayload()) {
         return;
     }
-    
+    TFDEBUG("saveCalibratedMatrix")
     std::fstream fs;
-    fs.open (this->calibratedMatrixPath.c_str(), std::fstream::in);
+    fs.open(this->calibratedMatrixPath.c_str(), std::fstream::out);
     if (fs.is_open()) {
-        fs >> this->matrix;
+        fs << this->matrix;
         fs.close();
     } else {
+        TFERROR("")
         //@@TODO
     }
 }
@@ -359,89 +326,32 @@ void Matrix4CalibrationDev::sendCalibratedMatrix(DigitalChangedEvent * event) {
     if ( ! event->getPayload()) {
         return;
     }
+    TFDEBUG("sendCalibratedMatrix")
     Matrix4Event * e = new Matrix4Event();
-    e->setAddress(EPAddress(this->entityID, PortNR_SendCalibratedMatrix));
+    e->setAddress(EPAddress(this->entityID, PortNR_CalibratedMatrix));
     e->setPayload(this->matrix);
     this->eventSink->push(e);
 }
 
-static double epsilon = 0.001;
-
-/*
-static double det(const Vector3<double> & a, const Vector3<double> & b, const Vector3<double> & c) {   
-    return a[0]*b[1]*c[2] + a[2]*b[0]*c[1] + a[1]*b[2]*c[0] - a[0]*b[2]*c[1] - a[2]*b[1]*c[0] - a[1]*b[0]*c[2];
-}
-
-void Matrix4CalibrationDev::calculateCalibratedMatrix3() {
-    Vector3<double> a[3];
-    Vector3<double> b[3];
-    vector<pair<Vector3<double>, Vector3<double> > >::const_iterator i = this->vecPairVector.begin();
-    vector<pair<Vector3<double>, Vector3<double> > >::const_iterator j = this->vecPairVector.begin();
-    vector<pair<Vector3<double>, Vector3<double> > >::const_iterator e = this->vecPairVector.end();
-    while (i != e) {
-            // calculate vector difference to eliminate translation offset
-        for (int k = 0; k < 3; ++k) {
-            j = i;
-            ++i;
-            if (i == e) {
-                break;
-            }
-            a[k] = (*i).first - (*j).first;
-            b[k] = (*i).second - (*j).second;
-        }
-        
-        if (k == 3) {
-                // transpose
-            Vector3<double> c[3];
-            Vector3<double> d[3];
-            for (int l = 0; l < 3; ++l) {
-                for (int m = 0; m < 3; ++m) {
-                    c[m][l] = a[l][m];
-                    d[m][l] = b[l][m];
-                }
-            }
-                // all vectors must not be linear dependent
-                // check this with the denominator determinant
-                // Cramer's rule is used to solve the system of linear equations
-            double n1 = det(c[0], c[1], c[2]);
-            double n2 = det(d[0], d[1], d[2]);
-            
-            if (n1 < epsilon && -n1 < epsilon) {
-                break;
-            }
-            
-            Vector3<double> m[3];
-            m[0][0] = det(d[0], c[1], c[2]);
-            m[1][0] = det(c[0], d[0], c[2]);
-            m[2][0] = det(c[0], c[1], d[0]);
-            
-            m[0][1] = det(d[1], c[1], c[2]);
-            m[1][1] = det(c[0], d[1], c[2]);
-            m[2][1] = det(c[0], c[1], d[1]);
-            
-            m[0][2] = det(d[2], c[1], c[2]);
-            m[1][2] = det(c[0], d[2], c[2]);
-            m[2][2] = det(c[0], c[1], d[2]);            
-            
-            
-        }
-    }
-}
-*/
+static double epsilon = 0.000000001;
 
 void Matrix4CalibrationDev::calculateCalibratedMatrix(DigitalChangedEvent * event) {
     if ( ! event->getPayload()) {
         return;
     }    
+    TFDEBUG("calculateCalibratedMatrix")
     vector<Matrix4<double> > mvec;
     {
         Matrix4<double> a;
         Matrix4<double> b;
-        vector<pair<Vector3<double>, Vector3<double> > >::const_iterator i = this->vecPairVector.begin();
-        vector<pair<Vector3<double>, Vector3<double> > >::const_iterator e = this->vecPairVector.end();
+        vector<pair<Vector4<double>, Vector4<double> > >::const_iterator i = this->vecPairVector.begin();
+        vector<pair<Vector4<double>, Vector4<double> > >::const_iterator e = this->vecPairVector.end();
         while (i != e) {
             int k = 0;
             while (k < 4 && i != e) {
+                TFDEBUG("k =  " << k)
+                TFDEBUG("Vector1: " << (*i).first)
+                TFDEBUG("Vector2: " << (*i).second)
                 a.setRow(k, (*i).first[0], (*i).first[1], (*i).first[2], 1.0);
                 b.setRow(k, (*i).second[0], (*i).second[1], (*i).second[2], 1.0);
                 ++k;
@@ -449,32 +359,35 @@ void Matrix4CalibrationDev::calculateCalibratedMatrix(DigitalChangedEvent * even
             }
             
             if (k == 4) {
+                TFDEBUG("a: " << a)
+                TFDEBUG("b: " << b)
                 double n1 = a.getDeterminant();
+                TFDEBUG("det a = " << n1)
                 if (n1 < epsilon && -n1 < epsilon) {
                     break;
                 }
                 double n2 = b.getDeterminant();
+                TFDEBUG("det b = " << n2)
                 if (n2 < epsilon && -n2 < epsilon) {
                     break;
                 }
                 
                 Matrix4<double> m;
                 
-                for (int x = 0; x < 2; ++x) {
-                    for (int y = 0; y < 3; ++y) {
+                for (int x = 0; x < 4; ++x) {
+                    for (int y = 0; y < 4; ++y) {
                         Matrix4<double> c = a;
                         c.setColumn(y, b[0][x], b[1][x], b[2][x], b[3][x]);
                         m[y][x] = c.getDeterminant()/n1;
+                        if (fabs(m[y][x]) < 0.0000000001) {
+                            m[y][x] = 0;
+                        }
                     }
                 }
-                m[0][3] = 0;
-                m[1][3] = 0;
-                m[2][3] = 0;
-                m[3][3] = 1.0;
                 
                 mvec.push_back(m);
+                TFDEBUG("calculated matrix =  " << m)
             }
-            ++i;
         }
     }
     
@@ -482,12 +395,65 @@ void Matrix4CalibrationDev::calculateCalibratedMatrix(DigitalChangedEvent * even
         return;
     }
     
+    {
+        Matrix4<double> r;
+        if (mvec.size() == 1) {
+            r = mvec[0];
+        } else {
+            map<double, int> errorMap;
+            for (int n = 0; n < mvec.size(); ++n) {
+                const Matrix4<double> & m = mvec[n];
+                
+                double vabs = 0;
+                vector<pair<Vector4<double>, Vector4<double> > >::const_iterator i = this->vecPairVector.begin();
+                vector<pair<Vector4<double>, Vector4<double> > >::const_iterator e = this->vecPairVector.end();
+                while (i != e) {
+                    Vector4<double> v = (*i).first*m;
+                    v -= (*i).second;
+                    vabs += v.getAbs();
+                    
+                    ++i;
+                }
+                errorMap[vabs] = n;
+            }
+            
+            int mpos = 0;
+            map<double, int>::iterator i = errorMap.begin();
+            map<double, int>::iterator e = errorMap.end();
+            while (i != e) {
+                TFDEBUG("errorMap pos " << mpos << ": = " << (*i).first << " -> " << (*i).second)            
+                ++i;
+            }
+            
+            int mvecIndex = (*errorMap.begin()).second;
+            r = mvec[mvecIndex];
+        }
+        
+        if (this->premultiply) {
+            this->matrix = Matrix4<double>::transposed(r);
+        } else {
+            this->matrix = r;
+        }
+    }
+    
+    TFINFO("Matrix = " << this->matrix)
+    {
+        vector<pair<Vector4<double>, Vector4<double> > >::const_iterator i = this->vecPairVector.begin();
+        vector<pair<Vector4<double>, Vector4<double> > >::const_iterator e = this->vecPairVector.end();
+        while (i != e) {
+            TFDEBUG((*i).first << " -> " << (*i).first*this->matrix << " Ref: " << (*i).second);
+            ++i;
+        }
+    }
+    
+    /*
     // calculate mean matrix
     
     double absX = 0;
     double absY = 0;
     double absZ = 0;
     double count = static_cast<double>(mvec.size());
+    TFDEBUG("mvec size =  " << mvec.size())
     
     Matrix4<double> r;
     r.setZero();
@@ -496,36 +462,73 @@ void Matrix4CalibrationDev::calculateCalibratedMatrix(DigitalChangedEvent * even
         vector<Matrix4<double> >::const_iterator i = mvec.begin();
         vector<Matrix4<double> >::const_iterator e = mvec.end();
         while (i != e) {
-            absX += (*i).getColumnAbs(0, 3);
-            absY += (*i).getColumnAbs(1, 3);
-            absZ += (*i).getColumnAbs(2, 3);
+            //absX += (*i).getColumnAbs(0, 3);
+            //absY += (*i).getColumnAbs(1, 3);
+            //absZ += (*i).getColumnAbs(2, 3);
             r += *i;
             ++i;
         }
     }
+    this->matrix = Matrix4<double>::transposed(r);
+    */
+    //
     
-    absX /= count;
-    absY /= count;
-    absZ /= count;
+    //
+  /*  
+#ifdef interpolate_mtx
+    absX = r.getRowAbs(0, 3)/count;
+    absY = r.getRowAbs(1, 3)/count;
+    absZ = r.getRowAbs(2, 3)/count;
     
-    r.scaleColumnAbs(0, 3, 1.0);
-    r.scaleColumnAbs(1, 3, 1.0);
-    r.scaleColumnAbs(2, 3, 1.0);
-    
-    Vector3<double> vx(r[0][0], r[1][0], r[2][0]);
-    Vector3<double> vy(r[0][1], r[1][1], r[2][1]);
-    Vector3<double> vz(r[0][2], r[1][2], r[2][2]);
+    Vector4<double> vx(r[0][0], r[0][1], r[0][2]);
+    Vector4<double> vy(r[1][0], r[1][1], r[1][2]);
+    Vector4<double> vz(r[2][0], r[2][1], r[2][2]);
+    Vector4<double> tr(r[3][0], r[3][1], r[3][2]);
+    vx.scaleToAbs(1.0);
+    vy.scaleToAbs(1.0);
+    vz.scaleToAbs(1.0);
+    //tr.scale(1.0/count);
     
     double sxy = 0.0;
     double sxz = 0.0;
     double syz = 0.0;
     double maxCos = 0.0;
-    
-    while (true) {
+    int l = 0;
+    while (l < 10) {
+        TFDEBUG("vx =  " << vx)
+        TFDEBUG("vy =  " << vy)
+        TFDEBUG("vz =  " << vz)
         
-        sxy = vx*vy;
-        sxz = vx*vz;
-        syz = vy*vz;
+        TFDEBUG("vx*vy = " << vx*vy)
+        TFDEBUG("vx*vz = " << vx*vz)
+        TFDEBUG("vy*vz = " << vy*vz)
+        
+        TFDEBUG("acos(vx*vy) = " << acos(vx*vy))
+        TFDEBUG("acos(vx*vz) = " << acos(vx*vz))
+        TFDEBUG("acos(vy*vz) = " << acos(vy*vz))
+        
+        //sxy = cos(0.5*(M_PI/2 - acos(vx*vy)));
+        //sxz = cos(0.5*(M_PI/2 - acos(vx*vz)));
+        //syz = cos(0.5*(M_PI/2 - acos(vy*vz)));
+        
+        sxy = cos(0.5*(acos(vx*vy) - M_PI/2) +  M_PI/2);
+        sxz = cos(0.5*(acos(vx*vz) - M_PI/2) +  M_PI/2);
+        syz = cos(0.5*(acos(vy*vz) - M_PI/2) +  M_PI/2);
+        
+        TFDEBUG("sxy = " << sxy)
+        TFDEBUG("sxz = " << sxz)
+        TFDEBUG("syz = " << syz)
+        
+        Vector4<double> nvx = vx - sxy*vy - sxz*vz;
+        Vector4<double> nvy = vy - sxy*vx - syz*vz;
+        Vector4<double> nvz = vz - sxz*vx - syz*vy;
+        vx = nvx;
+        vy = nvy;
+        vz = nvz;
+        
+        vx.scaleToAbs(1.0);
+        vy.scaleToAbs(1.0);
+        vz.scaleToAbs(1.0);
         
         maxCos = fabs(sxy);
         if (maxCos > fabs(sxz)) {
@@ -535,27 +538,49 @@ void Matrix4CalibrationDev::calculateCalibratedMatrix(DigitalChangedEvent * even
             maxCos = fabs(syz);
         }
         
+        TFDEBUG("maxCos =  " << maxCos)
+        
         if (maxCos < epsilon) {
             break;
         }
         
-        Vector3<double> nvx = vx - 0.5*sxy*vy - 0.5*sxz*vz;
-        Vector3<double> nvy = vy - 0.5*sxy*vx - 0.5*syz*vz;
-        Vector3<double> nvz = vz - 0.5*sxz*vx - 0.5*syz*vy;
+        ++l;
     }
+    
+    TFDEBUG("absX =  " << absX)
+    TFDEBUG("absY =  " << absY)
+    TFDEBUG("absZ =  " << absZ)
+    
+    TFDEBUG("vx =  " << vx)
+    TFDEBUG("vy =  " << vy)
+    TFDEBUG("vz =  " << vz)
+    TFDEBUG("tr =  " << tr)
+    vx.scaleToAbs(absX);
+    vy.scaleToAbs(absY);
+    vz.scaleToAbs(absZ);
+    tr.scale(1.0/count);
+    
+    TFDEBUG("vx =  " << vx)
+    TFDEBUG("vy =  " << vy)
+    TFDEBUG("vz =  " << vz)
+    TFDEBUG("tr =  " << tr)
     
     for (int i = 0; i < 3; ++i) {
         r[i][0] = vx[i];
         r[i][1] = vy[i];
-        r[i][2] = vz[i];
+        r[i][2] = vz[i];        
+        r[i][3] = tr[i];
     }
+
+    r[3][0] = 0;
+    r[3][1] = 0;
+    r[3][2] = 0;
+    r[3][3] = 1.0;
+
+  //  this->matrix = r;
+#endif
+*/       
     
-    r.scaleColumnAbs(0, 3, absX);
-    r.scaleColumnAbs(1, 3, absY);
-    r.scaleColumnAbs(2, 3, absZ);
-    r.scaleRowAbs(3, 4, 1.0/count);
-    
-    this->matrix = r;
 }
 
 
@@ -569,10 +594,10 @@ void Matrix4CalibrationDev::receiverThreadLoop() {
                 IEventMsg<EPAddress> * e = static_cast<IEventMsg<EPAddress> *>(event);
                 switch (e->getAddress().getPortNr()) {
                     case PortNR_Vector1: {
-                        this->handleVector1(static_cast<Vector3Event *>(event));
+                        this->handleVector1(static_cast<Vector4Event *>(event));
                     } break;
                     case PortNR_Vector2: {
-                        this->handleVector2(static_cast<Vector3Event *>(event));
+                        this->handleVector2(static_cast<Vector4Event *>(event));
                     } break;
                     case PortNR_ApplyVectors: {
                         this->applyVectors(static_cast<DigitalChangedEvent *>(event));
@@ -596,7 +621,7 @@ void Matrix4CalibrationDev::receiverThreadLoop() {
                     }
                 };
             }
-            cout << "Matrix4CalibrationDev: " << event->getEventTypeID() << " " << event << endl;
+            //cout << "Matrix4CalibrationDev: " << event->getEventTypeID() << " " << event << endl;
         }
     }
 }

@@ -72,14 +72,16 @@ protected:
     void receiverThreadLoop();
     
 protected:
-    void handleVector1(Vector3Event * event);
-    void handleVector2(Vector3Event * event);
+    void handleVector1(Vector4Event * event);
+    void handleVector2(Vector4Event * event);
     void applyVectors(DigitalChangedEvent * event);
     void clearVectors(DigitalChangedEvent * event);
     void loadCalibratedMatrix(DigitalChangedEvent * event);
     void saveCalibratedMatrix(DigitalChangedEvent * event);
     void sendCalibratedMatrix(DigitalChangedEvent * event);
     void calculateCalibratedMatrix(DigitalChangedEvent * event);
+    
+    void applyVectors();
         
 protected:
     tuiframework::DeviceDescriptor deviceDescriptor;
@@ -97,14 +99,18 @@ protected:
     
     bool initialSend;
     std::string calibratedMatrixPath;
+    bool premultiply;
+    bool useAverage;
     
 protected:
-    bool curVec1Avail;
-    bool curVec2Avail;
-    Vector3<double> curVec1;
-    Vector3<double> curVec2;
+    Vector4<double> vec1;
+    int vec1Size;
+    Vector4<double> vec2;
+    int vec2Size;
     
-    std::vector<std::pair<Vector3<double>, Vector3<double> > > vecPairVector;
+    bool trackVectors;
+    
+    std::vector<std::pair<Vector4<double>, Vector4<double> > > vecPairVector;
     
     Matrix4<double> matrix;
 };

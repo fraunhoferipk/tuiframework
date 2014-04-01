@@ -6,10 +6,10 @@
       <DeviceTypeSequence>
          <DeviceType name="Matrix4CalibrationDev">
             <PortTypeSequence>
-               <PortType name="Vector1" sink="1" source="0" typename="Vector3">
+               <PortType name="Vector1" sink="1" source="0" typename="Vector4">
                   <Description/>
                </PortType>
-               <PortType name="Vector2" sink="1" source="0" typename="Vector3">
+               <PortType name="Vector2" sink="1" source="0" typename="Vector4">
                   <Description/>
                </PortType>
                <PortType name="CalibratedMatrix" sink="0" source="1" typename="Matrix4">
@@ -34,9 +34,13 @@
                   <Description/>
                </PortType>               
             </PortTypeSequence>
+            <ParameterGroup name="ApplyVectors">
+                <Parameter name="useAverage" value="0"/>
+            </ParameterGroup>
             <ParameterGroup name="CalibratedMatrix">
-              <Parameter name="InitialSend" value="0"/>
-              <Parameter name="Path" value="./calibrationMatrix.dat"/>
+               <Parameter name="InitialSend" value="0"/>
+               <Parameter name="Path" value="./calibrationMatrix.dat"/>
+               <Parameter name="Pre-multiply" value="0"/>
             </ParameterGroup>
          </DeviceType>
       </DeviceTypeSequence>
