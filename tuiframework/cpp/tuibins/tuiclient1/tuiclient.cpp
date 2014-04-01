@@ -46,7 +46,7 @@ int main(int argc, char* argv[]) {
     initTypeRegistration(getEventFactory());
     CommonTypeReg::registerTypes(&getEventFactory(), &getEventChannelFactory());
 
-	getchar();
+    getchar();
 
     connectWithTUIServer(atoi(argv[1]), atoi(argv[2]), argv[3], &init);
     return 0;
