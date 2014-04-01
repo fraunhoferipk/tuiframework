@@ -31,7 +31,7 @@ nobase_libCommonTUITypes_la_HEADERS = \
     tuitypes/common/PackedType.h \
     tuitypes/common/SkeletonJointID.h \
     tuitypes/common/TrackerData.h \
-    tuitypes/common/Vector3.h \
+    tuitypes/common/Vector4.h \
     tuitypes/common/Vector3d.h \
     tuitypes/common/VectorList3d.h
 
@@ -47,21 +47,21 @@ libDummyTUIDevice_ladir = ${includedir}/tuilibs
 libDummyTUIDevice_la_SOURCES = \
     dummy/DummyDevDA.cpp \
     dummy/DummyDevMatrix4.cpp \
-    dummy/DummyDevPackedVector3.cpp \
+    dummy/DummyDevPackedVector4.cpp \
     dummy/DummyDevPlugin.cpp \
     dummy/DummyDevTracker.cpp
 
 nobase_libDummyTUIDevice_la_HEADERS = \
     dummy/DummyDevDA.h \
     dummy/DummyDevMatrix4.h \
-    dummy/DummyDevPackedVector3.h \
+    dummy/DummyDevPackedVector4.h \
     dummy/DummyDevPlugin.h \
     dummy/DummyDevTracker.h
 
 libDummyTUIDevicexml_DATA = \
     dummy/DummyDeviceDA.xml \
     dummy/DummyDevMatrix4.xml \
-    dummy/DummyDevPackedVector3.xml \
+    dummy/DummyDevPackedVector4.xml \
     dummy/DummyDeviceTracker.xml
 
 libDummyTUIDevicexmldir = $(datadir)/@PACKAGE@
@@ -142,25 +142,25 @@ endif
 
 ################################
 
-lib_LTLIBRARIES += libMatrix4DepackMSP.la
-libMatrix4DepackMSP_la_CXXFLAGS = -fPIC -rdynamic -c -I$(INCDIR) -ggdb -g -O3
-libMatrix4DepackMSP_la_LIBADD = -lCommonTUITypes -lTUIFrameworkServer -lTUIFrameworkCore
-libMatrix4DepackMSP_la_LDFLAGS = -L../tuiframework -version-info 1:1:0
+lib_LTLIBRARIES += libVector4DepackMSP.la
+libVector4DepackMSP_la_CXXFLAGS = -fPIC -rdynamic -c -I$(INCDIR) -ggdb -g -O3
+libVector4DepackMSP_la_LIBADD = -lCommonTUITypes -lTUIFrameworkServer -lTUIFrameworkCore
+libVector4DepackMSP_la_LDFLAGS = -L../tuiframework -version-info 1:1:0
 
-libMatrix4DepackMSP_ladir = ${includedir}/tuilibs
+libVector4DepackMSP_ladir = ${includedir}/tuilibs
 
-libMatrix4DepackMSP_la_SOURCES = \
-    matrix4depack/Matrix4SkelDepackMSP.cpp \
-    matrix4depack/Matrix4DepackPlugin.cpp
+libVector4DepackMSP_la_SOURCES = \
+    vector4depack/Vector4SkeletonDepackMSP.cpp \
+    vector4depack/Vector4DepackPlugin.cpp
 
-nobase_libMatrix4DepackMSP_la_HEADERS = \
-    matrix4depack/Matrix4SkelDepackMSP.h \
-    matrix4depack/Matrix4DepackPlugin.h
+nobase_libVector4DepackMSP_la_HEADERS = \
+    vector4depack/Vector4SkeletonDepackMSP.h \
+    vector4depack/Vector4DepackPlugin.h
 
-libMatrix4DepackMSPxml_DATA = \
-    matrix4depack/Matrix4SkelDepack.xml
+libVector4DepackMSPxml_DATA = \
+    vector4depack/Vector4SkeletonDepack.xml
 
-libMatrix4DepackMSPxmldir = $(datadir)/@PACKAGE@
+libVector4DepackMSPxmldir = $(datadir)/@PACKAGE@
 
 ################################
 
@@ -173,29 +173,44 @@ libMatrix4OpMSP_ladir = ${includedir}/tuilibs
 
 libMatrix4OpMSP_la_SOURCES = \
     matrix4op/Matrix4DuplicateMSP.cpp \
+    matrix4op/Matrix4GetTranslationMSP.cpp \
     matrix4op/Matrix4InverseMSP.cpp \
-    matrix4op/Matrix4MulMSP.cpp \
+    matrix4op/Matrix4MultiplicationMSP.cpp \
+    matrix4op/Matrix4OpPlugin.cpp \
     matrix4op/Matrix4PackedDuplicateMSP.cpp \
+    matrix4op/Matrix4SetTranslationMSP.cpp \
     matrix4op/Matrix4TimesMSP.cpp \
-    matrix4op/Matrix4TranslMSP.cpp \
-    matrix4op/Matrix4OpPlugin.cpp
-
+    matrix4op/Vector4DuplicateMSP.cpp \
+    matrix4op/Vector4Matrix4MultiplicationMSP.cpp \
+    matrix4op/Vector4PackedDuplicateMSP.cpp \
+    matrix4op/Vector4TimesMSP.cpp
+    
 nobase_libMatrix4OpMSP_la_HEADERS = \
     matrix4op/Matrix4DuplicateMSP.h \
+    matrix4op/Matrix4GetTranslationMSP.h \
     matrix4op/Matrix4InverseMSP.h \
-    matrix4op/Matrix4MulMSP.h \
-    matrix4op/Matrix4TimesMSP.cpp \
-    matrix4op/Matrix4PackedDuplicateMSP.cpp \
-    matrix4op/Matrix4TranslMSP.h \
-    matrix4op/Matrix4OpPlugin.h
+    matrix4op/Matrix4MultiplicationMSP.h \
+    matrix4op/Matrix4OpPlugin.h \
+    matrix4op/Matrix4PackedDuplicateMSP.h \
+    matrix4op/Matrix4SetTranslationMSP.h \
+    matrix4op/Matrix4TimesMSP.h \
+    matrix4op/Vector4DuplicateMSP.h \
+    matrix4op/Vector4Matrix4MultiplicationMSP.h \
+    matrix4op/Vector4PackedDuplicateMSP.h \
+    matrix4op/Vector4TimesMSP.h
 
 libMatrix4OpMSPxml_DATA = \
     matrix4op/Matrix4Duplicate.xml \
+    matrix4op/Matrix4GetTranslation.xml \
     matrix4op/Matrix4Inverse.xml \
-    matrix4op/Matrix4Mul.xml \
-    matrix4op/Matrix4Times.xml \
+    matrix4op/Matrix4Multiplication.xml \
     matrix4op/Matrix4PackedDuplicate.xml \
-    matrix4op/Matrix4Transl.xml
+    matrix4op/Matrix4SetTranslation.xml \
+    matrix4op/Matrix4Times.xml \
+    matrix4op/Vector4Duplicate.xml \
+    matrix4op/Vector4Matrix4Multiplication.xml \
+    matrix4op/Vector4PackedDuplicate.xml \
+    matrix4op/Vector4Times.xml
 
 libMatrix4OpMSPxmldir = $(datadir)/@PACKAGE@
 
@@ -384,10 +399,12 @@ libMatrix4CalibrationDev_la_LDFLAGS = -L../tuiframework -version-info 1:1:0
 libMatrix4CalibrationDev_ladir = ${includedir}/tuilibs
 
 libMatrix4CalibrationDev_la_SOURCES = \
-    matrix4calibration/Matrix4CalibrationDev.cpp
+    matrix4calibration/Matrix4CalibrationDev.cpp \
+    matrix4calibration/Matrix4CalibrationPlugin.cpp
 
 nobase_libMatrix4CalibrationDev_la_HEADERS = \
-    matrix4calibration/Matrix4CalibrationDev.h 
+    matrix4calibration/Matrix4CalibrationDev.h \
+    matrix4calibration/Matrix4CalibrationPlugin.h
 
 libMatrix4CalibrationDevxml_DATA = \
     matrix4calibration/Matrix4Calibration.xml 
