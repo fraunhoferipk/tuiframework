@@ -60,9 +60,9 @@ void MSPContainer::createInstances(const std::map<std::string, MSPInstance> & in
         IMSP * msp = mspFactory.createInstance((*i).second.getTypeName(), &config);
         if (msp) {
             this->instanceMap[(*i).second.getName()] = msp;
-            TFDEBUG("MSP Instance '" << (*i).second.getName() << "' of type '" << (*i).second.getTypeName() << "'" << "created");
+            TFDEBUG("MSP Instance '" << (*i).second.getName() << "' of type '" << (*i).second.getTypeName() << "' " << "created");
         } else {
-            TFDEBUG("ERROR creating MSP '" << (*i).second.getName() << "' of type '" << (*i).second.getTypeName() << "'");
+            TFERROR("ERROR creating MSP '" << (*i).second.getName() << "' of type '" << (*i).second.getTypeName() << "'");
         }
         ++i;
     }
