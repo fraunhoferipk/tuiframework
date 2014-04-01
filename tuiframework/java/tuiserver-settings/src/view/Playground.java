@@ -55,12 +55,14 @@ import java.awt.geom.CubicCurve2D;
 import java.awt.geom.Area;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Enumeration;
 import java.util.Hashtable;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Stack;
+import java.util.TreeMap;
 
 
 import javax.swing.DefaultListModel;
@@ -189,8 +191,36 @@ public class Playground extends JPanel implements DropTargetListener {
 		
 		{
 			Hashtable<EntityID, EntityType> entityTypeMap = this.project.getEntityTypeDB().getEntityTypeMap();
-			
+
+			TreeMap<String, EntityType> entityTypeTreeMap = new TreeMap<String, EntityType>();
 			Enumeration<EntityType> e = entityTypeMap.elements();
+			while (e.hasMoreElements()) {
+				EntityType entityType = e.nextElement();
+				entityTypeTreeMap.put(entityType.getEntityID().getName(), entityType);
+			}
+
+			Collection<EntityType> entityTypeCollection = entityTypeTreeMap.values();
+			Iterator<EntityType> i = entityTypeCollection.iterator();
+			while (i.hasNext()) {
+				EntityType entityType = i.next();
+				switch (entityType.getEntityID().getType()) {
+				case DEV: {
+					this.deviceListModel.addElement(entityType);
+					break;
+				}
+				case MSP: {
+					this.mspListModel.addElement(entityType);
+					break;
+				}
+				case TUI: {
+					this.tuiListModel.addElement(entityType);
+					break;
+				}
+				}
+
+			}
+			/*
+			e = entityTypeMap.elements();
 			while (e.hasMoreElements()) {
 				EntityType entityType = e.nextElement();
 				switch (entityType.getEntityID().getType()) {
@@ -209,20 +239,9 @@ public class Playground extends JPanel implements DropTargetListener {
 				}
 
 			}
+			*/
 		}
-		/*
-		EntityInstance inst = this.serverConfig.getEntityInstanceMap().get(new EntityID("SignalDevice", EntityID.Type.DEV));
-        EntityType type = this.serverConfig.getEntityTypeMap().get(inst.getEntityTypeID());
-        this.entities.add(new Entity(inst, type, new Point(55, 55)));
-        
-        inst = this.serverConfig.getEntityInstanceMap().get(new EntityID("Transformer1", EntityID.Type.MSP));
-        type = this.serverConfig.getEntityTypeMap().get(inst.getEntityTypeID());
-        this.entities.add(new Entity(inst, type, new Point(305, 55)));
-        
-        inst = this.serverConfig.getEntityInstanceMap().get(new EntityID("BezierTool", EntityID.Type.TUI));
-        type = this.serverConfig.getEntityTypeMap().get(inst.getEntityTypeID());
-        this.entities.add(new Entity(inst, type, new Point(555, 55)));
-        */
+
 	}
 	
 	
