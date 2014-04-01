@@ -65,7 +65,7 @@ MotionCaptureStubDev::MotionCaptureStubDev(const DeviceConfig & deviceConfig) :
 
     map<string, Port> portMap;
 
-    portMap["pv"] = Port("pv", "PackedVector3", Port::Source);
+    portMap["pv"] = Port("pv", "PackedVector4", Port::Source);
 
     DeviceType deviceType;
     deviceType.setPortMap(portMap);
@@ -109,7 +109,9 @@ bool MotionCaptureStubDev::deviceExecute() {
 
 void MotionCaptureStubDev::deviceStop() {
     this->receiver.cancel();
+    this->receiver.join();
     pthread_cancel(this->inputLoopThread);
+    pthread_join(this->inputLoopThread, 0);
 }
 
 
@@ -154,10 +156,10 @@ void MotionCaptureStubDev::executeInputLoop() {
             ss.clear();
             ss.str(serializedData.first);
             delete serializedData.first;
-            PackedType<Vector3<double> > pv;
+            PackedType<Vector4<double> > pv;
             ss >> pv;
             // one user supported
-            PackedVector3Event * e = new PackedVector3Event(this->entityID, 1, pv);
+            PackedVector4Event * e = new PackedVector4Event(this->entityID, 1, pv);
             eventSink->push(e);
         }
     }

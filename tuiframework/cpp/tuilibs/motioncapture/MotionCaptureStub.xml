@@ -6,7 +6,7 @@
     <DeviceTypeSequence>
       <DeviceType name="MotionCaptureStubDev">
         <PortTypeSequence>
-          <PortType name="pv" sink="0" source="1" typename="PackedVector3">
+          <PortType name="pv" sink="0" source="1" typename="PackedVector4">
             <Description/>
           </PortType>
         </PortTypeSequence>
