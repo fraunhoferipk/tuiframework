@@ -150,6 +150,11 @@ void UDPSenderSocket::cancel() {
     pthread_cancel(this->tid);
 }
 
+
+void UDPSenderSocket::join() {
+    pthread_join(this->tid, 0);
+}
+
 // Static methods for clean up
 
 void UDPSenderSocket::notifyCancellation(void * arg) {

@@ -56,9 +56,11 @@ PluginLib * PluginLib::loadPluginLib(const std::string & path) {
 
 
 void PluginLib::freePluginLib(PluginLib * pluginLib) {
+    /*
     if (pluginLib->isOpen()) {
         pluginLib->closeSO();
     }
+    */
     delete pluginLib;
 }
 
@@ -99,7 +101,7 @@ bool PluginLib::openSO() {
     bool typeRes = true;
     bool devRes = true;
     bool mspRes = true;
-
+ 
     this->soHandle = dlopen(this->path.c_str(), RTLD_LAZY);
     if ( ! this->soHandle) {
         TFERROR(" Could not open: " << this->path.c_str());
@@ -107,19 +109,6 @@ bool PluginLib::openSO() {
         return false;
     }
     
-    this->soInitPlugin = reinterpret_cast<void (*)()>(dlsym(this->soHandle, "soInitPlugin"));
-    if (dlerror() != NULL) {
-        //TFDEBUG(" soInitPlugin not found")
-        genRes = false;
-    }
-    
-    dlerror();
-    this->soGetSOVersion = reinterpret_cast<std::string (*)()>(dlsym(this->soHandle, "soGetSOVersion"));
-    if (dlerror() != NULL) {
-        //TFDEBUG(" soGetSOVersion not found")
-        genRes = false;
-    }
-
     this->soGetTFVersion = reinterpret_cast<std::string (*)()>(dlsym(this->soHandle, "soGetTFVersion"));
     if (dlerror() != NULL) {
         //TFDEBUG(" soGetTFVersion not found")
@@ -133,6 +122,19 @@ bool PluginLib::openSO() {
             TFDEBUG("   " << this->path.c_str() << " version: " << this->soGetTFVersion());
             TFDEBUG("   tuiframework version: " << TUIFRAMEWORK_VERSION);
         }
+    }
+    
+    this->soInitPlugin = reinterpret_cast<void (*)()>(dlsym(this->soHandle, "soInitPlugin"));
+    if (dlerror() != NULL) {
+        //TFDEBUG(" soInitPlugin not found")
+        genRes = false;
+    }
+    
+    dlerror();
+    this->soGetSOVersion = reinterpret_cast<std::string (*)()>(dlsym(this->soHandle, "soGetSOVersion"));
+    if (dlerror() != NULL) {
+        //TFDEBUG(" soGetSOVersion not found")
+        genRes = false;
     }
 
     this->soTypeRegistration = reinterpret_cast<void (*)(IEventFactory * eventFactory, IEventChannelFactory * eventChannelFactory)>(dlsym(this->soHandle, "soTypeRegistration"));
@@ -200,7 +202,7 @@ bool PluginLib::openSO() {
         //TFDEBUG(" soDeleteMSPInstance not found")
         mspRes = false;
     }
-
+    
     this->open = genRes && (typeRes || mspRes || devRes);
     
     if (this->open) {
@@ -299,6 +301,11 @@ bool PluginLib::readEntityNames() {
     }
 
     return (this->deviceNameVector.size() != 0) || (this->mspNameVector.size() != 0);
+}
+
+
+const std::string & PluginLib::getPath() const {
+    return this->path;
 }
 
 

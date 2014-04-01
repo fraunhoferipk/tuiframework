@@ -60,6 +60,8 @@ namespace tuiframework {
 
         std::vector<std::string> getDeviceTypeNames() const;
         std::vector<std::string> getMSPTypeNames() const;
+        
+        void freePluginShelf();
 
     protected:
         std::vector<PluginLib *> pluginLibVector;

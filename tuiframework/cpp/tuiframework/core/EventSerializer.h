@@ -54,6 +54,8 @@ public:
     void create();
         /// Cancels the event serialization engine.
     void cancel();
+    
+    void join();
         /// Event serialization loop.
     void run();
 

@@ -22,18 +22,21 @@
 */
 
 
+#define USE_TFDEBUG
+#include "../logging/Logger.h"
+
 #include "TUIServerApp.h"
 
 #include "../core/IEvent.h"
 #include "../core/IDevice.h"
 #include "../core/HostAddress.h"
 #include "../core/Exception.h"
-#define USE_TFDEBUG
-#include "../logging/Logger.h"
+
 
 #include "EPAddressTranslator.h"
 
 #include "../core/TypeRegistration.h"
+
 
 #include <vector>
 #include <sstream>
@@ -382,23 +385,59 @@ void TUIServerApp::tuiServerExecute() {
 
 
 void TUIServerApp::tuiServerExit() {
-    map<int, IDevice *>::iterator i = this->deviceMap.begin();
-    map<int, IDevice *>::iterator e = this->deviceMap.end();
-    while (i != e) {
-        (*i).second->deviceStop();
-        ++i;
+    TFDEBUG("TUIServerApp::tuiServerExit()")
+    {
+        map<int, IDevice *>::iterator i = this->deviceMap.begin();
+        map<int, IDevice *>::iterator e = this->deviceMap.end();
+        while (i != e) {
+            TFDEBUG("====> Stopping Device: " << (*i).second->getDeviceDescriptor().getInstanceName())
+            (*i).second->deviceStop();
+            ++i;
+        }
     }
     
+    TFDEBUG("1")
         //@@TODO make it thread safe
     if (this->usingMulticast) {
         this->mcEventSerializer.cancel();
+        this->mcEventSerializer.join();
+        TFDEBUG("2")
     }
     this->eventSerializer.cancel();
-    this->eventDeserializer.cancel();
-    this->udpSenderSocket.cancel();
+    this->eventSerializer.join();
+    TFDEBUG("3")
     
+    this->eventDeserializer.cancel();
+    this->eventDeserializer.join();
+    TFDEBUG("4")
+    this->udpSenderSocket.cancel();
+    this->udpSenderSocket.join();
+    TFDEBUG("5")
     pthread_cancel(this->inputThread);
+    pthread_join(this->inputThread, 0);
+    TFDEBUG("6")
     this->udpReceiverSocket.cancel();
+    this->udpReceiverSocket.join();
+    TFDEBUG("7")
+    
+    //this->deviceContainer.freeDeviceInstances();
+    //TFDEBUG("8")
+    
+    {
+        map<int, IDevice *>::iterator i = this->deviceMap.begin();
+        map<int, IDevice *>::iterator e = this->deviceMap.end();
+        while (i != e) {
+            TFDEBUG("====> Deleting " << (*i).second->getDeviceDescriptor().getInstanceName())
+            (*i).second->deviceFree();
+            
+            ++i;
+        }
+    }
+    TFDEBUG("8")
+    
+    this->mspContainer.freeInstances();
+    
+    TFDEBUG("9")
 }
 
 

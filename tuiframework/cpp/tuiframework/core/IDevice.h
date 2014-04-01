@@ -49,6 +49,9 @@ public:
     virtual bool deviceExecute() = 0;
         /// Stops the device.
     virtual void deviceStop() = 0;
+    virtual void deviceFree() {
+        delete this;
+    }
         /// Sets an event sink which is used by the device for pushing outgoing events.
     virtual void deviceSetEventSink(IEventSink * eventSink) = 0;
         /// Returns a description of the device instance.

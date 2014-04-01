@@ -169,36 +169,41 @@ void UDPReceiverSocket::run() {
 
 
 static void * runfunc(void * arg) {
-	printf("UDPReceiverSocket thread started\n");
-	UDPReceiverSocket * udpReceiverSocket = static_cast<UDPReceiverSocket *>(arg);
-	udpReceiverSocket->run();
-	return 0;
+    printf("UDPReceiverSocket thread started\n");
+    UDPReceiverSocket * udpReceiverSocket = static_cast<UDPReceiverSocket *>(arg);
+    udpReceiverSocket->run();
+    return 0;
 }
 
 
 void UDPReceiverSocket::create() {
-	int rc = pthread_create(&this->tid, NULL, runfunc, this);
-	if (rc) {
-		TFFATAL("ERROR in thread creation");
-	}
+    int rc = pthread_create(&this->tid, NULL, runfunc, this);
+    if (rc) {
+        TFFATAL("ERROR in thread creation");
+    }
 }
 
 
 void UDPReceiverSocket::cancel() {
-	pthread_cancel(this->tid);
+    pthread_cancel(this->tid);
+}
+
+
+void UDPReceiverSocket::join() {
+    pthread_join(this->tid, 0);
 }
 
 
 void UDPReceiverSocket::notifyCancellation(void * arg) {
-	UDPReceiverSocket * udpReceiverSocket = static_cast<UDPReceiverSocket *>(arg);
-	if (udpReceiverSocket->threadMessageSink) {
-		udpReceiverSocket->threadMessageSink->threadCanceled(udpReceiverSocket->tid);
-	}
+    UDPReceiverSocket * udpReceiverSocket = static_cast<UDPReceiverSocket *>(arg);
+    if (udpReceiverSocket->threadMessageSink) {
+        udpReceiverSocket->threadMessageSink->threadCanceled(udpReceiverSocket->tid);
+    }
 }
 
 
 void UDPReceiverSocket::closeSocket(void * arg) {
-	UDPReceiverSocket * udpReceiverSocket = static_cast<UDPReceiverSocket *>(arg);
+    UDPReceiverSocket * udpReceiverSocket = static_cast<UDPReceiverSocket *>(arg);
     close(udpReceiverSocket->sfd);
 }
 

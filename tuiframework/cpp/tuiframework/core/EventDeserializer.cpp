@@ -83,6 +83,11 @@ void EventDeserializer::cancel() {
 }
 
 
+void EventDeserializer::join() {
+    pthread_join(this->tid, 0);
+}
+
+
 void EventDeserializer::run() {
     pthread_cleanup_push(notifyCancellation, this);
     if (this->threadMessageSink) {

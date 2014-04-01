@@ -23,6 +23,9 @@
 */
 
 
+#define USE_TFDEBUG
+#include "../logging/Logger.h"
+
 #include "PluginShelf.h"
 #include "PluginShelfSingleton.h"
 
@@ -41,8 +44,6 @@
 #include "DeviceConfig.h"
 #include "MSPConfig.h"
 
-#define USE_TFDEBUG
-#include "../logging/Logger.h"
 
 using namespace std;
 
@@ -193,6 +194,20 @@ vector<string> PluginShelf::getMSPTypeNames() const {
         ++i;
     }
     return v;
+}
+
+void PluginShelf::freePluginShelf() {
+    std::vector<PluginLib *>::iterator i = pluginLibVector.begin();
+    std::vector<PluginLib *>::iterator e = pluginLibVector.end();
+    while (i != e) {
+        TFDEBUG("freePluginLib: " << (*i)->getPath())
+        PluginLib::freePluginLib(*i);
+        ++i;
+    }
+    
+    pluginLibVector.clear();
+    devicePluginLibMap.clear();
+    mspPluginLibMap.clear();
 }
 
 }

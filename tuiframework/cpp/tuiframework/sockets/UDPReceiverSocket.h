@@ -57,6 +57,8 @@ public:
     void create();
         /// Stops the UDP receiver engine.
     void cancel();
+    
+    void join();
         /// UDP receiver loop.
     void run();
     

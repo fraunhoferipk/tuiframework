@@ -38,6 +38,12 @@ SStreamSingleton::SStreamSingleton() {
 
 
 SStreamSingleton::~SStreamSingleton() {
+    map<int, stringstream *>::iterator i = ssMap.begin();
+    map<int, stringstream *>::iterator e = ssMap.end();
+    while (i != e) {
+        delete (*i).second;
+        ++i;
+    }
 }
 
 

@@ -56,28 +56,30 @@ public:
     void create();
         /// Stops the UDP sender engine.
     void cancel();
+    
+    void join();
         /// UDP sender loop.
     void run();
 
 protected:
         /// Clean up handler for sending a notification message about
         /// the cancellation of the UDP sender engine.
-	static void notifyCancellation(void * arg);
+    static void notifyCancellation(void * arg);
         /// Clean up handler which closes the socket.
-	static void closeSocket(void * arg);
+    static void closeSocket(void * arg);
         /// Clean up handler which notifies the serialized data source about
         /// the cancellation during waiting for data.
-	static void waitForDataCanceled(void * arg);
+    static void waitForDataCanceled(void * arg);
 
 protected:
         /// host message source
-	IHostMsgSource & hostMsgSource;
+    IHostMsgSource & hostMsgSource;
 
         /// Port number of the socket
     unsigned short myPort;
         /// Socket file descriptor
     int sfd;
-		/// Thread ID
+        /// Thread ID
     pthread_t tid;
         /// Sink for thread dependend notification messages.
     IThreadMessageSink * threadMessageSink;

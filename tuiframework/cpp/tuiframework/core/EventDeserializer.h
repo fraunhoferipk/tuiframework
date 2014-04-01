@@ -55,6 +55,8 @@ public:
     void create();
         /// Cancels the event deserialization engine.
     void cancel();
+    
+    void join();
         /// Event deserialization loop.
     void run();
 
