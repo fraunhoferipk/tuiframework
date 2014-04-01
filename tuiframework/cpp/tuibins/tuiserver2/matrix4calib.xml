@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--document xmlns:xi='http://www.w3.org/2001/XInclude'--><document xmlns:xi="http://www.w3.org/2001/XInclude">
+   <ServerConfig>
+      <ServerStartupConfig/>
+      <DeviceTypeSequence>
+         <Image path="images/TUI1.png"/>
+         <DeviceType name="Matrix4CalibrationDev">
+            <PortTypeSequence>
+               <PortType name="CalcCalibratedMatrix" sink="1" source="0" typename="DigitalChannel">
+                  <Description/>
+               </PortType>
+               <PortType name="ClearVectors" sink="1" source="0" typename="DigitalChannel">
+                  <Description/>
+               </PortType>
+               <PortType name="CalibratedMatrix" sink="0" source="1" typename="Matrix4">
+                  <Description/>
+               </PortType>
+               <PortType name="ApplyVectors" sink="1" source="0" typename="DigitalChannel">
+                  <Description/>
+               </PortType>
+               <PortType name="SendCalibratedMatrix" sink="1" source="0" typename="DigitalChannel">
+                  <Description/>
+               </PortType>
+               <PortType name="SaveCalibratedMatrix" sink="1" source="0" typename="DigitalChannel">
+                  <Description/>
+               </PortType>
+               <PortType name="Vector2" sink="1" source="0" typename="Vector4">
+                  <Description/>
+               </PortType>
+               <PortType name="LoadCalibratedMatrix" sink="1" source="0" typename="DigitalChannel">
+                  <Description/>
+               </PortType>
+               <PortType name="Vector1" sink="1" source="0" typename="Vector4">
+                  <Description/>
+               </PortType>
+            </PortTypeSequence>
+            <ParameterTypeDefSequence/>
+            <ParameterTypeSequence/>
+            <ParameterGroup name="ApplyVectors">
+                <Parameter name="useAverage" value="0"/>
+            </ParameterGroup>
+            <ParameterGroup name="CalibratedMatrix">
+               <Parameter name="InitialSend" value="0"/>
+               <Parameter name="Path" value="./calibrationMatrix.dat"/>
+               <Parameter name="Pre-multiply" value="0"/>
+            </ParameterGroup>
+         </DeviceType>
+      </DeviceTypeSequence>
+      <MSPTypeSequence>
+         <Image path="images/DefaultMSP.png"/>
+      </MSPTypeSequence>
+      <TUIObjectTypeSequence>
+         <Image path="images/TUI1.png"/>
+         <TUIObjectType name="Matrix4CalibrationControler">
+            <PortTypeSequence>
+               <PortType name="CalcCalibratedMatrix" sink="1" source="0" typename="DigitalChannel">
+                  <Description/>
+               </PortType>
+               <PortType name="ClearVectors" sink="1" source="0" typename="DigitalChannel">
+                  <Description/>
+               </PortType>
+               <PortType name="CalibratedMatrix" sink="0" source="1" typename="Matrix4">
+                  <Description/>
+               </PortType>
+               <PortType name="ApplyVectors" sink="1" source="0" typename="DigitalChannel">
+                  <Description/>
+               </PortType>
+               <PortType name="SendCalibratedMatrix" sink="1" source="0" typename="DigitalChannel">
+                  <Description/>
+               </PortType>
+               <PortType name="SaveCalibratedMatrix" sink="1" source="0" typename="DigitalChannel">
+                  <Description/>
+               </PortType>
+               <PortType name="Vector2" sink="1" source="0" typename="Vector4">
+                  <Description/>
+               </PortType>
+               <PortType name="Vector1" sink="1" source="0" typename="Vector4">
+                  <Description/>
+               </PortType>
+               <PortType name="LoadCalibratedMatrix" sink="1" source="0" typename="DigitalChannel">
+                  <Description/>
+               </PortType>
+            </PortTypeSequence>
+         </TUIObjectType>
+      </TUIObjectTypeSequence>
+      <DeviceInstanceSequence>
+         <DeviceInstance name="CalibrationDevice" typename="Matrix4CalibrationDev">
+            <ParameterGroup name="ApplyVectors">
+                <Parameter name="useAverage" value="1"/>
+            </ParameterGroup>
+            <ParameterGroup name="CalibratedMatrix">
+               <Parameter name="InitialSend" value="0"/>
+               <Parameter name="Path" value="./calibrationMatrix.dat"/>
+               <Parameter name="Pre-multiply" value="0"/>
+            </ParameterGroup>
+         </DeviceInstance>
+      </DeviceInstanceSequence>
+      <MSPInstanceSequence/>
+      <TUIObjectInstanceSequence>
+         <TUIObjectInstance name="CalibrationControler" typename="Matrix4CalibrationControler"/>
+      </TUIObjectInstanceSequence>
+      <ConnectorSequence>
+         <Connector>
+            <SrcAddress entityName="CalibrationControler" entityType="TUI" portName="Vector1"/>
+            <DstAddress entityName="CalibrationDevice" entityType="DEV" portName="Vector1"/>
+         </Connector>
+         <Connector>
+            <SrcAddress entityName="CalibrationControler" entityType="TUI" portName="Vector2"/>
+            <DstAddress entityName="CalibrationDevice" entityType="DEV" portName="Vector2"/>
+         </Connector>
+         <Connector>
+            <SrcAddress entityName="CalibrationDevice" entityType="DEV" portName="CalibratedMatrix"/>
+            <DstAddress entityName="CalibrationControler" entityType="TUI" portName="CalibratedMatrix"/>
+         </Connector>
+         <Connector>
+            <SrcAddress entityName="CalibrationControler" entityType="TUI" portName="ApplyVectors"/>
+            <DstAddress entityName="CalibrationDevice" entityType="DEV" portName="ApplyVectors"/>
+         </Connector>
+         <Connector>
+            <SrcAddress entityName="CalibrationControler" entityType="TUI" portName="CalcCalibratedMatrix"/>
+            <DstAddress entityName="CalibrationDevice" entityType="DEV" portName="CalcCalibratedMatrix"/>
+         </Connector>
+         <Connector>
+            <SrcAddress entityName="CalibrationControler" entityType="TUI" portName="ClearVectors"/>
+            <DstAddress entityName="CalibrationDevice" entityType="DEV" portName="ClearVectors"/>
+         </Connector>
+         <Connector>
+            <SrcAddress entityName="CalibrationControler" entityType="TUI" portName="LoadCalibratedMatrix"/>
+            <DstAddress entityName="CalibrationDevice" entityType="DEV" portName="LoadCalibratedMatrix"/>
+         </Connector>
+         <Connector>
+            <SrcAddress entityName="CalibrationControler" entityType="TUI" portName="SaveCalibratedMatrix"/>
+            <DstAddress entityName="CalibrationDevice" entityType="DEV" portName="SaveCalibratedMatrix"/>
+         </Connector>
+         <Connector>
+            <SrcAddress entityName="CalibrationControler" entityType="TUI" portName="SendCalibratedMatrix"/>
+            <DstAddress entityName="CalibrationDevice" entityType="DEV" portName="SendCalibratedMatrix"/>
+         </Connector>
+      </ConnectorSequence>
+   </ServerConfig>
+</document>
