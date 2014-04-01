@@ -627,16 +627,22 @@ public class TUIServerSettingsApp extends javax.swing.JFrame {
         return ext;
     }
 	
+	private File currentExportDirectory = null;
+	
 	private void exportConfigMenuItemActionPerformed(ActionEvent evt) {
 		System.out.println("exportConfigMenuItem.actionPerformed, event="+evt);
 		
 		JFileChooser fileChooser = new JFileChooser();
+		if (this.currentExportDirectory != null) {
+			fileChooser.setCurrentDirectory(this.currentExportDirectory);
+		}
 		FileFilter filter = new FileNameExtensionFilter("XML file", "xml", "XML");
 		fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
 		fileChooser.removeChoosableFileFilter(fileChooser.getAcceptAllFileFilter());
 		fileChooser.addChoosableFileFilter(filter);
 		int result = fileChooser.showSaveDialog(this);
 	    if(result == JFileChooser.CANCEL_OPTION) return;
+	    this.currentExportDirectory = fileChooser.getCurrentDirectory();
 	    File file = fileChooser.getSelectedFile();
 	    this.exporter.exportServerConfig(file, this.project);
 	    
@@ -646,16 +652,22 @@ public class TUIServerSettingsApp extends javax.swing.JFrame {
 	    }
 	}
 	
+	private File currentImportDirectory = null;
+	
 	private void importConfigMenuItemActionPerformed(ActionEvent evt) {
 		System.out.println("importConfigMenuItem.actionPerformed, event="+evt);
 		
 		JFileChooser fileChooser = new JFileChooser();
+		if (this.currentImportDirectory != null) {
+			fileChooser.setCurrentDirectory(this.currentImportDirectory);
+		}
 		FileFilter filter = new FileNameExtensionFilter("XML file", "xml", "XML");
 		fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
 		fileChooser.removeChoosableFileFilter(fileChooser.getAcceptAllFileFilter());
 		fileChooser.addChoosableFileFilter(filter);
 		int result = fileChooser.showOpenDialog(this);
 	    if(result == JFileChooser.CANCEL_OPTION) return;
+	    this.currentImportDirectory = fileChooser.getCurrentDirectory();
 	    this.importer.importServerConfig(fileChooser.getSelectedFile(), this.project);
 	    this.playground1.setProject(this.project, this.deviceTypeList, this.mspTypeList, this.tuiTypeList);
 	    this.playground1.setReArrange(true);
@@ -1101,17 +1113,23 @@ public class TUIServerSettingsApp extends javax.swing.JFrame {
 		this.playground1.repaint();
 	}
 	
+	private File currentReadProjectDirectory = null;
+	
 	private void jMenuItem1ActionPerformed(ActionEvent evt) {
 		System.out.println("jMenuItem1.actionPerformed, event="+evt);
 		//TODO add your code for jMenuItem1.actionPerformed
 		// open project
 		JFileChooser fileChooser = new JFileChooser();
+		if (this.currentReadProjectDirectory != null) {
+			fileChooser.setCurrentDirectory(this.currentReadProjectDirectory);
+		}
 		FileFilter filter = new FileNameExtensionFilter("TUIProj file", "tuiproj", "TUIProj");
 		fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
 		fileChooser.removeChoosableFileFilter(fileChooser.getAcceptAllFileFilter());
 		fileChooser.addChoosableFileFilter(filter);
 		int result = fileChooser.showOpenDialog(this);
 	    if(result == JFileChooser.CANCEL_OPTION) return;
+	    this.currentReadProjectDirectory = fileChooser.getCurrentDirectory();
 	    this.importer.readProject(fileChooser.getSelectedFile(), this.project);
 	    this.playground1.setProject(this.project, this.deviceTypeList, this.mspTypeList, this.tuiTypeList);
 	    this.playground1.setReArrange(true);
@@ -1126,17 +1144,23 @@ public class TUIServerSettingsApp extends javax.swing.JFrame {
 	}
 	
 
+	private File currentWriteProjectDirectory = null;
+	
 	private void jMenuItem4ActionPerformed(ActionEvent evt) {
 		System.out.println("jMenuItem4.actionPerformed, event="+evt);
 		//TODO add your code for jMenuItem4.actionPerformed
 		// save project as
 		JFileChooser fileChooser = new JFileChooser();
+		if (this.currentWriteProjectDirectory != null) {
+			fileChooser.setCurrentDirectory(this.currentWriteProjectDirectory);
+		}
 		FileFilter filter = new FileNameExtensionFilter("TUIProj file", "tuiproj", "TUIProj");
 		fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
 		fileChooser.removeChoosableFileFilter(fileChooser.getAcceptAllFileFilter());
 		fileChooser.addChoosableFileFilter(filter);
 		int result = fileChooser.showSaveDialog(this);
 	    if(result == JFileChooser.CANCEL_OPTION) return;
+	    this.currentWriteProjectDirectory = fileChooser.getCurrentDirectory();
 	    File file = fileChooser.getSelectedFile();
 	    
 	    String extension = getExtension(file);
