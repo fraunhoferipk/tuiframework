@@ -17,11 +17,7 @@ The concept of the framework and ways to include it in own applications are expl
 
 Israel, J. H., Belaifa, O., Gispen, A., & Stark, R. (2011). An Object-centric Interaction Framework for Tangible Interfaces in Virtual Environments. Fifth international conference on Tangible, embedded, and embodied interaction ACM TEI’11 (pp. 325–332). Fuchal, Portugal: ACM Press. Retrieved from http://dx.doi.org/10.1145/1935701.1935777
 
-```HTML
-<iframe width="560" height="315" src="http://www.youtube.com/embed/2Uq74gZKkA0?list=PL1Sfv6_XKslitnKci7wtCjlBMM5C9F5K5" frameborder="0" allowfullscreen></iframe>
-```
-Example TUI-Server configuration (optical tracking and eye tracking)
-
+A video showing an example TUI-Server configuration (optical tracking and eye tracking) can be found here: http://www.youtube.com/embed/2Uq74gZKkA0?list=PL1Sfv6_XKslitnKci7wtCjlBMM5C9F5K5
 
 For further information please contact oliver.belaifa@ipk.fraunhofer.de or johann.habakuk.israel@ipk.fraunhofer.de.
 
