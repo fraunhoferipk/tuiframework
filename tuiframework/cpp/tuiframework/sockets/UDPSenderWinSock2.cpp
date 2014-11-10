@@ -241,6 +241,11 @@ void UDPSenderWinSock2::cancel() {
 	pthread_cancel(this->tid);
 }
 
+
+void UDPSenderWinSock2::join() {
+    pthread_join(this->tid, 0);
+}
+
 // Static methods for clean up
 
 void UDPSenderWinSock2::notifyCancellation(void * arg) {

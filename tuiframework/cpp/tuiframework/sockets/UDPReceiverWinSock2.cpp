@@ -195,6 +195,11 @@ void UDPReceiverWinSock2::cancel() {
 }
 
 
+void UDPReceiverWinSock2::join() {
+    pthread_join(this->tid, 0);
+}
+
+
 void UDPReceiverWinSock2::notifyCancellation(void * arg) {
 	UDPReceiverWinSock2 * udpReceiverSocket = static_cast<UDPReceiverWinSock2 *>(arg);
 	if (udpReceiverSocket->threadMessageSink) {

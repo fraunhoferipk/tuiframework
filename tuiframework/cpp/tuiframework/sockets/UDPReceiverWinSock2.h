@@ -59,6 +59,9 @@ public:
         /// Stops the UDP receiver engine.
     void cancel();
         /// UDP receiver loop.
+
+	void join();
+
     void run();
 
     void setHostEventPrefix(bool hostEventPrefix);

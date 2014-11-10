@@ -59,6 +59,9 @@ public:
         /// Stops the UDP sender engine.
     void cancel();
         /// UDP sender loop.
+
+	void join();
+
     void run();
 
 	void cleanup();
