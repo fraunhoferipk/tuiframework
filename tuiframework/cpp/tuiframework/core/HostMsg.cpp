@@ -31,7 +31,7 @@ using namespace std;
 namespace tuiframework {
 
 HostMsg::HostMsg() :
-    data(0, 0) {
+    data(static_cast<char *>(0), 0) {
 }
 
 
