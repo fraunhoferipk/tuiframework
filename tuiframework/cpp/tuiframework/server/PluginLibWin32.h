@@ -81,8 +81,10 @@ public:
     void deleteDeviceInstance(IDevice * device);
     void deleteMSPInstance(IMSP * msp);
 
+    const std::string & getPath() const;
+
 protected:
-	std::string path;
+    std::string path;
 
     HINSTANCE dllHandle;
     bool open;

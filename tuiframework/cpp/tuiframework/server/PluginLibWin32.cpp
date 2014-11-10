@@ -297,6 +297,9 @@ bool PluginLib::readEntityNames() {
     return (this->deviceNameVector.size() != 0) || (this->mspNameVector.size() != 0);
 }
 
+const std::string & PluginLib::getPath() const {
+    return this->path;
+}
 
 const std::vector<std::string> & PluginLib::getDeviceTypeNameVector() const {
     return this->deviceNameVector;
