@@ -1,0 +1,139 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{5D7F7DD6-C45A-48F2-98DF-23CB789A54EB}</ProjectGuid>
+    <RootNamespace>TUIFrameworkServer</RootNamespace>
+    <Keyword>Win32Proj</Keyword>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.30319.1</_ProjectFileVersion>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(SolutionDir)$(Configuration)\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(Configuration)\</IntDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(SolutionDir)$(Configuration)\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(Configuration)\</IntDir>
+    <CodeAnalysisRuleSet Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">AllRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRules Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" />
+    <CodeAnalysisRuleAssemblies Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" />
+    <CodeAnalysisRuleSet Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">AllRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRules Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" />
+    <CodeAnalysisRuleAssemblies Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" />
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>$(SolutionDir)\netsrc\Pre-built.2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>true</MinimalRebuild>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <Optimization>MaxSpeed</Optimization>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <AdditionalIncludeDirectories>$(SolutionDir)\netsrc\Pre-built.2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\tuiframework\server\Connector.cpp" />
+    <ClCompile Include="..\..\tuiframework\server\DeviceConfig.cpp" />
+    <ClCompile Include="..\..\tuiframework\server\DeviceContainer.cpp" />
+    <ClCompile Include="..\..\tuiframework\server\DeviceDescriptor.cpp" />
+    <ClCompile Include="..\..\tuiframework\server\DeviceFactory.cpp" />
+    <ClCompile Include="..\..\tuiframework\server\DeviceFactorySingleton.cpp" />
+    <ClCompile Include="..\..\tuiframework\server\DeviceInstance.cpp" />
+    <ClCompile Include="..\..\tuiframework\server\DeviceType.cpp" />
+    <ClCompile Include="..\..\tuiframework\server\EPAddressTranslator.cpp" />
+    <ClCompile Include="..\..\tuiframework\server\MSPBase.cpp" />
+    <ClCompile Include="..\..\tuiframework\server\MSPConfig.cpp" />
+    <ClCompile Include="..\..\tuiframework\server\MSPContainer.cpp" />
+    <ClCompile Include="..\..\tuiframework\server\MSPFactory.cpp" />
+    <ClCompile Include="..\..\tuiframework\server\MSPFactorySingleton.cpp" />
+    <ClCompile Include="..\..\tuiframework\server\MSPInstance.cpp" />
+    <ClCompile Include="..\..\tuiframework\server\MSPType.cpp" />
+    <ClCompile Include="..\..\tuiframework\server\ParameterGroup.cpp" />
+    <ClCompile Include="..\..\tuiframework\server\PluginLibWin32.cpp" />
+    <ClCompile Include="..\..\tuiframework\server\PluginShelf.cpp" />
+    <ClCompile Include="..\..\tuiframework\server\PluginShelfSingleton.cpp" />
+    <ClCompile Include="..\..\tuiframework\server\PortAddress.cpp" />
+    <ClCompile Include="..\..\tuiframework\server\ServerConfig.cpp" />
+    <ClCompile Include="..\..\tuiframework\server\ServerStartupConfig.cpp" />
+    <ClCompile Include="..\..\tuiframework\server\TUIServerApp.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\tuiframework\server\Connector.h" />
+    <ClInclude Include="..\..\tuiframework\server\DeviceConfig.h" />
+    <ClInclude Include="..\..\tuiframework\server\DeviceContainer.h" />
+    <ClInclude Include="..\..\tuiframework\server\DeviceDescriptor.h" />
+    <ClInclude Include="..\..\tuiframework\server\DeviceFactory.h" />
+    <ClInclude Include="..\..\tuiframework\server\DeviceFactorySingleton.h" />
+    <ClInclude Include="..\..\tuiframework\server\DeviceInstance.h" />
+    <ClInclude Include="..\..\tuiframework\server\DeviceType.h" />
+    <ClInclude Include="..\..\tuiframework\server\EPAddressTranslator.h" />
+    <ClInclude Include="..\..\tuiframework\server\IDeviceFactory.h" />
+    <ClInclude Include="..\..\tuiframework\server\IMSPFactory.h" />
+    <ClInclude Include="..\..\tuiframework\server\MSPBase.h" />
+    <ClInclude Include="..\..\tuiframework\server\MSPConfig.h" />
+    <ClInclude Include="..\..\tuiframework\server\MSPContainer.h" />
+    <ClInclude Include="..\..\tuiframework\server\MSPFactory.h" />
+    <ClInclude Include="..\..\tuiframework\server\MSPFactorySingleton.h" />
+    <ClInclude Include="..\..\tuiframework\server\MSPInstance.h" />
+    <ClInclude Include="..\..\tuiframework\server\MSPType.h" />
+    <ClInclude Include="..\..\tuiframework\server\ParameterGroup.h" />
+    <ClInclude Include="..\..\tuiframework\server\PluginLibWin32.h" />
+    <ClInclude Include="..\..\tuiframework\server\PluginShelf.h" />
+    <ClInclude Include="..\..\tuiframework\server\PluginShelfSingleton.h" />
+    <ClInclude Include="..\..\tuiframework\server\PortAddress.h" />
+    <ClInclude Include="..\..\tuiframework\server\ServerConfig.h" />
+    <ClInclude Include="..\..\tuiframework\server\ServerStartupConfig.h" />
+    <ClInclude Include="..\..\tuiframework\server\TUIServerApp.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ReadMe.txt" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
