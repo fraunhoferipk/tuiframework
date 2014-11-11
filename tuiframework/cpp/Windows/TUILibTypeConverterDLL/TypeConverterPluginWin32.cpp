@@ -31,6 +31,7 @@
 
 #include <typeconverter/AnalogToDigitalMSP.h>
 #include <typeconverter/DigitalToAnalogMSP.h>
+#include <typeconverter/TrackerToMatrix4MSP.h>
 
 #include <vector>
 
@@ -53,6 +54,9 @@ void dllInitPlugin() {
 
 	MSPFactorySingleton::getInstance()->registerCreateFunction(DigitalToAnalogMSP::getMSPTypeName(), DigitalToAnalogMSP::createFunction);
     mspTypeNameVector.push_back(DigitalToAnalogMSP::getMSPTypeName());
+	
+	MSPFactorySingleton::getInstance()->registerCreateFunction(TrackerToMatrix4MSP::getMSPTypeName(), TrackerToMatrix4MSP::createFunction);
+    mspTypeNameVector.push_back(TrackerToMatrix4MSP::getMSPTypeName());
 }
 
 
@@ -69,6 +73,7 @@ std::string dllGetDLLVersion() {
 void dllMSPRegistration(IMSPFactory * MSPFactory) {
     MSPFactory->registerCreateFunction(AnalogToDigitalMSP::getMSPTypeName(), AnalogToDigitalMSP::createFunction);
 	MSPFactory->registerCreateFunction(DigitalToAnalogMSP::getMSPTypeName(), DigitalToAnalogMSP::createFunction);
+	MSPFactory->registerCreateFunction(TrackerToMatrix4MSP::getMSPTypeName(), TrackerToMatrix4MSP::createFunction);   
 }
 
 
