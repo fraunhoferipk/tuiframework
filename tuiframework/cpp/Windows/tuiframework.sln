@@ -71,6 +71,10 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TUILibMatrix4OpDLL", "TUILi
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TUILibMotionCaptureStubDLL", "TUILibMotionCaptureStubDLL\TUILibMotionCaptureStubDLL.vcxproj", "{0EAB659D-095C-4C0A-ACCF-9E37D8E9F4BA}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TUILibMatrix4Calibration", "TUILibMatrix4Calibration\TUILibMatrix4Calibration.vcxproj", "{2D2A0924-DE8D-4B41-9F9C-7BB8C20BB3E7}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TUILibMatrix4CalibrationDLL", "TUILibMatrix4CalibrationDLL\TUILibMatrix4CalibrationDLL.vcxproj", "{A85BA6B0-6F4D-4880-9C6B-8C9D4DECB981}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -217,6 +221,14 @@ Global
 		{0EAB659D-095C-4C0A-ACCF-9E37D8E9F4BA}.Debug|Win32.Build.0 = Debug|Win32
 		{0EAB659D-095C-4C0A-ACCF-9E37D8E9F4BA}.Release|Win32.ActiveCfg = Release|Win32
 		{0EAB659D-095C-4C0A-ACCF-9E37D8E9F4BA}.Release|Win32.Build.0 = Release|Win32
+		{2D2A0924-DE8D-4B41-9F9C-7BB8C20BB3E7}.Debug|Win32.ActiveCfg = Debug|Win32
+		{2D2A0924-DE8D-4B41-9F9C-7BB8C20BB3E7}.Debug|Win32.Build.0 = Debug|Win32
+		{2D2A0924-DE8D-4B41-9F9C-7BB8C20BB3E7}.Release|Win32.ActiveCfg = Release|Win32
+		{2D2A0924-DE8D-4B41-9F9C-7BB8C20BB3E7}.Release|Win32.Build.0 = Release|Win32
+		{A85BA6B0-6F4D-4880-9C6B-8C9D4DECB981}.Debug|Win32.ActiveCfg = Debug|Win32
+		{A85BA6B0-6F4D-4880-9C6B-8C9D4DECB981}.Debug|Win32.Build.0 = Debug|Win32
+		{A85BA6B0-6F4D-4880-9C6B-8C9D4DECB981}.Release|Win32.ActiveCfg = Release|Win32
+		{A85BA6B0-6F4D-4880-9C6B-8C9D4DECB981}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
