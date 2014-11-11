@@ -93,8 +93,12 @@ void TrackerToMatrix4MSP::handleEvent(TrackerChangedEvent * e) {
         double p[4];
         td.getPos(p);
         
+#ifdef WIN32
+		if (!_isnan(q[0]) && !_isnan(q[1]) && !_isnan(q[2]) && !_isnan(q[3])) {
+#else
         if (!isnan(q[0]) && !isnan(q[1]) && !isnan(q[2]) && !isnan(q[3])) {
-            double n = 1.0/sqrt(q[0]*q[0] + q[1]*q[1] + q[2]*q[2] + q[3]*q[3]);
+#endif
+			double n = 1.0/sqrt(q[0]*q[0] + q[1]*q[1] + q[2]*q[2] + q[3]*q[3]);
             
             q[0] *= n;
             q[1] *= n;
