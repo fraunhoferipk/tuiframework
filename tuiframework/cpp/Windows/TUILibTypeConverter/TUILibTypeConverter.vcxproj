@@ -79,10 +79,12 @@
   <ItemGroup>
     <ClCompile Include="..\..\tuilibs\typeconverter\AnalogToDigitalMSP.cpp" />
     <ClCompile Include="..\..\tuilibs\typeconverter\DigitalToAnalogMSP.cpp" />
+    <ClCompile Include="..\..\tuilibs\typeconverter\TrackerToMatrix4MSP.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\tuilibs\typeconverter\AnalogToDigitalMSP.h" />
     <ClInclude Include="..\..\tuilibs\typeconverter\DigitalToAnalogMSP.h" />
+    <ClInclude Include="..\..\tuilibs\typeconverter\TrackerToMatrix4MSP.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ReadMe.txt" />

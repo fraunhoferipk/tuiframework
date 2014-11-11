@@ -77,6 +77,7 @@
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\tuilibs\tuitypes\common\CommonTUITypesPlugin.cpp" />
     <ClCompile Include="..\..\tuilibs\tuitypes\common\CommonTypeReg.cpp" />
     <ClCompile Include="..\..\tuilibs\tuitypes\common\Gesture.cpp" />
     <ClCompile Include="..\..\tuilibs\tuitypes\common\HapticAngle.cpp" />
@@ -88,6 +89,7 @@
     <ClCompile Include="..\..\tuilibs\tuitypes\common\VectorList3d.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\tuilibs\tuitypes\common\CommonTUITypesPlugin.h" />
     <ClInclude Include="..\..\tuilibs\tuitypes\common\CommonTypeReg.h" />
     <ClInclude Include="..\..\tuilibs\tuitypes\common\Gesture.h" />
     <ClInclude Include="..\..\tuilibs\tuitypes\common\HapticAngle.h" />
@@ -100,6 +102,7 @@
     <ClInclude Include="..\..\tuilibs\tuitypes\common\TrackerData.h" />
     <ClInclude Include="..\..\tuilibs\tuitypes\common\Vector3.h" />
     <ClInclude Include="..\..\tuilibs\tuitypes\common\Vector3d.h" />
+    <ClInclude Include="..\..\tuilibs\tuitypes\common\Vector4.h" />
     <ClInclude Include="..\..\tuilibs\tuitypes\common\VectorList3d.h" />
   </ItemGroup>
   <ItemGroup>
